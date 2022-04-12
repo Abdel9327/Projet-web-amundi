@@ -1,0 +1,59 @@
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\appsettings.json
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\appsettings.Requete.json
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\back WebAPP Amundi.exe
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\back WebAPP Amundi.deps.json
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\back WebAPP Amundi.runtimeconfig.json
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\back WebAPP Amundi.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\back WebAPP Amundi.pdb
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\back WebAPP Amundi.csproj.AssemblyReference.cache
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\back WebAPP Amundi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\back WebAPP Amundi.AssemblyInfoInputs.cache
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\back WebAPP Amundi.AssemblyInfo.cs
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\back WebAPP Amundi.csproj.CoreCompileInputs.cache
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\back WebAPP Amundi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\back WebAPP Amundi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\scopedcss\bundle\back WebAPP Amundi.styles.css
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\back WebAPP Amundi.csproj.CopyComplete
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\back WebAPP Amundi.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\refint\back WebAPP Amundi.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\back WebAPP Amundi.pdb
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\back WebAPP Amundi.genruntimeconfig.cache
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\ref\back WebAPP Amundi.dll
