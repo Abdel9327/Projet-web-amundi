@@ -1,0 +1,57 @@
+
+
+
+.liste-menu{
+    background-color: red;
+    font-family: sans-serif;
+
+}
+
+#liste-menu ul{
+    position:absolute;
+    width:450px;
+    margin:100px auto 0;
+    padding : 10px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 75%;
+    
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset white; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(106, 184, 245);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1c04f4; 
+
+}
+
+#liste-menu ul li {
+background: rgb(106, 184, 245);
+padding: 10px 20px;
+color: #fff;
+margin:5 px 0;
+transition: .5s;
+cursor: pointer;
+
+}
+
+#liste-menu ul li:hover{
+    transform: scale(1.06);
+    background: rgb(54, 54, 228);
+}
+

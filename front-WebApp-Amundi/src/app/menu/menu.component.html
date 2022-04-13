@@ -1,0 +1,16 @@
+<p>menu works!</p>
+
+<ag-grid-angular
+style="width:1000px; height: 500px;"
+class="ag-theme-balham"
+[rowData]="rowData"
+[columnDefs]="columnDefs"
+[animateRows]="true"
+>
+</ag-grid-angular>
+
+
+<button class="favorite styled"
+        type="button" (click)=" startRequest(1)">
+</button>
+<p>{{service.reponseRequest$ |json}}</p>
