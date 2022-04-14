@@ -1,7 +1,63 @@
-<p>menu works!</p>
+
+
+<div id="rectangle">
+
+        <img id="logoAmundi" src="../../assets/images/amundi.jpg" alt="logo_amundi"/>
+
+        <nav>
+                <ul class="menu">
+                        <li >Menu</li>
+                        <li>Ajouter une requete</li>
+                </ul>
+        </nav>
+</div>
+<div id="liste-menu">
+
+    <ul>
+        <div *ngFor="let request of  availableRequests ">
+            <li style="list-style-type: none;" (click)="startRequest(request)" >{{request.description}} </li><hr/> 
+        </div>    
+      
+    </ul>   
+</div>
+
+
+<div id="liste-requete-afficher">
+        <ul>
+                <div id="liste-inline" *ngFor="let request of requestsStarted">
+                        <div id="liste-inline" *ngIf=" isEqual(request) else normalRequest">
+                                <li style="list-style-type: none;" id ="requestShow" (click)="showRequest(request)">{{request.description}}<br>
+                                        {{request.hourOfStart | date:'medium'}} 
+                                        <button id="btnRequest">
+                                                <mat-icon>autorenew</mat-icon>
+                                                </button> 
+                                                <button id="btnRequest" (click)="deleteElement(request.id)">
+                                                        <mat-icon>clear</mat-icon>
+                                                </button></li>
+                                               
+                                               
+                        </div>
+                        <ng-template #normalRequest>
+                                <li style="list-style-type: none;" id="startedRequest" (click)="showRequest(request)">{{request.description}}<br>
+                                        {{request.hourOfStart | date:'medium'}} 
+                                        <button id="btnRequest"> 
+                                                <mat-icon>autorenew</mat-icon>
+                                                </button>
+                                                <button id="btnRequest" (click)="deleteElement(request.id)">
+                                                        <mat-icon>clear</mat-icon>
+                                                </button>
+                                </li>
+                        </ng-template>
+                        
+                </div> 
+        </ul>
+        
+</div>
+
+
 
 <ag-grid-angular
-style="width:1000px; height: 500px;"
+style="width:1400px; height: 650px;padding-left: 25%;padding-top:25px"
 class="ag-theme-balham"
 [rowData]="rowData"
 [columnDefs]="columnDefs"
@@ -10,7 +66,3 @@ class="ag-theme-balham"
 </ag-grid-angular>
 
 
-<button class="favorite styled"
-        type="button" (click)=" startRequest(1)">
-</button>
-<p>{{service.reponseRequest$ |json}}</p>

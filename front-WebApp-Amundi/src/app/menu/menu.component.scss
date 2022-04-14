@@ -1,16 +1,27 @@
 
 
 
-.liste-menu{
-    background-color: red;
-    font-family: sans-serif;
+body{
+  background: #e6e6e6;
+  font-family: "Varela Round", sans-serif;
+}
 
+#rectangle{
+  margin-top: 20px;
+  background-color: white;
+  height: 90px;
+  position: relative;
+}
+
+#logoAmundi{
+  max-width: 8.4%;
+	height: auto;
 }
 
 #liste-menu ul{
     position:absolute;
     width:450px;
-    margin:100px auto 0;
+    margin:40px auto 0;
     padding : 10px;
     box-sizing: border-box;
     overflow-x: hidden;
@@ -18,6 +29,7 @@
     height: 75%;
     
 }
+
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -25,23 +37,23 @@
 /* Track */
 ::-webkit-scrollbar-track {
   box-shadow: inset white; 
-  border-radius: 10px;
+  border-radius: 1px;
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(106, 184, 245);
+  background: #777;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #1c04f4; 
-
+  background: rgb(106, 184, 245);
+  border-radius: 10px;
 }
 
 #liste-menu ul li {
-background: rgb(106, 184, 245);
+background: #777;
 padding: 10px 20px;
 color: #fff;
 margin:5 px 0;
@@ -52,6 +64,82 @@ cursor: pointer;
 
 #liste-menu ul li:hover{
     transform: scale(1.06);
-    background: rgb(54, 54, 228);
+    background: rgb(106, 184, 245);
 }
 
+#liste-requete-afficher {
+  overflow: auto;
+  white-space: nowrap;
+  position: relative;
+  left: 500px;
+}
+
+#requestShow{
+  display: inline-block;
+  background : rgb(106, 184, 245);
+}
+
+#startedRequest{
+  background: #777;
+}
+#liste-inline{
+  display: inline-block;
+}
+
+#liste-requete-afficher li{
+  margin-right: 5px;
+  cursor: pointer;
+  border-top-left-radius : 150px 100px;
+  padding-left:20px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  list-style: none;
+}
+
+
+.menu li {
+  cursor: pointer;
+
+  width: 250px;
+  height: 50px;
+  transition: background-position-x 0.9s linear;
+  text-align: center;
+
+  
+    font-size: 22px;
+    color: #777;
+    text-decoration: none;
+    transition: all 0.45s;
+  
+
+  &:hover  {
+    color: rgb(106, 184, 245);
+  }
+
+}
+
+
+#btnRequest{
+  border: none;
+  background: none;
+  padding-bottom: 1px;
+  cursor: pointer;
+}
+
+#btnRequest:hover{
+  color:white;
+}
