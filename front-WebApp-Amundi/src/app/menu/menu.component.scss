@@ -71,7 +71,8 @@ cursor: pointer;
   overflow: auto;
   white-space: nowrap;
   position: relative;
-  left: 500px;
+  left: 440px;
+  width: 75%;
 }
 
 #requestShow{
@@ -89,7 +90,6 @@ cursor: pointer;
 #liste-requete-afficher li{
   margin-right: 5px;
   cursor: pointer;
-  border-top-left-radius : 150px 100px;
   padding-left:20px;
   text-align: center;
   display: flex;

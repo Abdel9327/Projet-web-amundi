@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { APP_ID, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Request } from '../Models/request';
+import { ColDef } from 'ag-grid-community';
+import { AgGridAngular } from 'ag-grid-angular';
 
 @Injectable({
   providedIn: 'root'
@@ -18,37 +20,46 @@ export class RequestServiceService {
       return description!;
   }
 
- async StartedRequest(request:Request){
-   var stringColumnAggrid :string;
-   var reponseRequest : String[] = [];
-   stringColumnAggrid='['
+ async StartedRequest(request:Request,agGrid: AgGridAngular){
+  
 
-    await this.http.get<string[]>(this.requestAPIUrl+'/startRequest/'+request.id).toPromise().then(data=>{reponseRequest=data!});
+   var column = agGrid.api.getColumnDefs();
+   column!.length=0
+   var reponseRequest! : String[];
+  await this.http.get<string[]>(this.requestAPIUrl+'/startRequest/'+request.id).toPromise().then(data=>{reponseRequest=data!});
+  const keys = Object.keys(reponseRequest[0]);
 
-   console.log(Object.keys(reponseRequest[0]).length)
-   console.log(Object.keys(reponseRequest[0]))
-
-   var i ;
-    for( i =0; i<Object.keys(reponseRequest[0]).length;i++){
-      if(i==Object.keys(reponseRequest[0]).length-1)
-      stringColumnAggrid=stringColumnAggrid+"{\"headerName\":\"" + Object.keys(stringColumnAggrid[0])[i] +"\","+ "\"field\":\""+Object.keys(reponseRequest[0])[i]+"\"}";
-      else
-      stringColumnAggrid=stringColumnAggrid+"{\"headerName\":\"" + Object.keys(reponseRequest[0])[i] +"\","+ "\"field\":\""+Object.keys(reponseRequest[0])[i]+"\"},";
-      console.log("ddd" + Object.keys(stringColumnAggrid[0])[i])
-     }
-     console.log(i)
-     stringColumnAggrid = stringColumnAggrid + ']'
-     stringColumnAggrid =  JSON.parse(stringColumnAggrid)
-     console.log( stringColumnAggrid)
-     console.log(Object.keys(reponseRequest[0])[7])
+    keys.forEach((key) => {
+   column!.push({ field: key });
+  })
 
 
-     return [stringColumnAggrid, reponseRequest];
+  agGrid.api.setColumnDefs(column!);
+  agGrid.api.setRowData(reponseRequest);
 
+  request.hourOfStart = new Date();
+  request.columns=column!;
+  request.row=reponseRequest;
   }
 
-  
-  
-  
+  async reloadRequest(request:Request,agGrid: AgGridAngular){
+    var column = agGrid.api.getColumnDefs();
+    column!.length=0
+    var reponseRequest! : String[];
+   await this.http.get<string[]>(this.requestAPIUrl+'/startRequest/'+request.id).toPromise().then(data=>{reponseRequest=data!});
+   const keys = Object.keys(reponseRequest[0]);
+ 
+     keys.forEach((key) => {
+    column!.push({ field: key });
+   })
 
+   request.hourOfStart = new Date();
+   request.columns=column!;
+   request.row=reponseRequest;
+  }
+
+
+  createRecrest(requestValue:String){
+
+  }
 }

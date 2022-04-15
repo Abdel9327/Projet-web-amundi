@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,13 +10,16 @@ import { MenuComponent } from './menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 import {MatIconModule} from '@angular/material/icon'
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { AddRequestComponent } from './add-request/add-request.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
+    AddRequestComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -24,11 +27,14 @@ import {MatIconModule} from '@angular/material/icon'
     AgGridModule.withComponents([]),
     HttpClientModule,
     BrowserAnimationsModule,
-    MatIconModule
-    
+    MatIconModule,
+    MatDialogModule,
+    FormsModule
+  
     ],
     
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[MenuComponent] ///////////AddRequestComponent ?
 })
 export class AppModule { }
