@@ -1,12 +1,16 @@
 export class Request {
-    id: number;
-    description : String;
+
+    id!: number;
+    description! : String;
     columns!: any;
     row!: any;
     hourOfStart!: Date;
+    requete!:string;
+    typeBdd!: string;
+    serveur! : string;
+    base!:string;
+    compte!:string;
+    password!:string;
+    typeRequete!:string;
 
-    constructor(id:number,description:String){
-        this.id=id;
-        this.description=description;
-    }
 }

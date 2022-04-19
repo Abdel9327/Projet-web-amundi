@@ -7,13 +7,15 @@
                 <ul class="menu">
                         <li >Menu</li>
                         <li (click)="popupAddRequest()"> Ajouter une requete</li>
+                        <li (click)="popupModifyRequest()"> Modifier requete</li>
+
                 </ul>
         </nav>
 </div>
 <div id="liste-menu">
 
     <ul>
-        <div *ngFor="let request of  availableRequests">
+        <div *ngFor="let request of  getAvailableRequests()">
             <li style="list-style-type: none;" (click)="startRequest(request)" >{{request.description}} </li><hr/> 
         </div>    
       

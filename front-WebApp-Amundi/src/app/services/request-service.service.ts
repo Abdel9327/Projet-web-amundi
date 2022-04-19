@@ -14,9 +14,9 @@ export class RequestServiceService {
   constructor(private http : HttpClient) {
   }
 
-    async GetDescriptionRequests() :Promise<String[]>{
-      var description:String[];
-        await this.http.get<String[]>(this.requestAPIUrl+'/GetAllRequests').toPromise().then((data)=>description=data!);
+    async GetDescriptionRequests() :Promise<Request[]>{
+      var description:Request[]=[];
+        await this.http.get<Request[]>(this.requestAPIUrl+'/GetAllRequests').toPromise().then((data)=>description=data!);
       return description!;
   }
 
@@ -59,7 +59,9 @@ export class RequestServiceService {
   }
 
 
-  createRecrest(requestValue:String){
-
+  async createRecrest(requestValue:String): Promise<string[]>{
+    var reponseRequest! : string[];
+    await this.http.post<string[]>(this.requestAPIUrl+'/createRequest',requestValue).toPromise().then(data=>{reponseRequest=data!});
+    return reponseRequest;
   }
 }

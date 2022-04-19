@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon'
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddRequestComponent } from './add-request/add-request.component';
+import { ModifyRequestComponent } from './modify-request/modify-request.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AddRequestComponent } from './add-request/add-request.component';
     AppComponent,
     MenuComponent,
     AddRequestComponent,
+    ModifyRequestComponent,
 
   ],
   imports: [
@@ -35,6 +37,6 @@ import { AddRequestComponent } from './add-request/add-request.component';
     
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[MenuComponent] ///////////AddRequestComponent ?
+  entryComponents:[MenuComponent,AddRequestComponent,ModifyRequestComponent] 
 })
 export class AppModule { }

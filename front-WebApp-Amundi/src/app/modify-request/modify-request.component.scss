@@ -1,0 +1,16 @@
+#liste-menu ul{
+    position:absolute;
+    width:450px;
+    margin:40px auto 0;
+    padding : 10px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 40%;
+}
+
+#formModify{
+    position: relative;
+   left: 65%;
+   width: 25%;
+}

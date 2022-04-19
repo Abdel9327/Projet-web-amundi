@@ -10,16 +10,17 @@ import { RequestServiceService } from '../services/request-service.service';
 export class AddRequestComponent implements OnInit {
 
     typeRequest:string="Requete sql"
-    ErrorMessage! : string;
+    ErrorMessages : string[]=[];
   constructor(public service: RequestServiceService) { }
 
   ngOnInit(): void {
   }
 
 
-  addRequest(form : NgForm){
-console.log(form.value)
-this.service.createRecrest(form.value)
+  async addRequest(form : NgForm){
+    this.ErrorMessages = ["Test de votre requete en cour"];
+  console.log(form.value)
+  this.ErrorMessages =  await this.service.createRecrest(form.value)
   }
 
   onItemChange(type:string){
