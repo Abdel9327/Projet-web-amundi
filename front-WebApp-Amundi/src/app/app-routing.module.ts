@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IdentificationComponent } from './identification/identification.component';
 import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
-  {path:'',component: MenuComponent}
+  {path:'login',component:IdentificationComponent},
+  {path:'menu',component: MenuComponent}
 ];
 
 @NgModule({

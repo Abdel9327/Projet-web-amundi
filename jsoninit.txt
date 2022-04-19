@@ -1,0 +1,126 @@
+{
+  "_total": 12,
+  "Requetes": [
+    {
+      "description": "Liste des fonds de la base SARA",
+      "Requete": "[SARA].[USP_IHM_REF_FONDS_CLASS_SELECT]",
+      "TypeRequete": "procedure stockee",
+      "TypeBDD": "Sql Server",
+      "Serveur": "rct-wmssaistp,1443",
+      "Base": "GHB",
+      "Compte": "usrGHB",
+      "Password": "usrGHB123"
+    },
+    {
+      "description": "Liste des types de fonds de la base SARA",
+      "Requete": "[SARA].[USP_IHM_TYPE_FONDS_SELECT]",
+      "TypeRequete": "procedure stockee",
+      "TypeBDD": "Sql Server",
+      "Serveur": "rct-wmssaistp,1443",
+      "Base": "GHB",
+      "Compte": "usrGHB",
+      "Password": "usrGHB123"
+    },
+    {
+      "description": "Liste des fonds de BASEVL dans la base SARA",
+      "Requete": "[SARA].[USP_IHM_BASEVL_FUNDS_SELECT]",
+      "TypeRequete": "procedure stockee",
+      "TypeBDD": "Sql Server",
+      "Serveur": "rct-wmssaistp,1443",
+      "Base": "GHB",
+      "Compte": "usrGHB",
+      "Password": "usrGHB123"
+    },
+    {
+      "description": "Liste n2 des fonds de BASEVL dans la base SARA",
+      "Requete": "SELECT F.[FUND_CODE], F.[KONDOR_CODE], F.[FULLNAME] AS 'FUND_NAME', F.[DEVISE_NM], P.[FUND_CODE] AS 'FUND_PARENT_CODE', P.[FULLNAME] AS 'FUND_PARENT_NAME', RP.REGISTRATION_PLACE_NAME, FT.FUND_TYPE_FULLNAME, FTS.FUND_TYPE_STRATEGY FROM [GHB].[BASEVL].[REF_BASEVL_FUND] F LEFT JOIN [GHB].[BASEVL].[REF_REGISTRATION_PLACE] RP ON RP.REGISTRATION_PLACE_ID = F.REGISTRATION_PLACE_ID LEFT JOIN [GHB].[BASEVL].[REF_FUND_TYPE] FT ON FT.FUND_TYPE_ID = F.FUND_TYPE_ID LEFT JOIN [GHB].[BASEVL].[REF_FUND_TYPE_STRATEGY] FTS ON FTS.FUND_TYPE_STRATEGY_ID = F.FUND_TYPE_STRATEGY_ID LEFT JOIN [GHB].[BASEVL].[REF_BASEVL_FUND] P ON P.GHB_FUND_PARENT_ID = F.GHB_FUND_ID ORDER BY F.[FULLNAME]",
+      "TypeRequete": "sql",
+      "TypeBDD": "Sql Server",
+      "Serveur": "rct-wmssaistp,1443",
+      "Base": "GHB",
+      "Compte": "usrGHB",
+      "Password": "usrGHB123"
+    },
+    {
+      "description": "Liste des reunions de la base SFT",
+      "Requete": "[SFT].[USP_IHM_MEETINGS_SELECT]",
+      "TypeRequete": "procedure stockee",
+      "TypeBDD": "Sql Server",
+      "Serveur": "rct-wmssaistp,1443",
+      "Base": "SFT",
+      "Compte": "usrSFT",
+      "Password": "usrSFT07#"
+    },
+    {
+      "description": "Liste des fonds de la base SFT",
+      "Requete": "[SFT].[USP_IHM_FUNDS_SELECT]",
+      "TypeRequete": "procedure stockee",
+      "TypeBDD": "Sql Server",
+      "Serveur": "rct-wmssaistp,1443",
+      "Base": "SFT",
+      "Compte": "usrSFT",
+      "Password": "usrSFT07#"
+    },
+    {
+      "description": "Liste des entreprises de la base SFT",
+      "Requete": "[SFT].[USP_IHM_ENTREPRISE_SELECT]",
+      "TypeRequete": "procedure stockee",
+      "TypeBDD": "Sql Server",
+      "Serveur": "rct-wmssaistp,1443",
+      "Base": "SFT",
+      "Compte": "usrSFT",
+      "Password": "usrSFT07#"
+    },
+    {
+      "description": "Liste des devises de la base SFT",
+      "Requete": "SELECT [ID_CURRENCY], [CODE_ISO_CURRENCY] , [ID_USER_CREATE], [DATE_CREATE], [ID_USER_MODIF], [DATE_MODIF] FROM [SFT].[CURRENCY]",
+      "TypeRequete": "sql",
+      "TypeBDD": "Sql Server",
+      "Serveur": "rct-wmssaistp,1443",
+      "Base": "SFT",
+      "Compte": "usrSFT",
+      "Password": "usrSFT07#"
+    },
+    {
+      "description": "Liste des devises de la base TRACK-IT",
+      "Requete": "[TRACK_IT].[USP_IHM_DEVISE_SELECT]",
+      "TypeRequete": "procedure stockee",
+      "TypeBDD": "Sql Server",
+      "Serveur": "rct-wmssaistp,1443",
+      "Base": "ETF",
+      "Compte": "usretf",
+      "Password": "usretf123"
+    },
+    {
+      "description": "Liste des donnees multisourcees des fonds de la base TRACK-IT",
+      "Requete": "[TRACK_IT].[USP_IHM_FONDS_MULTISOURCE_SELECT]",
+      "TypeRequete": "procedure stockee",
+      "TypeBDD": "Sql Server",
+      "Serveur": "rct-wmssaistp,1443",
+      "Base": "ETF",
+      "Compte": "usretf",
+      "Password": "usretf123"
+    },
+    {
+      "description": "Liste des benchmark de la base TRACK-IT",
+      "Requete": "[TRACK_IT].[USP_IHM_BENCHMARK_SELECT]",
+      "TypeRequete": "procedure stockee",
+      "TypeBDD": "Sql Server",
+      "Serveur": "rct-wmssaistp,1443",
+      "Base": "ETF",
+      "Compte": "usretf",
+      "Password": "usretf123"
+    },
+    {
+      "description": "Liste des groupes de la base TRACK-IT",
+      "Requete": "SELECT [ID_GROUPE], [NOM_GROUPE], [ID_PAYS_GROUPE] FROM [ETF].[TRACK_IT].[GROUPE]",
+      "TypeRequete": "sql",
+      "TypeBDD": "Sql Server",
+      "Serveur": "rct-wmssaistp,1443",
+      "Base": "ETF",
+      "Compte": "usretf",
+      "Password": "usretf123"
+    }
+
+  ]
+}

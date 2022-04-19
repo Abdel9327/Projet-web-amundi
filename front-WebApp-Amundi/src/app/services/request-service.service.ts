@@ -64,4 +64,10 @@ export class RequestServiceService {
     await this.http.post<string[]>(this.requestAPIUrl+'/createRequest',requestValue).toPromise().then(data=>{reponseRequest=data!});
     return reponseRequest;
   }
+
+  async modifyRequest(requestValue:String, id:number): Promise<string[]>{
+    var reponseRequest! : string[];
+    await this.http.post<string[]>(this.requestAPIUrl+'/modifyRequest/'+id,requestValue).toPromise().then(data=>{reponseRequest=data!});
+    return reponseRequest;
+  }
 }

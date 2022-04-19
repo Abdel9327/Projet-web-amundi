@@ -117,11 +117,11 @@ export class MenuComponent implements OnInit {
  }
 }
 
-
+//rajouter guard pour le menu
+//rajouter pastille pour dire quel ligne a été modifié
 // faire truc qui tourne lors du test
 //reparer code deajout json
 // supresion probleme !!!!!! (ex si on supprier un truc alorsquil est pas show ca fait un beug)
-//faire ajout !!!!!!!
 // taille navbar !!! couleur
 // le nombre de requete dans json modifier et rendre automatique
-// possibilité de mettre en pleine ecran aggrid
+// comparer 2 grid

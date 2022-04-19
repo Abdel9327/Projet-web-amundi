@@ -13,6 +13,7 @@ import {MatIconModule} from '@angular/material/icon'
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddRequestComponent } from './add-request/add-request.component';
 import { ModifyRequestComponent } from './modify-request/modify-request.component';
+import { IdentificationComponent } from './identification/identification.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ModifyRequestComponent } from './modify-request/modify-request.componen
     MenuComponent,
     AddRequestComponent,
     ModifyRequestComponent,
+    IdentificationComponent,
 
   ],
   imports: [

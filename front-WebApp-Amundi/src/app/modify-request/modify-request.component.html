@@ -12,37 +12,43 @@
 
 <div id="formModify">
 
+<div *ngIf="requeteShowToModify != undefined">
 
-<form ngNativeValidate #addRequestForm="ngForm" (submit)="modifyRequest(addRequestForm)">
-    <label for="description">Description de la requete</label><br>
-    <input type="text" id="description" ngModel name="description" ngModel={{requeteShowToModify.description}} required minlength="8"><br>
-    <input class="form-check-input" type="radio" name="flexRadioDefault" value="sql"  ngModel={{requeteShowToModify.typeRequete}}  name="typeRequete" (change)="onItemChange('Requète sql')"  />
-    <label class="form-check-label">
-      Sql
-    </label>
-    <input  class="form-check-input" type="radio" name="flexRadioDefault" value="procedure stockee"   ngModel={{requeteShowToModify.typeRequete}} name="typeRequete" (change)="onItemChange('Procédure stocké')"  />
-    <label class="form-check-label">
-        Procédure stockée
-    </label><br>
+    <form ngNativeValidate #addRequestForm="ngForm" (submit)="modifyRequest(addRequestForm)" >
+        <label for="description">Description de la requete</label><br>
+        <input type="text" id="description" ngModel name="description" ngModel={{requeteShowToModify.description}} required minlength="8" >  
+      
+        <br>
+        <input class="form-check-input" type="radio" name="flexRadioDefault" value="sql"  ngModel={{requeteShowToModify.typeRequete}}  name="typeRequete" (change)="onItemChange('Requète sql')"  />
+        <label class="form-check-label">
+          Sql
+        </label>
+        <input  class="form-check-input" type="radio" name="flexRadioDefault" value="procedure stockee"   ngModel={{requeteShowToModify.typeRequete}} name="typeRequete" (change)="onItemChange('Procédure stocké')"  />
+        <label class="form-check-label">
+            Procédure stockée
+        </label><br>
+    
+        <label for="requete">Requete</label><br>
+        <input type="text" id="requete" ngModel name="requete"   ngModel={{requeteShowToModify.requete}} required ><br>
+        <label for="typeBdd">Type de base de donnée</label><br>
+        <input type="text" id="typeBdd" ngModel name="typeBdd" ngModel={{requeteShowToModify.typeBdd}} required><br>
+        <label for="serveur">Serveur (nomserveur,port)</label><br>
+        <input type="text" id="serveur" ngModel name="serveur" ngModel={{requeteShowToModify.serveur}} required ><br>
+        <label for="base">Base de donnée</label><br>
+        <input type="base" id="base" ngModel name="base" ngModel={{requeteShowToModify.base}} required ><br>
+        <label for="compte">Compte</label><br>
+        <input type="text" id="compte" ngModel name="compte" ngModel={{requeteShowToModify.compte}} required><br>
+        <label for="password">Mot de passe</label><br>
+        <input type="password" id="password" ngModel name="password" ngModel={{requeteShowToModify.password}} required><br><br>
+        <button type="submit">Effectuer modification</button>
+    
+    
+       <div id="liste-error" *ngFor="let message of ErrorMessages ; let indexRequest = index"> 
+        <p>{{message }}</p>
+        </div>
 
-    <label for="requete">Requete</label><br>
-    <input type="text" id="requete" ngModel name="requete"   ngModel={{requeteShowToModify.requete}} required enabled="formShow"><br>
-    <label for="typeBdd">Type de base de donnée</label><br>
-    <input type="text" id="typeBdd" ngModel name="typeBdd" ngModel={{requeteShowToModify.typeBdd}} required><br>
-    <label for="serveur">Serveur (nomserveur,port)</label><br>
-    <input type="text" id="serveur" ngModel name="serveur" ngModel={{requeteShowToModify.serveur}} required ><br>
-    <label for="base">Base de donnée</label><br>
-    <input type="base" id="base" ngModel name="base" ngModel={{requeteShowToModify.base}} required ><br>
-    <label for="compte">Compte</label><br>
-    <input type="text" id="compte" ngModel name="compte" ngModel={{requeteShowToModify.compte}} required><br>
-    <label for="password">Mot de passe</label><br>
-    <input type="password" id="password" ngModel name="password" ngModel={{requeteShowToModify.password}} required><br><br>
-    <button type="submit">Effectuer modification</button>
+    </form>
+</div>
 
-
-    <!--<div id="liste-error" *ngFor="let message of ErrorMessages ; let indexRequest = index"> 
-    <p>{{message }}</p>
-    </div>-->
-</form>
 
 </div>

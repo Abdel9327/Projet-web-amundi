@@ -1,0 +1,6 @@
+<form ngNativeValidate #loginUser="ngForm" (submit)="login(loginUser)">
+    <label for="Compte">Compte</label><br>
+    <input type="text" id="Compte" name="Compte"  required minlength="3"><br>
+    <label for="password">Mot de passe</label><br>
+    <input type="password" id="password" name="password"  required minlength="3"><br>
+</form>
