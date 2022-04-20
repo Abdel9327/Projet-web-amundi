@@ -1,8 +1,5 @@
 
-
-
 body{
-  background: #e6e6e6;
   font-family: "Varela Round", sans-serif;
 }
 
@@ -16,6 +13,7 @@ body{
 #logoAmundi{
   max-width: 8.4%;
 	height: auto;
+ 
 }
 
 #liste-menu ul{
@@ -27,7 +25,8 @@ body{
     overflow-x: hidden;
     overflow-y: scroll;
     height: 75%;
-    
+    font-family: "Varela Round", sans-serif;
+    font-size: 14px;
 }
 
 ::-webkit-scrollbar {
@@ -37,60 +36,66 @@ body{
 /* Track */
 ::-webkit-scrollbar-track {
   box-shadow: inset white; 
-  border-radius: 1px;
+  border-radius: 4px;
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #777;
+  background: rgb(199,200,202);
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(106, 184, 245);
+  background: rgb(0,28,75);
   border-radius: 10px;
 }
 
 #liste-menu ul li {
-background: #777;
+background: rgb(0,28,75); 
 padding: 10px 20px;
 color: #fff;
 margin:5 px 0;
 transition: .5s;
 cursor: pointer;
+border-radius: 17px;
 
 }
 
 #liste-menu ul li:hover{
-    transform: scale(1.06);
-    background: rgb(106, 184, 245);
+    background:   rgb(0,182,237);
+
 }
 
 #liste-requete-afficher {
   overflow: auto;
   white-space: nowrap;
   position: relative;
-  left: 440px;
+  left: 460px;
   width: 75%;
 }
 
 #requestShow{
+  background: rgb(0,28,75); 
   display: inline-block;
-  background : rgb(106, 184, 245);
+  color:#fff;
+  font-family: "Varela Round", sans-serif;
+  font-size: 14px;
 }
 
 #startedRequest{
-  background: #777;
+  background :  rgb(0,182,237);
+  color:#fff;
+  font-family: "Varela Round", sans-serif;
+  font-size: 14px;
 }
 #liste-inline{
   display: inline-block;
 }
 
 #liste-requete-afficher li{
-  margin-right: 5px;
+  margin-left: 5px;
   cursor: pointer;
-  padding-left:20px;
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -101,7 +106,7 @@ cursor: pointer;
 .menu {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 35%;
   transform: translate(-50%,-50%);
   display: flex;
   justify-content: center;
@@ -115,25 +120,23 @@ cursor: pointer;
   cursor: pointer;
 
   width: 250px;
-  height: 50px;
+  height: 20px;
   transition: background-position-x 0.9s linear;
   text-align: center;
 
   
     font-size: 22px;
-    color: #777;
+    color: rgb(0,28,75);
     text-decoration: none;
     transition: all 0.45s;
   
 
-  &:hover  {
-    color: rgb(106, 184, 245);
-  }
-
+ 
 }
 
 
 #btnRequest{
+  color:#fff;
   border: none;
   background: none;
   padding-bottom: 1px;
@@ -141,5 +144,37 @@ cursor: pointer;
 }
 
 #btnRequest:hover{
-  color:white;
+  color:rgb(238,180,192);
+}
+
+
+#account{
+  position: relative;
+  
+   text-align: center;
+   left: 115%;
+   top: 100%;
+  
+}
+
+#accountUse{
+  
+  font-size: 29px;
+  color: rgb(0,28,75);
+}
+
+#btnDeconnexion{
+  background-color: rgb(0,28,75); 
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 19px;
+  cursor: pointer;
+  border-radius: 30px;
+  position: relative;
+   left: 125%;
+   bottom: 150%;
 }

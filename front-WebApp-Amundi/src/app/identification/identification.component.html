@@ -1,6 +1,17 @@
-<form ngNativeValidate #loginUser="ngForm" (submit)="login(loginUser)">
-    <label for="Compte">Compte</label><br>
-    <input type="text" id="Compte" name="Compte"  required minlength="3"><br>
-    <label for="password">Mot de passe</label><br>
-    <input type="password" id="password" name="password"  required minlength="3"><br>
-</form>
+
+<div id="loginForm">
+    <img id="logoAmundi" src="../../assets/images/amundi.png" alt="logo_amundi"/>
+
+    <form id="loginUser" ngNativeValidate #loginUser="ngForm" (submit)="login(loginUser)">
+        <label for="Compte">Compte</label><br>
+        <input type="text" id="compte" ngModel name="compte"   required minlength="3"><br>
+        <label for="password">Mot de passe</label><br>
+        <input type="password" id="password" ngModel name="password"  required minlength="3"><br>
+        <div id="btnSubmitDiv">
+            <button id="btnSubmit" type="submit">Connexion</button>
+        </div>
+        <p id="errorMessage">{{Errormessage}}</p>
+    </form>
+</div>
+
+<img id="hbarAmundi" src="../../assets/images/HBarAmundi.png" alt="logo_amundi"/>

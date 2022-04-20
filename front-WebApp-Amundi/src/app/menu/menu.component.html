@@ -1,22 +1,27 @@
 
 <div id="rectangle">
 
-        <img id="logoAmundi" src="../../assets/images/amundi.jpg" alt="logo_amundi"/>
+        <img id="logoAmundi" src="../../assets/images/amundi.png" alt="logo_amundi"/>
 
         <nav>
                 <ul class="menu">
-                        <li >Menu</li>
+                       
                         <li (click)="popupAddRequest()"> Ajouter une requete</li>
                         <li (click)="popupModifyRequest()"> Modifier requete</li>
-
+                        <div id="account">
+                                <h3>Compte utilisé: <br> <div id = "accountUse">{{accountUse}}</div></h3>
+                              </div>  
+                              <button id="btnDeconnexion" (click)="deconnexion()">Déconnexion</button>
                 </ul>
         </nav>
+
+     
 </div>
 <div id="liste-menu">
 
     <ul>
         <div *ngFor="let request of  getAvailableRequests()">
-            <li style="list-style-type: none;" (click)="startRequest(request)" >{{request.description}} </li><hr/> 
+            <li style="list-style-type: none;" (click)="startRequest(request)" >{{request.description}} </li><br>
         </div>    
       
     </ul>   

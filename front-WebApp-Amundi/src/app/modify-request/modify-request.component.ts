@@ -37,9 +37,5 @@ export class ModifyRequestComponent implements OnInit {
   onItemChange(type:string){
     this.typeRequest=type;
   }
-
-  madechange(){
-
-  }
   
 }

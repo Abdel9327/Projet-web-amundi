@@ -1,0 +1,73 @@
+body{
+    overflow-y: hidden;
+}
+
+#loginForm{
+    position:relative;
+    text-align: center;
+    top: 10%;
+}
+
+#loginUser input{
+    width: 35%  ;
+    margin: 1%;
+    padding-top: 8px;
+    font-family: "Varela Round", sans-serif;
+    font-size: 14px;
+    text-align: center;
+    border-color: rgb(0,158,224);
+}
+#loginUser label{
+    font-family: "Varela Round", sans-serif;
+    font-size: 25px;
+    color:rgb(0, 28, 75)
+}
+
+#logoAmundi{
+    max-width: 30%;
+      height: auto;
+    padding-bottom: 6%;
+  }
+
+  #batimentAmundi{
+    position:relative;
+    left:35%;
+    top: 5.5%;
+    max-width: 50%;
+    height: auto;
+  }
+
+  #hbarAmundi{
+    width: 100%;
+    height: auto;
+    position:fixed;
+    top: 91%;
+  }
+  
+  #errorMessage{
+      color:red;
+      font-family: "Varela Round", sans-serif;
+      font-size: 15px;
+      padding-top: 30px;
+  }
+
+  #btnSubmit{
+    background-color: rgb(0,28,75); 
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 19px;
+    cursor: pointer;
+    border-radius: 30px;
+  }
+
+  #btnSubmit:hover{
+      background-color: rgb(0,182,237);
+  }
+
+  #btnSubmitDiv{
+      padding-top: 2%;
+  }

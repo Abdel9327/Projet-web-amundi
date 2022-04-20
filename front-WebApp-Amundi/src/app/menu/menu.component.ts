@@ -5,6 +5,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { AddRequestComponent } from '../add-request/add-request.component';
 import { ModifyRequestComponent } from '../modify-request/modify-request.component';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -21,33 +22,37 @@ export class MenuComponent implements OnInit {
   rowData:any;
   requestsStarted : Request[]=[];
   indexRequestShow!: number;
-    
+  accountUse!:string  
 
-  constructor(public service: RequestServiceService,private dialog: MatDialog) { }
+  constructor(public service: RequestServiceService,private dialog: MatDialog,private route: ActivatedRoute,private router : Router) { }
 
     async ngOnInit() {
-    var descriptions = await this.service.GetDescriptionRequests();
+      this.route.params.subscribe((params: Params)=>this.accountUse=params['account']);
+      console.log(this.accountUse)
+    var descriptions = await this.service.GetDescriptionRequests(this.accountUse);
       for(var i =0;i<descriptions.length;i++){
         MenuComponent.availableRequests [i] = descriptions[i];
-        MenuComponent.availableRequests [i].id = i;
       }
+      console.log(MenuComponent.availableRequests )
+
    }
 
     getAvailableRequests(){
       return MenuComponent.availableRequests
     }
+
    async refreshDescriptionRequests(){
-    var descriptions = await this.service.GetDescriptionRequests();
+    var descriptions = await this.service.GetDescriptionRequests(this.accountUse);
 
     for(var i =0;i<descriptions.length;i++){
       MenuComponent.availableRequests [i] = descriptions[i];
-      MenuComponent.availableRequests [i].id = i;
     }
    }
 
    async startRequest(request:Request){
       this.indexRequestShow=0
       this.requestsStarted = [request,...this.requestsStarted];
+
       this.service.StartedRequest(request,this.agGrid);
     }
 
@@ -115,8 +120,18 @@ export class MenuComponent implements OnInit {
  this.dialog.open(ModifyRequestComponent,dialogConfig);
  this.dialog.afterAllClosed.subscribe(result =>  this.refreshDescriptionRequests());
  }
+
+ deconnexion(){
+  this.accountUse=''
+  this.router.navigate(['/login']);
+ }
 }
 
+// regler navbar menu !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! => 1
+// option condition   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! => 2
+
+
+//utiliser les modeles !!!!!!!!!!!
 //rajouter guard pour le menu
 //rajouter pastille pour dire quel ligne a été modifié
 // faire truc qui tourne lors du test

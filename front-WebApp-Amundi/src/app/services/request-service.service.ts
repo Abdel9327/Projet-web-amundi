@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Request } from '../Models/request';
 import { ColDef } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
+import { Account } from '../Models/Account';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +15,13 @@ export class RequestServiceService {
   constructor(private http : HttpClient) {
   }
 
-    async GetDescriptionRequests() :Promise<Request[]>{
+    async GetDescriptionRequests(account: string) :Promise<Request[]>{
       var description:Request[]=[];
-        await this.http.get<Request[]>(this.requestAPIUrl+'/GetAllRequests').toPromise().then((data)=>description=data!);
+        await this.http.get<Request[]>(this.requestAPIUrl+'/GetAllRequests/'+account).toPromise().then((data)=>description=data!);
       return description!;
   }
 
  async StartedRequest(request:Request,agGrid: AgGridAngular){
-  
-
    var column = agGrid.api.getColumnDefs();
    column!.length=0
    var reponseRequest! : String[];
