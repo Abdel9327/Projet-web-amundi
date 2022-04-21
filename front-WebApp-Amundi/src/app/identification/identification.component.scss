@@ -23,32 +23,32 @@ body{
     color:rgb(0, 28, 75)
 }
 
-#logoAmundi{
+#logoAmundiIdent{
     max-width: 30%;
       height: auto;
     padding-bottom: 6%;
   }
 
-  #batimentAmundi{
-    position:relative;
-    left:35%;
-    top: 5.5%;
-    max-width: 50%;
-    height: auto;
-  }
+#batimentAmundi{
+  position:relative;
+  left:35%;
+  top: 5.5%;
+   max-width: 50%;
+   height: auto;
+ }
 
-  #hbarAmundi{
-    width: 100%;
-    height: auto;
-    position:fixed;
-    top: 91%;
+#hbarAmundi{
+  width: 100%;
+  height: auto;
+  position:fixed;
+  top: 91%;
   }
   
-  #errorMessage{
-      color:red;
-      font-family: "Varela Round", sans-serif;
-      font-size: 15px;
-      padding-top: 30px;
+#errorMessage{
+ color:red;
+ font-family: "Varela Round", sans-serif;
+ font-size: 15px;
+ padding-top: 30px;
   }
 
   #btnSubmit{

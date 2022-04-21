@@ -21,7 +21,25 @@
 
     <ul>
         <div *ngFor="let request of  getAvailableRequests()">
-            <li style="list-style-type: none;" (click)="startRequest(request)" >{{request.description}} </li><br>
+                <div id="liste-width" *ngIf=" request.condition == null ">
+                        <li style="list-style-type: none;" (click)="startRequest(request)" >{{request.description}} </li><br>
+                </div>
+                <div id="liste-width" *ngIf=" request.condition != null">
+
+                        <div  *ngIf="testCondiontionMade==true">
+                        <div  *ngIf=" request.conditionValider==true">
+                                <li id="liste-width-Request-Condition" style="list-style-type: none;" (click)="startRequest(request)" >{{request.description}}   <div id="circle"><mat-icon id="circle-green">circle</mat-icon>{{request.condition}}</div> </li><br>
+                        </div>
+                        <div  *ngIf=" request.conditionValider==false">
+                                <li id="liste-width-Request-Condition" style="list-style-type: none;" (click)="startRequest(request)" >{{request.description}}   <div id="circle"><mat-icon id="circle-red">circle</mat-icon>{{request.condition}}</div> </li><br>
+                        </div>
+                </div>
+                
+                        <div  *ngIf="testCondiontionMade==false">
+                                <li id="liste-width-Request-Condition" style="list-style-type: none;" (click)="startRequest(request)" >{{request.description}}<div id="circle"><mat-icon id="circle-white">circle</mat-icon> {{request.condition}}</div> </li><br>
+                        </div>
+                
+        </div>
         </div>    
       
     </ul>   
@@ -70,8 +88,10 @@ class="ag-theme-balham"
 [columnDefs]="columnDefs"
 [animateRows]="true"
 [pagination]="true"
-
 >
 </ag-grid-angular>
 
+<button id="btnTestCondition" (click)="verifAllRequestCondition()">Tester toutes les requestes conditions          
+                      <div  *ngIf=" testCondiontionMade"> Dernier test: {{dateLastTestCondition|date:'medium'}}</div>
 
+</button>

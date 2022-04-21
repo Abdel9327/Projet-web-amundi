@@ -19,16 +19,20 @@ export class IdentificationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-
   async login(form:NgForm){
+
     IdentificationComponent.loginMake = await this.service.login(form.value)
+
     if(IdentificationComponent.loginMake== false)
-    this.Errormessage="La combinaise compte mot de passe d'éxiste pas"
-   else{
-    var account : Account = JSON.parse(JSON.stringify(form.value))
-    this.router.navigate(['/menu',account.compte]);
+      this.Errormessage="La combinaise compte mot de passe d'éxiste pas"
+
+    else{
+      var account : Account = JSON.parse(JSON.stringify(form.value))
+      this.router.navigate(['/menu',account.compte]);
    }
+
     form.reset()
+    
   }
+
 }

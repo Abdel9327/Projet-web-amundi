@@ -14,8 +14,11 @@ export class UserServiceService {
   async login(user:String){
 
       var loginMake! : boolean;
+
       await this.http.post<boolean>(this.requestAPIUrl+'/login',user).toPromise().then(data=>{loginMake=data!});
+
       return loginMake ;
+      
     }
-  }
+}
 

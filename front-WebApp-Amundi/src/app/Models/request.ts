@@ -12,5 +12,7 @@ export class Request {
     compte!:string;
     password!:string;
     typeRequete!:string;
+    condition!:string;
+    conditionValider!:boolean;
 
 }

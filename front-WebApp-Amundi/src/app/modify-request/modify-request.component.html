@@ -1,13 +1,21 @@
 
 
 <div id="liste-menu">
-
+    <nav>
     <ul>
         <div *ngFor="let request of  getAvailableRequests()">
-            <li style="list-style-type: none;" (click)="showFormodifyRequest(request)" >{{request.description}} </li><hr/> 
+            <div id="liste-width" *ngIf=" request != requeteShowToModify ">
+                <li id="requeteDontShowToModify" style="list-style-type: none;" (click)="showFormodifyRequest(request)" >{{request.description}} </li><br> 
+            </div>
+            <div id="liste-width" *ngIf=" request == requeteShowToModify ">
+                <li id="requeteShowToModify" style="list-style-type: none;" >{{request.description}} </li><br> 
+          </div>
+
+
         </div>    
       
     </ul>   
+</nav>
 </div>
 
 <div id="formModify">
@@ -36,11 +44,13 @@
         <input type="text" id="serveur" ngModel name="serveur" ngModel={{requeteShowToModify.serveur}} required ><br>
         <label for="base">Base de donnée</label><br>
         <input type="base" id="base" ngModel name="base" ngModel={{requeteShowToModify.base}} required ><br>
+        <label for="condition">Condition</label><br>
+        <input type="text" id="condition" ngModel name="condition" ngModel={{requeteShowToModify.condition}} required><br>
         <label for="compte">Compte</label><br>
-        <input type="text" id="compte" ngModel name="compte" ngModel={{requeteShowToModify.compte}} required disabled><br>
+        <input type="text" id="compte" ngModel name="compte" ngModel={{requeteShowToModify.compte}} required ><br>
         <label for="password">Mot de passe</label><br>
-        <input type="password" id="password" ngModel name="password" ngModel={{requeteShowToModify.password}} required disabled><br><br>
-        <button type="submit">Effectuer modification</button>
+        <input type="password" id="password" ngModel name="password" ngModel={{requeteShowToModify.password}} required ><br><br>
+        <button id="btnModify" type="submit">Effectuer modification</button>
     
     
        <div id="liste-error" *ngFor="let message of ErrorMessages ; let indexRequest = index"> 

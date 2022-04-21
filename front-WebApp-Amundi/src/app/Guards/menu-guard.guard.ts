@@ -7,14 +7,21 @@ import { IdentificationComponent } from '../identification/identification.compon
   providedIn: 'root'
 })
 export class MenuGuardGuard implements CanActivate {
+  
   canActivate(
+
     route: ActivatedRouteSnapshot,
+
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
       if(IdentificationComponent.loginMake==true){
+
         IdentificationComponent.loginMake=false
         return true;
+
       }
-    return false;
+
+      return false;
   }
   
 }
