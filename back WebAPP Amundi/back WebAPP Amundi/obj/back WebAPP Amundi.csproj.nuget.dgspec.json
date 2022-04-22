@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chihab\\source\\repos\\back WebAPP Amundi\\back WebAPP Amundi\\back WebAPP Amundi.csproj": {}
+    "C:\\Users\\chihab\\Projets\\Projet Web amundi\\back WebAPP Amundi\\back WebAPP Amundi\\back WebAPP Amundi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chihab\\source\\repos\\back WebAPP Amundi\\back WebAPP Amundi\\back WebAPP Amundi.csproj": {
+    "C:\\Users\\chihab\\Projets\\Projet Web amundi\\back WebAPP Amundi\\back WebAPP Amundi\\back WebAPP Amundi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chihab\\source\\repos\\back WebAPP Amundi\\back WebAPP Amundi\\back WebAPP Amundi.csproj",
+        "projectUniqueName": "C:\\Users\\chihab\\Projets\\Projet Web amundi\\back WebAPP Amundi\\back WebAPP Amundi\\back WebAPP Amundi.csproj",
         "projectName": "back WebAPP Amundi",
-        "projectPath": "C:\\Users\\chihab\\source\\repos\\back WebAPP Amundi\\back WebAPP Amundi\\back WebAPP Amundi.csproj",
+        "projectPath": "C:\\Users\\chihab\\Projets\\Projet Web amundi\\back WebAPP Amundi\\back WebAPP Amundi\\back WebAPP Amundi.csproj",
         "packagesPath": "C:\\Users\\chihab\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chihab\\source\\repos\\back WebAPP Amundi\\back WebAPP Amundi\\obj\\",
+        "outputPath": "C:\\Users\\chihab\\Projets\\Projet Web amundi\\back WebAPP Amundi\\back WebAPP Amundi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
