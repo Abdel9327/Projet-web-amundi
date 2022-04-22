@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "d9SAXnn39mb8su+CEC8mpxLO507KXXeKB93R0JQxQLZJFZ/d3wY8GQwV4c+LLaVJnUs55OwyC6VJGhOgf6uO0A==",
+  "dgSpecHash": "CPqJ8UmDd0dp24XesfbJst1jntxUGiZzk0I4uPAU79VFSmSd6c456tKeoka/GrBS0p4ipZ7clXMYbEaqu2DYtg==",
   "success": true,
   "projectFilePath": "C:\\Users\\chihab\\source\\repos\\back WebAPP Amundi\\back WebAPP Amundi\\back WebAPP Amundi.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,7 @@
     "C:\\Users\\chihab\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\chihab\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\chihab\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\chihab\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\chihab\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\chihab\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\chihab\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

@@ -2,16 +2,33 @@
 {
     public class RequeteSettings
     {
-        private int id { get; set; }
-        private string description { get; set; }
-        private string Requete { get; set; }
-        private string TypeBDD { get; set; }
-        private string typeBdd { get; set; }
-        private string Serveur { get; set; }
-        private string Base { get; set;}
-        private string Compte { get; set; }
-        private string Password { get; set; }
+
+        public RequeteSettings()
+        {
+
+        }
+
+        public bool ConditionValider { get; set; }
+        public string Condition { get; set; }
+        public string Description { get; set; }
+        public string Requete { get; set; }
+        public string TypeBdd { get; set; }
+        public string Serveur { get; set; }
+        public string Base { get; set;}
+        public string Compte { get; set; }
+        public string Password { get; set; }
+        public string TypeRequete { get; set; }
+        public int id { get; set; }
 
 
+        public String getStringConnexion()
+        {
+            return "server=" + Serveur + ";" + "user=" + Compte + ";" + "password=" + Password + ";";
+        }
+
+        public String getRequete()
+        {
+            return Requete;
+        }
     }
 }

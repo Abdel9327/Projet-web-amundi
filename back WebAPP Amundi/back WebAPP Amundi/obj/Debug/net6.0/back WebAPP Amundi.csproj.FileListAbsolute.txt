@@ -57,3 +57,4 @@ C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net
 C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\back WebAPP Amundi.pdb
 C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\back WebAPP Amundi.genruntimeconfig.cache
 C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\obj\Debug\net6.0\ref\back WebAPP Amundi.dll
+C:\Users\chihab\source\repos\back WebAPP Amundi\back WebAPP Amundi\bin\Debug\net6.0\Newtonsoft.Json.dll

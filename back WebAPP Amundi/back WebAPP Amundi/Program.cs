@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSingleton<RequeteRepositorie, RequeteRepositorie>();
-builder.Services.AddSingleton<jsonManager, jsonManager>();
+builder.Services.AddSingleton<jsonRipositorie, jsonRipositorie>();
 
 
 builder.Services.AddControllers();
@@ -27,8 +27,7 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 builder.Services.AddRazorPages();
 
 builder.Services.AddMvc();
-builder.Services.Configure<RequeteSettings>(
-    builder.Configuration.GetSection("RequeteSettings"));
+
 
 
 //Enable CORS
