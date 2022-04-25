@@ -35,8 +35,9 @@ export class MenuComponent implements OnInit {
 
       for(var i =0;i<descriptions.length;i++)
         MenuComponent.availableRequests [i] = descriptions[i];
-      
+        console.log(i)
 
+      
    }
 
     getAvailableRequests(){
@@ -48,9 +49,9 @@ export class MenuComponent implements OnInit {
    async refreshDescriptionRequests(){
 
     var descriptions = await this.service.GetDescriptionRequests(this.accountUse);
-
+    this.testCondiontionMade=false;
     for(var i =0;i<descriptions.length;i++){
-      MenuComponent.availableRequests [i] = descriptions[i];
+      MenuComponent.availableRequests[i] = descriptions[i];
     }
 
    }
@@ -157,7 +158,6 @@ export class MenuComponent implements OnInit {
 }
 
 // regler navbar menu 
-//utiliser les modeles !!!!!!!!!!!
 // faire truc qui tourne lors du test
-//reparer ajout et modif
+//reparer ajout et modif !!!!!!!!!!!!!!!!!!!!!!!!!!
 // taille navbar !!! couleur

@@ -42,7 +42,7 @@ namespace back_WebAPP_Amundi.JsonManager
                             if (compte == _json.SelectToken("Requetes[" + i + "].Compte").ToString())
                             {
                                 listeRequete.Add(JsonConvert.DeserializeObject<RequeteSettings>(_json.SelectToken("Requetes[" + i + "]").ToString()));
-                                listeRequete.ElementAt(i).id = i;
+                                listeRequete.ElementAt(listeRequete.Count()-1).id = i;
                             }
                         }
                     }

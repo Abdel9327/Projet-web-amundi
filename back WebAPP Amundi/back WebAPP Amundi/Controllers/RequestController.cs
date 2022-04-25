@@ -9,7 +9,6 @@ using back_WebAPP_Amundi.DataBaseManager;
 namespace back_WebAPP_Amundi.Controllers
 {
 
-    //test
 
     [Route("api/[controller]")]
     [ApiController]
@@ -48,7 +47,11 @@ namespace back_WebAPP_Amundi.Controllers
         [HttpPost("modifyRequest/{id}")]
         public IActionResult modifyRequest([FromBody] Object RequestSettings, int id)
         {
+            System.Diagnostics.Debug.WriteLine(RequestSettings);
+
             RequeteSettings? newRequest = JsonConvert.DeserializeObject<RequeteSettings>(RequestSettings.ToString());
+            System.Diagnostics.Debug.WriteLine(newRequest.Compte + " " + id);
+
             return Ok(_configManager.modifyRequest(newRequest,id));
         }
 

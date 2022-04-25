@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using System.Data;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace back_WebAPP_Amundi.DataBaseManager
 {
@@ -55,7 +56,6 @@ namespace back_WebAPP_Amundi.DataBaseManager
 
                 using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
                 {
-
 
                     connection.Open();
 
@@ -117,7 +117,7 @@ namespace back_WebAPP_Amundi.DataBaseManager
                                 if (request.Condition != null)
                                 {
                                     condition = request.Condition.Split();
-                                    request.ConditionValider = this.testConditionString(condition, reader);
+                                    request.ConditionValider = this.testConditionString(condition, JArray.Parse(sqlDatoToJson(reader)));
                                 }
                               
                             }
@@ -133,31 +133,18 @@ namespace back_WebAPP_Amundi.DataBaseManager
 
             return listeRequests;
         }
-        public Boolean testConditionString(String[] condition, SqlDataReader reader)
+        public Boolean testConditionString(String[] condition, JArray reader)
         {
-            int countRow;
             switch (condition[0])
             {
                 case "<":
-                     countRow = 0;
-
-                    while (reader.Read())
-                    {
-                        countRow = countRow + 1;
-                    }
-                    if (countRow < Int16.Parse(condition[1]))
+                    
+                    if (reader.Count() < Int16.Parse(condition[1]))
                         return true;
                     return false;
                 case ">":
 
-                     countRow = 0;
-
-                    while (reader.Read())
-                    {
-                        countRow = countRow + 1;
-                    }
-
-                    if (countRow > Int16.Parse(condition[1]))
+                    if (reader.Count() > Int16.Parse(condition[1]))
                         return true;
 
                     return false;
@@ -166,27 +153,19 @@ namespace back_WebAPP_Amundi.DataBaseManager
 
                     if (condition[1].All(char.IsNumber))
                     {
-                       countRow = 0;
 
-                        while (reader.Read())
-                        {
-                            countRow = countRow + 1;
-                        }
-
-                        if (countRow == Int16.Parse(condition[1]))
+                        if (reader.Count() == Int16.Parse(condition[1]))
                             return true;
+
                     }
 
                     if(!condition[1].All(char.IsNumber))
                     {
-                        if (reader.HasRows)
-                        {
-                            reader.Read();
 
-                            if (reader.GetString(0) == condition[1] + " " + condition[2])
+                        if (reader.ElementAt(0).First.First.Value<string>()  == condition[1] + " " + condition[2])
                                 return true;
-                        }
-
+                        
+                       
                     }
                     return false;
             }
