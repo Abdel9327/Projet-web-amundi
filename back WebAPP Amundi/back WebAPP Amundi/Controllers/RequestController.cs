@@ -17,7 +17,7 @@ namespace back_WebAPP_Amundi.Controllers
 
         private readonly jsonRipositorie _configManager;
 
-        public RequestController(jsonRipositorie _config, RequeteRepositorie _context)
+        public RequestController(jsonRipositorie _config)
         {
             this._configManager = _config;
         }

@@ -1,34 +1,45 @@
-<form ngNativeValidate #addRequestForm="ngForm" (submit)="addRequest(addRequestForm)">
-    <label for="description">Description de la requete</label><br>
-    <input type="text" id="description" name="description"  required minlength="8"><br>
-    <input class="form-check-input" type="radio" name="flexRadioDefault" value="sql"  ngModel="sql"  name="typeRequete" (change)="onItemChange('Requète sql')"  />
-    <label class="form-check-label">
-      Sql
-    </label>
-    
-    <input  class="form-check-input" type="radio" name="flexRadioDefault" value="procedure stockee"   name="typeRequete" (change)="onItemChange('Procédure stocké')"  />
-    <label class="form-check-label">
-        Procédure stockée
-    </label><br>
-    <label for="requete">{{typeRequest}}</label><br>
-    <input type="text" id="requete" ngModel name="requete" required><br>
-    <label for="typeBdd">Type de base de donnée</label><br>
-    <input type="text" id="typeBdd" ngModel name="typeBdd"  required><br>
-    <label for="serveur">Serveur (nomserveur,port)</label><br>
-    <input type="text" id="serveur" ngModel name="serveur" required><br>
-    <label for="base">Base de donnée</label><br>
-    <input type="base" id="base" ngModel name="base"  required><br>
-    <label for="condition">Condition</label><br>
-    <input type="text" id="condition" ngModel name="condition"><br>
-    <label for="compte">Compte</label><br>
-    <input type="text" id="compte" ngModel name="compte"  required><br>
-    <label for="password">Mot de passe</label><br>
-    <input type="password" id="password" ngModel name="password"  required><br><br>
-    <button type="submit">Ajouter</button>
+<h1 id="titre">Ajout de Requete</h1>
 
 
-    <div id="liste-error" *ngFor="let message of ErrorMessages ; let indexRequest = index"> 
-    <p>{{message }}</p>
-    </div>
-</form>
+<div id="addForm">
+  <form ngNativeValidate #addRequestForm="ngForm" (submit)="addRequest(addRequestForm)">
+      <label for="description">Description de la requete</label><br>
+      <input type="text" id="description" ngModel name="description"  required minlength="5"><br>
+      <input id ="radioInput" class="form-check-input" type="radio" name="flexRadioDefault" value="sql"  ngModel="sql"  name="typeRequete" (change)="onItemChange('Requète sql')"  />
+      <label class="form-check-label">
+        Sql
+      </label>
+      
+      <input id ="radioInput" class="form-check-input" type="radio" name="flexRadioDefault" value="procedure stockee"   name="typeRequete" (change)="onItemChange('Procédure stocké')"  />
+      <label class="form-check-label">
+          Procédure stockée
+      </label><br>
+      <label for="requete">{{typeRequest}}</label><br>
+      <input type="text" id="requete" ngModel name="requete" required><br>
+      <label for="typeBdd">Type de base de donnée</label><br>
+      <input type="text" id="typeBdd" ngModel name="typeBdd"  required><br>
+      <label for="serveur">Serveur (nomserveur,port)</label><br>
+      <input type="text" id="serveur" ngModel name="serveur" required><br>
+      <label for="base">Base de donnée</label><br>
+      <input  type="text" id="base" ngModel name="base"  required><br>
+      <label for="condition">Condition</label><br>
+      <input type="text" id="condition" ngModel name="condition"><br>
+      <label for="compte">Compte</label><br>
+      <input type="text" id="compte" ngModel name="compte"  required><br>
+      <label for="password">Mot de passe</label><br>
+      <input type="password" id="password" ngModel name="password"  required><br><br>
+      <button id="btnAdd" type="submit">Ajouter</button>
 
+
+      <div id="liste-error" *ngFor="let message of ErrorMessages ; let indexRequest = index"> 
+     
+        <div id="message">
+             {{message}}   <div id="liste-inline" *ngIf=" message == 'Test de votre requete en cours'" ><i class="fa fa-spinner fa-2x fa-spin"></i></div>
+         </div>
+      </div>
+
+  </form>
+</div>
+
+
+<img id="hbarAmundi" src="../../assets/images/HBarAmundi.png" alt="logo_amundi"/>

@@ -1,3 +1,4 @@
+<h1 id="titre">Modification de Requete</h1>
 
 
 <div id="liste-menu">
@@ -43,9 +44,9 @@
         <label for="serveur">Serveur (nomserveur,port)</label><br>
         <input type="text" id="serveur" ngModel name="serveur" ngModel={{requeteShowToModify.serveur}} required ><br>
         <label for="base">Base de donnée</label><br>
-        <input type="base" id="base" ngModel name="base" ngModel={{requeteShowToModify.base}} required ><br>
+        <input type="text" id="base" ngModel name="base" ngModel={{requeteShowToModify.base}} required ><br>
         <label for="condition">Condition</label><br>
-        <input type="text" id="condition" ngModel name="condition" ngModel={{requeteShowToModify.condition}} required><br>
+        <input type="text" id="condition" ngModel name="condition" ngModel={{requeteShowToModify.condition}}><br>
         <label for="compte">Compte</label><br>
         <input type="text" id="compte" ngModel name="compte" ngModel={{requeteShowToModify.compte}} required ><br>
         <label for="password">Mot de passe</label><br>
@@ -54,7 +55,11 @@
     
     
        <div id="liste-error" *ngFor="let message of ErrorMessages ; let indexRequest = index"> 
-        <p>{{message }}</p>
+       
+        <div id="message">
+            {{message}}   <div id="liste-inline" *ngIf=" message == 'Test de votre requete en cours'" > <i class="fa fa-spinner fa-2x fa-spin"></i></div>
+        </div>
+ 
         </div>
 
     </form>

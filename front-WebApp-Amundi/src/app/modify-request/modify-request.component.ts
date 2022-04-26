@@ -11,7 +11,7 @@ import { RequestServiceService } from '../services/request-service.service';
   styleUrls: ['./modify-request.component.scss']
 })
 export class ModifyRequestComponent implements OnInit {
-  typeRequest:string="Requete sql"
+    typeRequest:string="Requete sql"
     requeteShowToModify! : Request
     ErrorMessages : string[]=[];
 
@@ -26,7 +26,7 @@ export class ModifyRequestComponent implements OnInit {
   }
 
   async modifyRequest(form : NgForm){
-    this.ErrorMessages = ["Test de votre requete en cour"];
+    this.ErrorMessages = ["Test de votre requete en cours"];
     this.ErrorMessages= await this.service.modifyRequest(form.value, this.requeteShowToModify.id)
   }
 

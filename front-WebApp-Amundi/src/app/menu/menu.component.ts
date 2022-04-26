@@ -35,9 +35,8 @@ export class MenuComponent implements OnInit {
 
       for(var i =0;i<descriptions.length;i++)
         MenuComponent.availableRequests [i] = descriptions[i];
-        console.log(i)
 
-      
+        
    }
 
     getAvailableRequests(){
@@ -117,8 +116,8 @@ export class MenuComponent implements OnInit {
 
      const dialogConfig = new MatDialogConfig();
      dialogConfig.autoFocus=true;
-     dialogConfig.width="50%";
-     dialogConfig.height="50%";
+     dialogConfig.width="55%";
+     dialogConfig.height="72%";
 
 
      //this.dialog.open(AddRequestComponent,dialogConfig)
@@ -131,25 +130,25 @@ export class MenuComponent implements OnInit {
 
      const dialogConfig = new MatDialogConfig();
      dialogConfig.autoFocus=true;
-     dialogConfig.width="50%";
-     dialogConfig.height="50%";
+     dialogConfig.width="65%";
+     dialogConfig.height="65%";
 
-    this.dialog.open(ModifyRequestComponent,dialogConfig);
-    this.dialog.afterAllClosed.subscribe(result =>  this.refreshDescriptionRequests());
+     this.dialog.open(ModifyRequestComponent,dialogConfig);
+     this.dialog.afterAllClosed.subscribe(result =>  this.refreshDescriptionRequests());
 
  }
 
     deconnexion(){
 
+      MenuComponent.availableRequests= [];
       this.accountUse=''
       this.router.navigate(['/login']);
-      
+     
     }
 
     async verifAllRequestCondition(){
 
       MenuComponent.availableRequests = await this.service.verifAllRequestCondition(this.accountUse);     
-      console.log(MenuComponent.availableRequests)
       this.testCondiontionMade=true;
       this.dateLastTestCondition= new Date();
 
@@ -157,6 +156,9 @@ export class MenuComponent implements OnInit {
 
 }
 
+
+//deconnexion vider la tableau
+// reload requete !!! attention relaod tout
 // regler navbar menu 
 // faire truc qui tourne lors du test
 //reparer ajout et modif !!!!!!!!!!!!!!!!!!!!!!!!!!

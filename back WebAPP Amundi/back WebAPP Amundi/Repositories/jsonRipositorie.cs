@@ -22,7 +22,7 @@ namespace back_WebAPP_Amundi.JsonManager
         public RequeteSettings[] getAllRequetes(String compte)
         {
            
-                int nbRequete = Int32.Parse(this._json.SelectToken("_total").ToString()) - 1;
+                int nbRequete = Int32.Parse(this._json.SelectToken("_total").ToString());
                 List<RequeteSettings> listeRequete = new List<RequeteSettings>();
 
                 if (compte == "ADMIN")

@@ -24,7 +24,7 @@ export class IdentificationComponent implements OnInit {
     IdentificationComponent.loginMake = await this.service.login(form.value)
 
     if(IdentificationComponent.loginMake== false)
-      this.Errormessage="La combinaise compte mot de passe d'éxiste pas"
+      this.Errormessage="La combinaison compte, mot de passe n'éxiste pas"
 
     else{
       var account : Account = JSON.parse(JSON.stringify(form.value))

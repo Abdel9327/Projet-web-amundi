@@ -18,7 +18,7 @@ export class AddRequestComponent implements OnInit {
 
 
   async addRequest(form : NgForm){
-    this.ErrorMessages = ["Test de votre requete en cour"];
+    this.ErrorMessages = ["Test de votre requete en cours"];
   console.log(form.value)
   this.ErrorMessages =  await this.service.createRecrest(form.value)
   }

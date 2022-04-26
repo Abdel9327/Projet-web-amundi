@@ -23,7 +23,7 @@
 
         public String getStringConnexion()
         {
-            return "server=" + Serveur + ";" + "user=" + Compte + ";" + "password=" + Password + ";";
+            return $"server={Serveur} ; user={Compte} ; password= {Password} ;" ;
         }
 
         public String getRequete()

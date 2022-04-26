@@ -1,4 +1,11 @@
 
+#titre{
+  text-align: center;
+  font-size: 40px;
+  color: rgb(0,28,75); 
+  margin-bottom: 40px;
+}
+
 body{
   font-family: "Varela Round", sans-serif;
 }
@@ -82,7 +89,7 @@ border-radius: 17px;
 }
 
 #requestShow{
-  background: rgb(0,28,75); 
+  background :  rgb(0,182,237);
   display: inline-block;
   color:#fff;
   font-family: "Varela Round", sans-serif;
@@ -90,7 +97,7 @@ border-radius: 17px;
 }
 
 #startedRequest{
-  background :  rgb(0,182,237);
+  background: rgb(0,28,75); 
   color:#fff;
   font-family: "Varela Round", sans-serif;
   font-size: 14px;
@@ -137,11 +144,11 @@ border-radius: 17px;
     color: rgb(0,28,75);
     text-decoration: none;
     transition: all 0.45s;
-  
-
- 
 }
 
+.menu li:hover {
+  color: rgb(0,182,237);
+}
 
 #btnRequest{
   color:#fff;
@@ -185,8 +192,12 @@ border-radius: 17px;
   position: relative;
    left: 100%;
    bottom: 150%;
+   transition: all 0.45s;
 }
 
+#btnDeconnexion:hover {
+  background-color: rgb(0,182,237);
+}
 #circle-green{
   color: green;
   padding-bottom: 1px;
