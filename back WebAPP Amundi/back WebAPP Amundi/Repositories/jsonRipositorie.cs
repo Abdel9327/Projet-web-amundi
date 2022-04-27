@@ -29,7 +29,7 @@ namespace back_WebAPP_Amundi.JsonManager
                 {
                     for (int i = 0; i < nbRequete; i++)
                     {
-                        listeRequete.Add(JsonConvert.DeserializeObject<RequeteSettings>(_json.SelectToken("Requetes[" + i + "]").ToString()));
+                        listeRequete.Add(JsonConvert.DeserializeObject<RequeteSettings>(_json.SelectToken($"Requetes[{i}]").ToString()));
                         listeRequete.ElementAt(i).id = i;
                     }
 
@@ -41,7 +41,7 @@ namespace back_WebAPP_Amundi.JsonManager
 
                             if (compte == _json.SelectToken("Requetes[" + i + "].Compte").ToString())
                             {
-                                listeRequete.Add(JsonConvert.DeserializeObject<RequeteSettings>(_json.SelectToken("Requetes[" + i + "]").ToString()));
+                                listeRequete.Add(JsonConvert.DeserializeObject<RequeteSettings>(_json.SelectToken($"Requetes[{i}]").ToString()));
                                 listeRequete.ElementAt(listeRequete.Count()-1).id = i;
                             }
                         }
@@ -54,7 +54,7 @@ namespace back_WebAPP_Amundi.JsonManager
         public String startRequest(int idRequete)
         {
 
-            RequeteSettings? rs = JsonConvert.DeserializeObject<RequeteSettings>(_json.SelectToken("Requetes[" + idRequete + "]").ToString());
+            RequeteSettings? rs = JsonConvert.DeserializeObject<RequeteSettings>(_json.SelectToken($"Requetes[{idRequete}]").ToString());
             return _context.StartRequest(rs);
 
         }
@@ -89,7 +89,7 @@ namespace back_WebAPP_Amundi.JsonManager
         private void addRequestJson(RequeteSettings newRequest)
         {
               int index = Int32.Parse(_json.SelectToken("_total").ToString()) - 1;
-              JToken? jToken = _json.SelectToken("Requetes[" + index + "]");
+              JToken? jToken = _json.SelectToken($"Requetes[ {index}]");
 
               var requestJon = JObject.Parse(JsonConvert.SerializeObject(newRequest));
               jToken.AddAfterSelf(requestJon);
@@ -102,7 +102,7 @@ namespace back_WebAPP_Amundi.JsonManager
 
         private void modifyRequestJson(RequeteSettings newRequest, int index)
         {
-              JToken? jToken = _json.SelectToken("Requetes[" + index + "]");
+              JToken? jToken = _json.SelectToken($"Requetes[{index}]");
               var requestJon = JObject.Parse(JsonConvert.SerializeObject(newRequest));
 
               jToken.Replace(requestJon);
@@ -117,8 +117,8 @@ namespace back_WebAPP_Amundi.JsonManager
 
             for (int i = 0; i < nbCompte; i++)
             {
-                if (_json.SelectToken("Comptes[" + i + "].Compte").ToString() == user.compte 
-                    && _json.SelectToken("Comptes[" + i + "].Password").ToString() == user.password)
+                if (_json.SelectToken($"Comptes[{i}].Compte").ToString() == user.compte 
+                    && _json.SelectToken($"Comptes[{i}].Password").ToString() == user.password)
 
                     return true;
             }
