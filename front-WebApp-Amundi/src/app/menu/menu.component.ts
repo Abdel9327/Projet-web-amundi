@@ -154,12 +154,23 @@ export class MenuComponent implements OnInit {
 
  }
 
+ getRequestCond(){
+   var requeteCond : Request[] = []
+   for(var i = 0; i<MenuComponent.availableRequests.length;i++){
+     if(MenuComponent.availableRequests[i].condition != null)
+     requeteCond=[...requeteCond,MenuComponent.availableRequests[i]]
+   }
+     return requeteCond;
+ }
 }
 
 
-//deconnexion vider la tableau
 // reload requete !!! attention relaod tout
 // regler navbar menu 
 // faire truc qui tourne lors du test
 //reparer ajout et modif !!!!!!!!!!!!!!!!!!!!!!!!!!
 // taille navbar !!! couleur
+
+
+//jai supp tous les string + string
+// jai separer les requetes cond et requete normal
