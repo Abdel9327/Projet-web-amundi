@@ -81,12 +81,12 @@ namespace back_WebAPP_Amundi.DataBaseManager
 
             catch (InvalidOperationException e)
             {
-                etatRequete.Add("Connexion impossible");
+                etatRequete.Add("Connexion a la base impossible");
             }
 
             catch (Exception e)
             {
-                etatRequete.Add("probleme");
+                etatRequete.Add("Error");
             }
 
             return etatRequete.ToArray();
@@ -102,26 +102,28 @@ namespace back_WebAPP_Amundi.DataBaseManager
 
                 foreach (RequeteSettings request in listeRequests)
                 {
-                    builder.ConnectionString = request.getStringConnexion();
-
-                    using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                    if (request.Condition != null)
                     {
+                        builder.ConnectionString = request.getStringConnexion();
 
-                        connection.Open();
-
-                        using (SqlCommand command = new SqlCommand(request.getRequete(), connection))
+                        using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
                         {
 
-                            using (reader = command.ExecuteReader())
+                            connection.Open();
+
+                            using (SqlCommand command = new SqlCommand(request.getRequete(), connection))
                             {
-                                if (request.Condition != null)
+
+                                using (reader = command.ExecuteReader())
                                 {
+
                                     condition = request.Condition.Split();
                                     request.ConditionValider = this.testConditionString(condition, JArray.Parse(sqlDatoToJson(reader)));
-                                }
-                              
-                            }
 
+
+                                }
+
+                            }
                         }
                     }
                 }
@@ -162,7 +164,7 @@ namespace back_WebAPP_Amundi.DataBaseManager
                     if(!condition[1].All(char.IsNumber))
                     {
 
-                        if (reader.ElementAt(0).First.First.Value<string>()  == condition[1] + " " + condition[2])
+                        if (reader.ElementAt(0).First.First.Value<string>()  == $"{condition[1]} {condition[2]}")
                                 return true;
                         
                        

@@ -130,7 +130,7 @@ export class MenuComponent implements OnInit {
 
      const dialogConfig = new MatDialogConfig();
      dialogConfig.autoFocus=true;
-     dialogConfig.width="65%";
+     dialogConfig.width="52.5%";
      dialogConfig.height="65%";
 
      this.dialog.open(ModifyRequestComponent,dialogConfig);
@@ -166,11 +166,9 @@ export class MenuComponent implements OnInit {
 
 
 // reload requete !!! attention relaod tout
-// regler navbar menu 
-// faire truc qui tourne lors du test
-//reparer ajout et modif !!!!!!!!!!!!!!!!!!!!!!!!!!
-// taille navbar !!! couleur
+//optimiser json
 
 
 //jai supp tous les string + string
 // jai separer les requetes cond et requete normal
+//amelioratin de la vitesse d'éxecution et de la complexité du code

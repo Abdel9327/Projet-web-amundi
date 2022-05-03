@@ -37,14 +37,14 @@ namespace back_WebAPP_Amundi.JsonManager
                 else
                     for (int i = 0; i < nbRequete; i++)
                     {
-                        {   //tri des requete en fonction de l'utilisateur
+                         //tri des requete en fonction de l'utilisateur
 
-                            if (compte == _json.SelectToken("Requetes[" + i + "].Compte").ToString())
+                        if (compte == _json.SelectToken($"Requetes[{i}].Compte").ToString())
                             {
                                 listeRequete.Add(JsonConvert.DeserializeObject<RequeteSettings>(_json.SelectToken($"Requetes[{i}]").ToString()));
                                 listeRequete.ElementAt(listeRequete.Count()-1).id = i;
                             }
-                        }
+                       
                     }
             
             return listeRequete.ToArray();
@@ -92,7 +92,14 @@ namespace back_WebAPP_Amundi.JsonManager
               JToken? jToken = _json.SelectToken($"Requetes[ {index}]");
 
               var requestJon = JObject.Parse(JsonConvert.SerializeObject(newRequest));
-              jToken.AddAfterSelf(requestJon);
+
+              requestJon.Remove("id");
+              requestJon.Remove("ConditionValider");
+
+            if (newRequest.Condition == "")
+                requestJon.Remove("Condition");
+
+            jToken.AddAfterSelf(requestJon);
               jToken = _json.SelectToken("_total");
               jToken.Replace(Int32.Parse(jToken.ToString()) + 1);
 
@@ -105,7 +112,14 @@ namespace back_WebAPP_Amundi.JsonManager
               JToken? jToken = _json.SelectToken($"Requetes[{index}]");
               var requestJon = JObject.Parse(JsonConvert.SerializeObject(newRequest));
 
-              jToken.Replace(requestJon);
+            requestJon.Remove("id");
+            requestJon.Remove("ConditionValider");
+
+            if (newRequest.Condition == "")
+                requestJon.Remove("Condition");
+
+
+            jToken.Replace(requestJon);
 
               string updatedJsonString = _json.ToString();
               File.WriteAllText("appsettings.Requete.json", updatedJsonString);

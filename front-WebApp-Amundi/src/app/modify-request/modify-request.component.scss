@@ -9,8 +9,12 @@
 }
 
 #formModify{
-    position: relative;
-   left: 50%;
+    position:relative;
+    text-align: center;
+    display:block;
+    float:right;
+    clear:left;
+    width: 60%;
 }
 
 #requeteShowToModify{
@@ -29,7 +33,6 @@
 }
 
 #formModify label{
-    text-align: center;
     font-family: "Varela Round", sans-serif;
     color:rgb(0, 28, 75);
 }
@@ -37,7 +40,7 @@
 #formModify input[type=text]{
     font-family: "Varela Round", sans-serif;
     border-color: rgb(0,158,224);
-    width: 50%;
+    width: 100%;
     border-radius: 5px;   
     margin-top: 0.5%;
     margin-bottom: 0.5%;
@@ -50,6 +53,8 @@
     border-radius: 5px;   
     margin-top: 0.5%;
     margin-bottom: 0.5%;
+    width: 100%;
+
 }
 
 

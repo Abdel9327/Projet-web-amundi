@@ -41,6 +41,7 @@ namespace back_WebAPP_Amundi.Controllers
         public IActionResult createRequest([FromBody] Object RequestSettings)
         {
             RequeteSettings? newRequest = JsonConvert.DeserializeObject<RequeteSettings>(RequestSettings.ToString());
+            
             return Ok(_configManager.addRequest(newRequest));
         }
 
