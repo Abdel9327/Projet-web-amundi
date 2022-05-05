@@ -3,7 +3,7 @@ export class Request {
     id!: number;
     description! : String;
     columns!: any;
-    row!: any;
+    row!: String[];
     hourOfStart!: Date;
     requete!:string;
     typeBdd!: string;

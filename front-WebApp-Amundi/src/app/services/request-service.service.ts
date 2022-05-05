@@ -47,23 +47,26 @@ export class RequestServiceService {
 
   }
 
-  async reloadRequest(request:Request,agGrid: AgGridAngular){
-
+  async reloadRequest(request:Request,agGrid: AgGridAngular,r:any){
     var column = agGrid.api.getColumnDefs();
     column!.length=0
     var reponseRequest! : String[];
+console.log(request.hourOfStart)
+this.http.get<string[]>(this.requestAPIUrl+'/startRequest/'+request.id).subscribe(data=>{
+  reponseRequest=data!
+  const keys = Object.keys(reponseRequest[0]);
+  
+  keys.forEach((key) => {
+    column!.push({ field: key });
+  })
+  
+  request.hourOfStart = new Date();
+  request.columns=column!;
+  request.row=reponseRequest;
+  console.log(request.hourOfStart)
+  
+});
 
-    await this.http.get<string[]>(this.requestAPIUrl+'/startRequest/'+request.id).toPromise().then(data=>{reponseRequest=data!});
-
-    const keys = Object.keys(reponseRequest[0]);
- 
-     keys.forEach((key) => {
-     column!.push({ field: key });
-     })
-
-   request.hourOfStart = new Date();
-   request.columns=column!;
-   request.row=reponseRequest;
 
   }
 

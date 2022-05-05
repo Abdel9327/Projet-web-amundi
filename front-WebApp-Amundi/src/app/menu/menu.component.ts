@@ -6,6 +6,7 @@ import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { AddRequestComponent } from '../add-request/add-request.component';
 import { ModifyRequestComponent } from '../modify-request/modify-request.component';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { DataCheckerComponent } from '../data-checker/data-checker.component';
 
 @Component({
   selector: 'app-menu',
@@ -25,6 +26,8 @@ export class MenuComponent implements OnInit {
   accountUse!:string  
   testCondiontionMade:boolean=false;
   dateLastTestCondition!:Date;
+  DocompRequest:boolean=false;
+  DocComp:Request[]=[];
 
   constructor(public service: RequestServiceService,private dialog: MatDialog,private route: ActivatedRoute,private router : Router) { }
 
@@ -55,15 +58,29 @@ export class MenuComponent implements OnInit {
 
    }
 
-   async startRequest(request:Request){
+     startRequest(request:Request){
 
       this.indexRequestShow=0
-      this.requestsStarted = [request,...this.requestsStarted];
-      this.service.StartedRequest(request,this.agGrid);
+
+      //Pour que les requetes on des différentes références
+      const obj = Object.assign({},request)
+      this.requestsStarted = [obj,...this.requestsStarted];
+      this.service.StartedRequest(obj,this.agGrid);
 
     }
 
-    async showRequest (indexRequest:number){
+    showRequest (indexRequest:number){
+
+     
+      //Il faut que les requetes sélectionner ont le meme id, mais elles doivent etre des instance de class différente
+      if(this.DocompRequest && (this.DocComp.length==0 || this.DocComp[0].id== this.requestsStarted[indexRequest].id) &&  this.DocComp[0]!= this.requestsStarted[indexRequest]){
+        this.DocComp=[this.requestsStarted[indexRequest],...this.DocComp];
+        if(this.DocComp.length==2){
+         
+   this.popupDataChecker();
+
+        }
+      }
 
       this.indexRequestShow=indexRequest;
       this.columnDefs=this.requestsStarted[this.indexRequestShow].columns;
@@ -105,9 +122,8 @@ export class MenuComponent implements OnInit {
 
     }
  
-    realoadRequest(request:Request){
-
-      this.service.reloadRequest(request,this.agGrid);
+    realoadRequest(request:number){
+      this.service.reloadRequest(this.requestsStarted[request],this.agGrid, this.requestsStarted);
 
     }
 
@@ -138,6 +154,26 @@ export class MenuComponent implements OnInit {
 
  }
 
+ popupDataChecker(){
+   
+
+  this.DocompRequest=false;
+
+    this.dialog.open(DataCheckerComponent,
+      {autoFocus:true,
+        width:"55%",
+        height:"80%",
+        data:{
+        Request1: this.DocComp[0],
+        Request2: this.DocComp[1]}
+      });
+      this.dialog.afterAllClosed.subscribe(result => {
+    this.DocComp=[]});
+  
+      }
+ 
+  
+
     deconnexion(){
 
       MenuComponent.availableRequests= [];
@@ -162,13 +198,31 @@ export class MenuComponent implements OnInit {
    }
      return requeteCond;
  }
+
+
+ compareRequest(){
+  this.DocompRequest= !this.DocompRequest;
+  if(!this.DocompRequest)
+  this.DocComp=[]
+ }
+
+ isCompared(request:number) : boolean{
+   for(var i =0;i<this.DocComp.length;i++ ){
+    if(this.DocComp[i]==this.requestsStarted[request])
+      return true;
+   }
+   return false;
+
+ }
 }
 
 
-// reload requete !!! attention relaod tout
+//finir analyse des données
+//tester code sans index
 //optimiser json
 
 
+//gestion de la concurence effectuer
 //jai supp tous les string + string
 // jai separer les requetes cond et requete normal
 //amelioratin de la vitesse d'éxecution et de la complexité du code

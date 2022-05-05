@@ -1,6 +1,5 @@
 ﻿using back_WebAPP_Amundi.DataBaseManager;
 using back_WebAPP_Amundi.Models;
-using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -21,7 +20,8 @@ namespace back_WebAPP_Amundi.JsonManager
 
         public RequeteSettings[] getAllRequetes(String compte)
         {
-           
+            lock (this._json)
+            {
                 int nbRequete = Int32.Parse(this._json.SelectToken("_total").ToString());
                 List<RequeteSettings> listeRequete = new List<RequeteSettings>();
 
@@ -37,17 +37,19 @@ namespace back_WebAPP_Amundi.JsonManager
                 else
                     for (int i = 0; i < nbRequete; i++)
                     {
-                         //tri des requete en fonction de l'utilisateur
+                        //tri des requete en fonction de l'utilisateur
 
                         if (compte == _json.SelectToken($"Requetes[{i}].Compte").ToString())
-                            {
-                                listeRequete.Add(JsonConvert.DeserializeObject<RequeteSettings>(_json.SelectToken($"Requetes[{i}]").ToString()));
-                                listeRequete.ElementAt(listeRequete.Count()-1).id = i;
-                            }
-                       
+                        {
+                            listeRequete.Add(JsonConvert.DeserializeObject<RequeteSettings>(_json.SelectToken($"Requetes[{i}]").ToString()));
+                            listeRequete.ElementAt(listeRequete.Count() - 1).id = i;
+                        }
+
                     }
-            
-            return listeRequete.ToArray();
+
+                return listeRequete.ToArray();
+            }
+               
 
         }
 
@@ -61,68 +63,78 @@ namespace back_WebAPP_Amundi.JsonManager
 
         public String[] addRequest(RequeteSettings newRequest)
         {
-             String [] etatRequete = _context.testNewRequest(newRequest);
-
-             if (etatRequete[0] == "requete execute sans probleme")
+            lock (this._json)
             {
-                addRequestJson(newRequest);
-                etatRequete[0] = "Requete ajouté";
+                String[] etatRequete = _context.testNewRequest(newRequest);
+
+                if (etatRequete[0] == "requete execute sans probleme")
+                {
+                    addRequestJson(newRequest);
+                    etatRequete[0] = "Requete ajouté";
+                }
+
+                return etatRequete;
             }
-
-            return etatRequete;
-
         }
 
         public String[] modifyRequest(RequeteSettings newRequest, int index)
         {
-            String[] etatRequete = _context.testNewRequest(newRequest);
-
-            if (etatRequete[0] == "requete execute sans probleme")
+            lock (this._json)
             {
-                modifyRequestJson(newRequest,index);
-                etatRequete[0] = "Requete modifié";
-            }
+                String[] etatRequete = _context.testNewRequest(newRequest);
 
-            return etatRequete;
+                if (etatRequete[0] == "requete execute sans probleme")
+                {
+                    modifyRequestJson(newRequest, index);
+                    etatRequete[0] = "Requete modifié";
+                }
+
+                return etatRequete;
+            }
         }
 
         private void addRequestJson(RequeteSettings newRequest)
         {
-              int index = Int32.Parse(_json.SelectToken("_total").ToString()) - 1;
-              JToken? jToken = _json.SelectToken($"Requetes[ {index}]");
+            
+                int index = Int32.Parse(_json.SelectToken("_total").ToString()) - 1;
+                JToken? jToken = _json.SelectToken($"Requetes[ {index}]");
 
-              var requestJon = JObject.Parse(JsonConvert.SerializeObject(newRequest));
+                var requestJon = JObject.Parse(JsonConvert.SerializeObject(newRequest));
 
-              requestJon.Remove("id");
-              requestJon.Remove("ConditionValider");
+                requestJon.Remove("id");
+                requestJon.Remove("ConditionValider");
 
-            if (newRequest.Condition == "")
-                requestJon.Remove("Condition");
+                if (newRequest.Condition == "")
+                    requestJon.Remove("Condition");
 
-            jToken.AddAfterSelf(requestJon);
-              jToken = _json.SelectToken("_total");
-              jToken.Replace(Int32.Parse(jToken.ToString()) + 1);
+                jToken.AddAfterSelf(requestJon);
+                jToken = _json.SelectToken("_total");
+                jToken.Replace(Int32.Parse(jToken.ToString()) + 1);
 
-              string updatedJsonString = _json.ToString();
-              File.WriteAllText("appsettings.Requete.json", updatedJsonString);
+                string updatedJsonString = _json.ToString();
+                File.WriteAllText("appsettings.Requete.json", updatedJsonString);
+            
         }
 
         private void modifyRequestJson(RequeteSettings newRequest, int index)
         {
-              JToken? jToken = _json.SelectToken($"Requetes[{index}]");
-              var requestJon = JObject.Parse(JsonConvert.SerializeObject(newRequest));
+            lock (this._json)
+            {
+                JToken? jToken = _json.SelectToken($"Requetes[{index}]");
+                var requestJon = JObject.Parse(JsonConvert.SerializeObject(newRequest));
 
-            requestJon.Remove("id");
-            requestJon.Remove("ConditionValider");
+                requestJon.Remove("id");
+                requestJon.Remove("ConditionValider");
 
-            if (newRequest.Condition == "")
-                requestJon.Remove("Condition");
+                if (newRequest.Condition == "")
+                    requestJon.Remove("Condition");
 
 
-            jToken.Replace(requestJon);
+                jToken.Replace(requestJon);
 
-              string updatedJsonString = _json.ToString();
-              File.WriteAllText("appsettings.Requete.json", updatedJsonString);
+                string updatedJsonString = _json.ToString();
+                File.WriteAllText("appsettings.Requete.json", updatedJsonString);
+            }
         }
 
         public bool login(User user)
@@ -142,7 +154,10 @@ namespace back_WebAPP_Amundi.JsonManager
 
         public RequeteSettings[] testConditions(String compte)
         {
-            return _context.testConditions( getAllRequetes(compte));
+            lock (this._json)
+            {
+                return _context.testConditions(getAllRequetes(compte));
+            }
         }
 
     }

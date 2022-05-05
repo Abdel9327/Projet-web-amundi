@@ -5,7 +5,7 @@ import { IdentificationComponent } from './identification/identification.compone
 import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
-  {path:'login',component:IdentificationComponent},
+  {path:'',component:IdentificationComponent},
   {path:'menu/:account',component: MenuComponent,canActivate:[MenuGuardGuard]}
 ];
 

@@ -14,6 +14,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AddRequestComponent } from './add-request/add-request.component';
 import { ModifyRequestComponent } from './modify-request/modify-request.component';
 import { IdentificationComponent } from './identification/identification.component';
+import { DataCheckerComponent } from './data-checker/data-checker.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { IdentificationComponent } from './identification/identification.compone
     AddRequestComponent,
     ModifyRequestComponent,
     IdentificationComponent,
+    DataCheckerComponent,
 
   ],
   imports: [

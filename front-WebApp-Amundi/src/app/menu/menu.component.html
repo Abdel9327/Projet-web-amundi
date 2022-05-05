@@ -8,6 +8,12 @@
                        
                         <li (click)="popupAddRequest()"> Ajouter une requete</li>
                         <li (click)="popupModifyRequest()"> Modifier requete</li>
+                        <div *ngIf="!DocompRequest">
+                                <li (click)=" compareRequest()">Comparer Requete</li>
+                        </div>
+                        <div *ngIf="DocompRequest">
+                                <li id="activeDoComp" (click)=" compareRequest()">Comparer Requete</li>
+                        </div>
                         <div id="account">
                                 <h3>Compte utilisé: <br> <div id = "accountUse">{{accountUse}}</div></h3>
                               </div>  
@@ -55,10 +61,10 @@
 <div id="liste-requete-afficher">
         <ul>
                 <div id="liste-inline" *ngFor="let request of requestsStarted ; let indexRequest = index">
-                        <div id="liste-inline" *ngIf=" isShow(indexRequest) else normalRequest">
+                        <div id="liste-inline" *ngIf=" isShow(indexRequest) && !isCompared(indexRequest) ">
                                 <li style="list-style-type: none;" id ="requestShow" (click)="showRequest(indexRequest)">{{request.description}}<br>
                                         {{request.hourOfStart | date:'medium'}} 
-                                        <button id="btnRequest" (click)="realoadRequest(request)">
+                                        <button id="btnRequest" (click)="realoadRequest(indexRequest)">
                                                 <mat-icon>autorenew</mat-icon>
                                                 </button> 
                                                 <button id="btnRequest" (click)="deleteElement(indexRequest)">
@@ -67,18 +73,33 @@
                                                
                                                
                         </div>
-                        <ng-template #normalRequest>
+                      
+                        <div id="liste-inline" *ngIf=" !isShow(indexRequest) && !isCompared(indexRequest)">
                                 <li style="list-style-type: none;" id="startedRequest" (click)="showRequest(indexRequest)">{{request.description}}<br>
                                         {{request.hourOfStart | date:'medium'}} 
-                                        <button id="btnRequest" (click)="realoadRequest(request)">
+                                        <button id="btnRequest" (click)="realoadRequest(indexRequest)">
                                                 <mat-icon>autorenew</mat-icon>
                                                 </button>
                                                 <button id="btnRequest" (click)="deleteElement(indexRequest)">
                                                         <mat-icon>clear</mat-icon>
                                                 </button>
                                 </li>
-                        </ng-template>
-                        
+                        </div>
+
+                        <div id="liste-inline" *ngIf=" isCompared(indexRequest) ">
+                                <li style="list-style-type: none;" id ="requestCompared" (click)="showRequest(indexRequest)">{{request.description}}<br>
+                                        {{request.hourOfStart | date:'medium'}} 
+                                        <button id="btnRequest" (click)="realoadRequest(indexRequest)">
+                                                <mat-icon>autorenew</mat-icon>
+                                                </button> 
+                                                <button id="btnRequest" (click)="deleteElement(indexRequest)">
+                                                        <mat-icon>clear</mat-icon>
+                                                </button></li>
+                                               
+                                               
+                        </div>
+                      
+                      
                 </div> 
         </ul>
         
@@ -101,3 +122,5 @@ class="ag-theme-balham"
                       <div  *ngIf=" testCondiontionMade"> Dernier test: {{dateLastTestCondition|date:'medium'}}</div>
 
 </button>
+
+

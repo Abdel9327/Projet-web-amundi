@@ -1,0 +1,25 @@
+
+<h1>{{analyse}}</h1>
+
+<div *ngIf="nbRowAddOrDelete!=0">
+  <h1>{{stringRowAddOrDelete}}</h1> 
+</div>
+    <!--afficher les row supprimer ou ajouté-->
+
+<div *ngIf="nbRowModify!=0">
+    <h1>{{stringRowModify}}</h1> 
+    <h1>{{ this.nbRowModify}}</h1> 
+<ul>
+    <div *ngFor="let rowModify of listRowModify">
+        <li style="list-style-type: none;"><pre>{{rowModify}}</pre></li>
+    </div>
+</ul>
+
+    <!--afficher les row modifier-->
+  </div>
+
+  <div div="center" *ngIf="nbRowModify==0 &&nbRowAddOrDelete==0 ">
+    <mat-icon id="done">done</mat-icon>
+  </div>
+
+  <img id="hbarAmundi" src="../../assets/images/HBarAmundi.png" alt="logo_amundi"/>
