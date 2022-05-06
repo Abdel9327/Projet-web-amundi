@@ -18,10 +18,11 @@ export class DataCheckerComponent implements OnInit {
   request2! : Request
   analyse! : string
   nbRowAddOrDelete:number=0
-  stringRowAddOrDelete:string=''
   nbRowModify:number=0
-  stringRowModify:string=''
   listRowModify: String[]=[]
+  listRowDelete: String[]=[]
+  listRowAdd: String[]=[]
+
 
   constructor(   @Inject(MAT_DIALOG_DATA) public data: any,private datePipe: DatePipe
   ) {  this.request1 = this.data.Request1;
@@ -45,33 +46,63 @@ export class DataCheckerComponent implements OnInit {
 
 analyseRequests(){
 
-  if( this.request1.row.length != this.request2.row.length){
-   this.nbRowAddOrDelete = this.request1.row.length - this.request2.row.length;
-    if( this.nbRowAddOrDelete<0)
-      this.stringRowAddOrDelete=  Math.abs(this.nbRowAddOrDelete) + " lignes ont été supprimés:";
-      else
-      this.stringRowAddOrDelete=   this.nbRowAddOrDelete + " lignes ont été ajoutés:";
-
-
-  }
-
-  //probleme il faut boucler sur les data ou il y a le moin de ligne ! si nn prlm
+if(this.request1.row.length<this.request2.row.length){
   for(var i = 0; i<this.request1.row.length;i++){
     //Comparaison si des modifs on été effectué sur la meme row
     //Si la clef primaire est la meme alors on peut comparer
     
-    console.log(Object.values(this.request1.row[i])[0]  == Object.values(this.request2.row[i])[0])
    if(Object.values(this.request1.row[i])[0]  == Object.values(this.request2.row[i])[0]){
-
-     if(!_.isEqual(this.request1.row[i],this.request2.row[i])){    console.log("ok2")
-
+     if(!_.isEqual(this.request1.row[i],this.request2.row[i])){    
       this.nbRowModify++;
-      console.log("Clef Primaire : " + Object.values(this.request1.row[i])[0]   + "\nAvant modification : " + JSON.stringify(this.request1.row[i])  + "\nAprès modification : " +  JSON.stringify(this.request2.row[i]))
-       this.listRowModify = [  ...this.listRowModify , "Clef Primaire : " + Object.values(this.request1.row[i])[0]   + "\n Avant modification : " + JSON.stringify(this.request1.row[i])  + " Après modification : " +  JSON.stringify(this.request2.row[i]) ];
+       this.listRowModify = [  ...this.listRowModify , "Clef Primaire : " + Object.values(this.request1.row[i])[0]   + "\nAvant modification : " + JSON.stringify(this.request1.row[i])  + "\nAprès modification : " +  JSON.stringify(this.request2.row[i]) ];
      }
    }
   }
-  
 }
-  
+else{
+  for(var i = 0; i<this.request2.row.length;i++){
+    //Comparaison si des modifs on été effectué sur la meme row
+    //Si la clef primaire est la meme alors on peut comparer
+    
+   if(Object.values(this.request2.row[i])[0]  == Object.values(this.request1.row[i])[0]){
+     if(!_.isEqual(this.request1.row[i],this.request2.row[i])){    
+      this.nbRowModify++;
+       this.listRowModify = [  ...this.listRowModify , "Clef Primaire : " + Object.values(this.request2.row[i])[0]   + "\nAvant modification : " + JSON.stringify(this.request1.row[i])  + "\nAprès modification : " +  JSON.stringify(this.request2.row[i]) ];
+     }
+   }
+  }
 }
+
+  
+    for(var i = 0; i<this.request1.row.length;i++){
+      for(var y = 0; y<this.request2.row.length;y++){
+        if(Object.values(this.request1.row[i])[0]  == Object.values(this.request2.row[y])[0]){    console.log("ok 2")
+
+          break;
+        }
+       
+
+        if(y==this.request2.row.length-1){   
+
+          this.listRowDelete=[... this.listRowDelete,"Clef Primaire : " +  Object.values(this.request1.row[i])[0] + "\nLigne supprimé: " +  JSON.stringify(this.request1.row[i])];
+        }
+    }
+  }
+
+
+
+  for(var i = 0; i<this.request2.row.length;i++){
+    for(var y = 0; y<this.request1.row.length;y++){
+      if(Object.values(this.request1.row[y])[0]  == Object.values(this.request2.row[i])[0]){   
+        break;
+      }
+    console.log(y + "et" +( this.request1.row.length-1))
+      if(y==this.request1.row.length-1){ 
+        console.log("fait")   
+        this.listRowAdd=[... this.listRowAdd,"Clef Primaire : " +  Object.values(this.request2.row[i])[0] + "\nLigne ajouté: " +  JSON.stringify(this.request2.row[i])];
+        console.log(  this.listRowAdd)
+      }
+  }
+
+}
+}}

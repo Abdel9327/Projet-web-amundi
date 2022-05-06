@@ -1,24 +1,37 @@
 
-<h1>{{analyse}}</h1>
-
-<div *ngIf="nbRowAddOrDelete!=0">
-  <h1>{{stringRowAddOrDelete}}</h1> 
+<div id="rectangaleAnlayse">
+  <h1 id="analyse">{{analyse}}</h1>
 </div>
-    <!--afficher les row supprimer ou ajouté-->
 
-<div *ngIf="nbRowModify!=0">
-    <h1>{{stringRowModify}}</h1> 
-    <h1>{{ this.nbRowModify}}</h1> 
+<div *ngIf="listRowDelete.length!=0">
+  <h1 class="titre">{{listRowDelete.length}} ligne(s) supprimé(s):</h1> 
+  <ul>
+  <div *ngFor="let rowDelete of listRowDelete">
+    <li style="list-style-type: none;"><pre>{{rowDelete}}</pre></li>
+</div>
+</ul>
+</div>
+
+<div *ngIf="this.listRowAdd.length!=0">
+  <h1 class="titre">{{listRowAdd.length}} ligne(s) ajouté(s):</h1> 
+  <ul>
+
+  <div *ngFor="let rowAdd of listRowAdd">
+    <li style="list-style-type: none;"><pre>{{rowAdd}}</pre></li>
+</div>
+</ul>
+</div>
+
+<div *ngIf="listRowModify.length!=0">
+    <h1 class="titre">{{listRowModify.length}} ligne(s) modifié(s):</h1> 
 <ul>
     <div *ngFor="let rowModify of listRowModify">
         <li style="list-style-type: none;"><pre>{{rowModify}}</pre></li>
     </div>
 </ul>
+</div>
 
-    <!--afficher les row modifier-->
-  </div>
-
-  <div div="center" *ngIf="nbRowModify==0 &&nbRowAddOrDelete==0 ">
+  <div div="center" *ngIf="nbRowModify==0 && listRowAdd.length==0 && listRowDelete.length==0 ">
     <mat-icon id="done">done</mat-icon>
   </div>
 

@@ -156,21 +156,38 @@ export class MenuComponent implements OnInit {
 
  popupDataChecker(){
    
-
+if(this.DocComp[0].hourOfStart<this.DocComp[1].hourOfStart){
   this.DocompRequest=false;
 
-    this.dialog.open(DataCheckerComponent,
-      {autoFocus:true,
-        width:"55%",
-        height:"80%",
-        data:{
-        Request1: this.DocComp[0],
-        Request2: this.DocComp[1]}
-      });
-      this.dialog.afterAllClosed.subscribe(result => {
-    this.DocComp=[]});
+  this.dialog.open(DataCheckerComponent,
+    {autoFocus:true,
+      width:"55%",
+      height:"80%",
+      data:{
+      Request1: this.DocComp[0],
+      Request2: this.DocComp[1]}
+    });
+    this.dialog.afterAllClosed.subscribe(result => {
+  this.DocComp=[]});
+
+    }
+    else{
+      this.DocompRequest=false;
+
+  this.dialog.open(DataCheckerComponent,
+    {autoFocus:true,
+      width:"55%",
+      height:"80%",
+      data:{
+      Request1: this.DocComp[1],
+      Request2: this.DocComp[0]}
+    });
+    this.dialog.afterAllClosed.subscribe(result => {
+  this.DocComp=[]});
+    }
+
+}
   
-      }
  
   
 
@@ -216,8 +233,7 @@ export class MenuComponent implements OnInit {
  }
 }
 
-
-//finir analyse des données
+// demander si l'id est toujours lepremier ou pas 
 //tester code sans index
 //optimiser json
 
