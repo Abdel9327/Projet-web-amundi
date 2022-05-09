@@ -8,7 +8,7 @@ export class Request {
     requete!:string;
     typeBdd!: string;
     serveur! : string;
-    base!:string;
+    base!:string; //?
     compte!:string;
     password!:string;
     typeRequete!:string;

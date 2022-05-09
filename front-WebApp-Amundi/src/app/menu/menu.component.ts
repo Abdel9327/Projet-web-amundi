@@ -233,12 +233,3 @@ if(this.DocComp[0].hourOfStart<this.DocComp[1].hourOfStart){
  }
 }
 
-// demander si l'id est toujours lepremier ou pas 
-//tester code sans index
-//optimiser json
-
-
-//gestion de la concurence effectuer
-//jai supp tous les string + string
-// jai separer les requetes cond et requete normal
-//amelioratin de la vitesse d'éxecution et de la complexité du code
