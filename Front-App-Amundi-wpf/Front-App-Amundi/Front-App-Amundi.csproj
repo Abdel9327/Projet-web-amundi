@@ -100,5 +100,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\amundi_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\amundi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HBarAmundi.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\wallpaper.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

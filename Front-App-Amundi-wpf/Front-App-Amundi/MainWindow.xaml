@@ -8,37 +8,240 @@
         Title="Menu "
         Height="850" 
         Width="1800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="Images/amundi_icon.ico"
+        FontFamily="Century Gothic"
+
+>
+
+    <Window.Background>
+        <ImageBrush ImageSource="Images/wallpaper.jpg" />
+    </Window.Background>
+
     <Grid>
+
+
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox 
-            HorizontalAlignment="Left"
-            x:Name="LbxRequest">
 
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Label  Content="{Binding description}" MouseDoubleClick="StartRequest" Tag="{Binding}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
 
-        </ListBox>
 
-        <ListBox 
-            HorizontalAlignment="right"
-            x:Name="LbxRequestStarted">
 
-            <ListBox.ItemTemplate>
-                
-                <DataTemplate>
-                    
-                    <Label  Content="{Binding description}" MouseDoubleClick="showRequest" Tag="{Binding}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
 
-        </ListBox>
+
+
         <DataGrid x:Name="dataGrid" d:ItemsSource="{Binding}" Margin="477,141,48,44" RenderTransformOrigin="0.5,0.5"/>
+        <ListBox   x:Name="LbxRequestStarted" Margin="477,61,48,704">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation='Horizontal'/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
 
+                <DataTemplate>
+
+                    <Label  MouseLeftButtonDown="showRequest" Tag="{Binding}">
+
+                        <Label.Content>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} &#x0a; {1}">
+                                        <Binding Path="description" />
+                                        <Binding Path="hourOfStart" />
+
+                                    </MultiBinding>
+
+                                </TextBlock.Text>
+                            </TextBlock>
+
+                        </Label.Content>
+
+                    </Label>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+
+        <ListBox  HorizontalAlignment="Left"
+            x:Name="LbxRequest" Margin="35,141,0,44" Width="421">
+            <ListBox.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Label  Content="{Binding description}" MouseDoubleClick="StartRequest" Tag="{Binding}"/>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+        <Image Margin="23,11,1360,704">
+            <Image.Source>
+                <BitmapImage  UriSource="Images/amundi.png" />
+            </Image.Source>
+        </Image>
+        <Button  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="addRequestPopUp" Content="Ajouter Requete" Margin="533,0,0,0" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Height="46" Width="188"/>
+        <Button  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="modifyRequestPopUp" Content="Modifier Requete" Margin="765,0,0,0" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Height="46" Width="188"/>
+
+
+
+
+        <Popup x:Name="PopupAdd" Width="500" Height="700"    PlacementTarget="{Binding ElementName=MainPanel}"
+    Placement="Center">
+
+            <Grid Margin="10" Background="#00B6ED">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+
+
+
+                </Grid.RowDefinitions>
+
+                <Button    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Grid.Column="0" HorizontalContentAlignment="Center" Click="closePopUpAdd" Content="X" FontSize="20" Height="30" Margin="5,0,0,54"/>
+
+                <Label HorizontalContentAlignment="Center" Grid.Column="1" FontSize="30" Margin="0,20,0,25"> Ajout d'une requete </Label>
+
+                <Label  Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center">Description:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True" />
+
+                <Label Grid.Column="1" Grid.Row="4" HorizontalContentAlignment="Center" >Type Requete:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="5" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Label Grid.Column="1" Grid.Row="6" HorizontalContentAlignment="Center" >Requete:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="7" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Label Grid.Column="1" Grid.Row="8" HorizontalContentAlignment="Center" >Type BDD:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="9" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Label Grid.Column="1" Grid.Row="10" HorizontalContentAlignment="Center" >Serveur:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="11" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Label Grid.Column="1" Grid.Row="12" HorizontalContentAlignment="Center" >Compte:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="13" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Label Grid.Column="1" Grid.Row="14" HorizontalContentAlignment="Center" >Mot de Passe:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="15" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Label Grid.Column="1" Grid.Row="16" HorizontalContentAlignment="Center" >Condition:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="17" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Background="white"  Grid.Row="18"  Grid.Column="1" HorizontalContentAlignment="Center" Click="createRequest" Content="Ajouter Requete" Margin="170,30,170,0"/>
+
+            </Grid>
+
+        </Popup>
+
+
+        <Popup x:Name="ModifPopup" Width="1500" Height="700"    PlacementTarget="{Binding ElementName=MainPanel}"
+    Placement="Center">
+
+            <Grid Margin="10" Background="#00B6ED">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+
+
+
+                </Grid.RowDefinitions>
+
+                <ListBox  HorizontalAlignment="Left"
+                 x:Name="LbxRequestModify" Margin="35,141,0,44" Width="421">
+                    <ListBox.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <Label  Content="{Binding description}" Tag="{Binding}"/>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+                <Button    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Grid.Column="0" HorizontalContentAlignment="Center" Click="closePopUpModify" Content="X" FontSize="20" Height="30" Margin="5,0,0,54"/>
+
+                <Label HorizontalContentAlignment="Center" Grid.Column="1" FontSize="30" Margin="0,20,0,25">Modification de requete</Label>
+
+                <Label  Grid.Column="1"  HorizontalContentAlignment="Center">Description:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True" />
+
+                <Label Grid.Column="1" Grid.Row="4" HorizontalContentAlignment="Center" >Type Requete:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="5" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Label Grid.Column="1" Grid.Row="6" HorizontalContentAlignment="Center" >Requete:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="7" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Label Grid.Column="1" Grid.Row="8" HorizontalContentAlignment="Center" >Type BDD:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="9" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Label Grid.Column="1" Grid.Row="10" HorizontalContentAlignment="Center" >Serveur:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="11" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Label Grid.Column="1" Grid.Row="12" HorizontalContentAlignment="Center" >Compte:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="13" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Label Grid.Column="1" Grid.Row="14" HorizontalContentAlignment="Center" >Mot de Passe:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="15" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Label Grid.Column="1" Grid.Row="16" HorizontalContentAlignment="Center" >Condition:</Label>
+                <TextBox HorizontalContentAlignment="Center" Grid.Row="17" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+
+                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Background="white"  Grid.Row="18"  Grid.Column="1" HorizontalContentAlignment="Center" Click="ModifyRequest" Content="Ajouter Requete" Margin="170,30,170,0"/>
+
+            </Grid>
+
+        </Popup>
     </Grid>
 </Window>
+
+
+

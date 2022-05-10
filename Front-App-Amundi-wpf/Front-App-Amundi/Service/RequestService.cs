@@ -44,10 +44,7 @@ namespace Front_App_Amundi.Service
         public async void StartedRequest(RequestSettings request, DataGrid dataGrid)
         {
             this.client = new HttpClient();
-            dataGrid.Items.Clear();
-
-
-                dataGrid.Columns.Clear();
+            this.clearDataGread(dataGrid);
 
             using (client)
             {
@@ -81,11 +78,43 @@ namespace Front_App_Amundi.Service
 
 
                         request.columns = columns.ToArray();
-                        //request.row = jsonArray.ToArray<string>();
+                        request.row = jsonArray;
+                        var src = DateTime.Now;
+                        request.hourOfStart = new DateTime(src.Year, src.Month, src.Day, src.Hour, src.Minute, src.Second);
+
                         dataGrid.Items.Add(request);
                     }
                 }
             }
+        }
+
+        public void showRequest(RequestSettings request, DataGrid dataGrid)
+        {
+            this.clearDataGread(dataGrid);
+
+            request.columns.ToList().ForEach(p =>
+            {
+
+                var newColumn = new DataGridTextColumn();
+                newColumn.Header = p;
+                newColumn.Binding = new Binding(p);
+                dataGrid.Columns.Add(newColumn);
+
+            });
+
+            foreach (var row in request.row)
+            {
+                dataGrid.Items.Add(row);
+            }
+
+
+
+        }
+
+        private void clearDataGread(DataGrid dataGrid)
+        {
+            dataGrid.Items.Clear();
+            dataGrid.Columns.Clear();
         }
     }
 }

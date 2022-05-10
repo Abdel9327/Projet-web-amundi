@@ -49,16 +49,65 @@ namespace Front_App_Amundi
         private void StartRequest(object sender, MouseButtonEventArgs e)
         {
             RequestSettings request = ((sender as Label).Tag as RequestSettings);
-            listRequestsStarted.Add(request);
+          
+            _service.StartedRequest(request, dataGrid);
+
+            listRequestsStarted.Insert(0,request);
             LbxRequestStarted.ItemsSource = listRequestsStarted.ToArray();
 
-            _service.StartedRequest(request, dataGrid);
-                
+            LbxRequestStarted.Focus();
+            LbxRequestStarted.SelectedIndex = 0;
+
         }
 
         private void showRequest(object sender, MouseButtonEventArgs e)
         {
+            RequestSettings request = ((sender as Label).Tag as RequestSettings);
+            _service.showRequest(request, dataGrid);
 
+       
+        }
+
+     
+
+        private void createRequest(object sender, RoutedEventArgs e)
+        {
+            //creation de la requete 
+        }
+
+        private void closePopUpAdd(object sender, RoutedEventArgs e)
+        {
+            PopupAdd.IsOpen = false;
+
+        }
+
+        private void addRequestPopUp(object sender, RoutedEventArgs e)
+        {
+            PopupAdd.IsOpen =true;
+        }
+
+        private void modifyRequestPopUp(object sender, RoutedEventArgs e)
+        {
+            ModifPopup.IsOpen = true;
+            LbxRequestModify.ItemsSource = listRequests;
+
+        }
+
+        private void ModifyRequest(object sender, RoutedEventArgs e)
+        {
+            //modification de la requete
+        }
+
+        private void closePopUpModify(object sender, RoutedEventArgs e)
+        {
+            ModifPopup.IsOpen = false;
         }
     }
 }
+
+
+//regler affichage modify
+// faire ajout et modification
+// test amundi dont work
+//premiere requetelance beug date
+//message derreur o upas ajout 

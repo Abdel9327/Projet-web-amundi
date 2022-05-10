@@ -17,3 +17,22 @@ C:\Users\chihab\source\repos\Front-App-Amundi\Front-App-Amundi\obj\Debug\Front-A
 C:\Users\chihab\source\repos\Front-App-Amundi\Front-App-Amundi\bin\Debug\Newtonsoft.Json.dll
 C:\Users\chihab\source\repos\Front-App-Amundi\Front-App-Amundi\bin\Debug\Newtonsoft.Json.xml
 C:\Users\chihab\source\repos\Front-App-Amundi\Front-App-Amundi\obj\Debug\Front-App-Amundi.csproj.CopyComplete
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\bin\Debug\Front-App-Amundi.exe.config
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\bin\Debug\Front-App-Amundi.exe
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\bin\Debug\Front-App-Amundi.pdb
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\bin\Debug\Newtonsoft.Json.dll
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\bin\Debug\Newtonsoft.Json.xml
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front-App-Amundi.csproj.AssemblyReference.cache
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front-App-Amundi.csproj.SuggestedBindingRedirects.cache
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\MainWindow.g.cs
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\App.g.cs
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front-App-Amundi_MarkupCompile.cache
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front-App-Amundi_MarkupCompile.lref
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\MainWindow.baml
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front-App-Amundi.g.resources
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front_App_Amundi.Properties.Resources.resources
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front-App-Amundi.csproj.GenerateResource.cache
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front-App-Amundi.csproj.CoreCompileInputs.cache
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front-App-Amundi.csproj.CopyComplete
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front-App-Amundi.exe
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front-App-Amundi.pdb

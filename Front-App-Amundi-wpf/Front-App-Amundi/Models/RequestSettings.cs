@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,9 @@ namespace Front_App_Amundi.Models
     {
         public int id { get; set; } 
         public string description { get; set; }
-        public string[] columns { get; set; }       // a voir 
-        public string[] row { get; set; }       // a voir 
-        public string hourOfStart { get; set; }
+        public string[] columns { get; set; }     
+        public JArray row { get; set; }      
+        public DateTime hourOfStart { get; set; }
         public string requete { get; set; }
         public string typeBDD { get; set; }
         public string serveur { get; set; }
