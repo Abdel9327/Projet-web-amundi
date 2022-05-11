@@ -9,6 +9,19 @@ namespace Front_App_Amundi.Models
 {
     public class RequestSettings
     {
+
+        public RequestSettings(string description,string requete,string typeBDD,string serveur,string compte,string mdp,string typeRequete,string condition)
+        {
+            this.description = description;
+            this.requete = requete;
+            this.typeBDD = typeBDD;
+            this.serveur = serveur;
+            this.compte = compte;
+            this.password = mdp;
+            this.typeRequete = typeRequete;
+            this.condition = condition;
+        }
+
         public int id { get; set; } 
         public string description { get; set; }
         public string[] columns { get; set; }     

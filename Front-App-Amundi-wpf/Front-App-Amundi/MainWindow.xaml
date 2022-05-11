@@ -32,8 +32,8 @@
 
 
 
-        <DataGrid x:Name="dataGrid" d:ItemsSource="{Binding}" Margin="477,141,48,44" RenderTransformOrigin="0.5,0.5"/>
-        <ListBox   x:Name="LbxRequestStarted" Margin="477,61,48,704">
+        <DataGrid  x:Name="dataGrid" d:ItemsSource="{Binding}" Margin="477,141,48,44" RenderTransformOrigin="0.5,0.5"/>
+        <ListBox   x:Name="LbxRequestStarted" Margin="477,59,48,704">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation='Horizontal'/>
@@ -42,25 +42,31 @@
             <ListBox.ItemTemplate>
 
                 <DataTemplate>
+                    <Grid>
+                        <Label  Grid.Column="0" MouseLeftButtonDown="showRequest" Tag="{Binding}">
 
-                    <Label  MouseLeftButtonDown="showRequest" Tag="{Binding}">
+                            <Label.Content>
+                                <TextBlock >
+                                    <TextBlock.Text >
+                                        <MultiBinding StringFormat="{}{0}                 &#x0a; {1}                 ">
+                                            <Binding Path="description" />
+                                            <Binding Path="hourOfStart" />
 
-                        <Label.Content>
-                            <TextBlock>
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0} &#x0a; {1}">
-                                        <Binding Path="description" />
-                                        <Binding Path="hourOfStart" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
 
-                                    </MultiBinding>
+                            </Label.Content>
 
-                                </TextBlock.Text>
-                            </TextBlock>
+                        </Label>
+                        <Button  HorizontalAlignment="Right" Grid.Column="1"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="deleteRequestStarted" Content="X"  FontSize="20" Tag="{Binding}"/>
+                        <Button  HorizontalAlignment="Right" Grid.Column="2"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="reloadRequestStarted" Margin="0,0,20,0"  Tag="{Binding}">
+                              <StackPanel>
+                                <Image Width="20" Source="Images/reload.png"/>
+                          </StackPanel>
+                        </Button>
 
-                        </Label.Content>
-
-                    </Label>
-
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
 
@@ -126,34 +132,35 @@
 
                 <Button    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Grid.Column="0" HorizontalContentAlignment="Center" Click="closePopUpAdd" Content="X" FontSize="20" Height="30" Margin="5,0,0,54"/>
 
-                <Label HorizontalContentAlignment="Center" Grid.Column="1" FontSize="30" Margin="0,20,0,25"> Ajout d'une requete </Label>
+                <Label HorizontalContentAlignment="Center" Grid.Column="1" FontSize="30" Margin="0,20,0,25">Ajout d'une requete</Label>
 
                 <Label  Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center">Description:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True" />
+                <TextBox  x:Name="LbxbDescriptionAdd" HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True" />
 
                 <Label Grid.Column="1" Grid.Row="4" HorizontalContentAlignment="Center" >Type Requete:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="5" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <TextBox x:Name="LbxbTypeRequeteAdd" HorizontalContentAlignment="Center" Grid.Row="5" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
 
                 <Label Grid.Column="1" Grid.Row="6" HorizontalContentAlignment="Center" >Requete:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="7" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <TextBox x:Name="LbxbRequeteAdd" HorizontalContentAlignment="Center" Grid.Row="7" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
 
                 <Label Grid.Column="1" Grid.Row="8" HorizontalContentAlignment="Center" >Type BDD:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="9" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <TextBox x:Name="LbxbTypeBddAdd" HorizontalContentAlignment="Center" Grid.Row="9" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
 
                 <Label Grid.Column="1" Grid.Row="10" HorizontalContentAlignment="Center" >Serveur:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="11" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <TextBox x:Name="LbxbServeurBddAdd" HorizontalContentAlignment="Center" Grid.Row="11" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
 
                 <Label Grid.Column="1" Grid.Row="12" HorizontalContentAlignment="Center" >Compte:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="13" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <TextBox x:Name="LbxbCompteAdd" HorizontalContentAlignment="Center" Grid.Row="13" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
 
                 <Label Grid.Column="1" Grid.Row="14" HorizontalContentAlignment="Center" >Mot de Passe:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="15" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <TextBox x:Name="LbxbMdpAdd" HorizontalContentAlignment="Center" Grid.Row="15" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
 
                 <Label Grid.Column="1" Grid.Row="16" HorizontalContentAlignment="Center" >Condition:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="17" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <TextBox x:Name="LbxbConditionAdd" HorizontalContentAlignment="Center" Grid.Row="17" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
 
                 <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Background="white"  Grid.Row="18"  Grid.Column="1" HorizontalContentAlignment="Center" Click="createRequest" Content="Ajouter Requete" Margin="170,30,170,0"/>
 
+                <Label x:Name="messageErrorAdd" Foreground="red" Margin="0,40,0,0" Grid.Column="1" Grid.Row="19" HorizontalContentAlignment="Center" />
             </Grid>
 
         </Popup>
@@ -188,10 +195,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-
-
-
-
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <ListBox  HorizontalAlignment="Left"
@@ -200,46 +204,62 @@
 
                         <DataTemplate>
 
-                            <Label  Content="{Binding description}" Tag="{Binding}"/>
+                            <Label  Content="{Binding description}" Tag="{Binding}" MouseDoubleClick="showRequestToModify"/>
 
                         </DataTemplate>
                     </ListBox.ItemTemplate>
 
                 </ListBox>
 
-                <Button    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Grid.Column="0" HorizontalContentAlignment="Center" Click="closePopUpModify" Content="X" FontSize="20" Height="30" Margin="5,0,0,54"/>
+                <Button    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Grid.Column="0" HorizontalContentAlignment="Left" Click="closePopUpModify" Content="X" FontSize="20" Height="50" Margin="0,0,500,650"/>
 
                 <Label HorizontalContentAlignment="Center" Grid.Column="1" FontSize="30" Margin="0,20,0,25">Modification de requete</Label>
 
-                <Label  Grid.Column="1"  HorizontalContentAlignment="Center">Description:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True" />
+                <Label  Grid.Column="1"  HorizontalContentAlignment="Center" Margin="0,100,40,0" >Description:</Label>
+                <TextBox  x:Name="txtbDesciption" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="100,130,100,550"  AcceptsReturn="True" />
 
-                <Label Grid.Column="1" Grid.Row="4" HorizontalContentAlignment="Center" >Type Requete:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="5" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <Label Grid.Column="1"  HorizontalContentAlignment="Center"  Margin="0,150,40,0" >Type Requete:</Label>
+                <TextBox x:Name="txtbTypeRequest" HorizontalContentAlignment="Center"  Grid.Column="1" Margin="100,180,100,500"  AcceptsReturn="True"/>
 
-                <Label Grid.Column="1" Grid.Row="6" HorizontalContentAlignment="Center" >Requete:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="7" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <Label Grid.Column="1" HorizontalContentAlignment="Center" Margin="0,200,40,0" >Requete:</Label>
+                <TextBox x:Name="txtbRequest" HorizontalContentAlignment="Center"  Grid.Column="1" Margin="100,230,100,450"  AcceptsReturn="True"/>
 
-                <Label Grid.Column="1" Grid.Row="8" HorizontalContentAlignment="Center" >Type BDD:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="9" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <Label Grid.Column="1" HorizontalContentAlignment="Center" Margin="0,250,40,0" >Type BDD:</Label>
+                <TextBox x:Name="txtbTypeBdd" HorizontalContentAlignment="Center"  Grid.Column="1" Margin="100,280,100,400"  AcceptsReturn="True"/>
 
-                <Label Grid.Column="1" Grid.Row="10" HorizontalContentAlignment="Center" >Serveur:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="11" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <Label Grid.Column="1" HorizontalContentAlignment="Center" Margin="0,300,40,0" >Serveur:</Label>
+                <TextBox x:Name="txtbServeur" HorizontalContentAlignment="Center" Grid.Column="1"  Margin="100,330,100,350"  AcceptsReturn="True"/>
 
-                <Label Grid.Column="1" Grid.Row="12" HorizontalContentAlignment="Center" >Compte:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="13" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <Label Grid.Column="1" HorizontalContentAlignment="Center"  Margin="0,350,40,0" >Compte:</Label>
+                <TextBox x:Name="txtbCompte" HorizontalContentAlignment="Center"  Grid.Column="1"  Margin="100,380,100,300"  AcceptsReturn="True"/>
 
-                <Label Grid.Column="1" Grid.Row="14" HorizontalContentAlignment="Center" >Mot de Passe:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="15" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <Label Grid.Column="1"  HorizontalContentAlignment="Center" Margin="0,400,40,0">Mot de Passe:</Label>
+                <TextBox x:Name="txtbMdp" HorizontalContentAlignment="Center"  Grid.Column="1" Margin="100,430,100,250"  AcceptsReturn="True"/>
 
-                <Label Grid.Column="1" Grid.Row="16" HorizontalContentAlignment="Center" >Condition:</Label>
-                <TextBox HorizontalContentAlignment="Center" Grid.Row="17" Grid.Column="1" Margin="40,0,40,0"  AcceptsReturn="True"/>
+                <Label Grid.Column="1"  HorizontalContentAlignment="Center"  Margin="0,450,40,0">Condition:</Label>
+                <TextBox x:Name="txtbCondition" HorizontalContentAlignment="Center"  Grid.Column="1"  Margin="100,480,100,200"  AcceptsReturn="True"/>
 
-                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Background="white"  Grid.Row="18"  Grid.Column="1" HorizontalContentAlignment="Center" Click="ModifyRequest" Content="Ajouter Requete" Margin="170,30,170,0"/>
+                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Background="white"    Grid.Column="1" HorizontalContentAlignment="Center" Click="ModifyRequest" Content="Modifier Requete" Margin="0,350,35,0"/>
 
+
+             
             </Grid>
 
         </Popup>
+        <Ellipse x:Name="spinnerLoad" Stroke="#00B6ED" Margin="967,335,538,238" StrokeDashArray="235 78" RenderTransformOrigin="0.5 0.5" >
+            <Ellipse.RenderTransform>
+                <RotateTransform x:Name="Rotation" Angle="0"/>
+            </Ellipse.RenderTransform>
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimation Storyboard.TargetName="Rotation" Storyboard.TargetProperty="Angle" From="0" To="360 "/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
     </Grid>
 </Window>
 

@@ -3,12 +3,17 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Shapes;
 
 namespace Front_App_Amundi.Service
 {
@@ -41,14 +46,14 @@ namespace Front_App_Amundi.Service
             }
         }
 
-        public async void StartedRequest(RequestSettings request, DataGrid dataGrid)
+        public async void StartedRequest(RequestSettings request, DataGrid dataGrid,Ellipse elipse,List<RequestSettings> listRequestsStarted,ListBox LbxRequestStarted)
         {
             this.client = new HttpClient();
             this.clearDataGread(dataGrid);
 
             using (client)
             {
-                using (HttpResponseMessage response = await client.GetAsync($"{requestAPIUrl}/startRequest/" + request.id))
+                using (HttpResponseMessage response = await client.GetAsync($"{requestAPIUrl}/startRequest/ {request.id}" ))
                 {
                     using (HttpContent content = response.Content)
                     {
@@ -81,14 +86,53 @@ namespace Front_App_Amundi.Service
                         request.row = jsonArray;
                         var src = DateTime.Now;
                         request.hourOfStart = new DateTime(src.Year, src.Month, src.Day, src.Hour, src.Minute, src.Second);
+                        listRequestsStarted.Insert(0, request);
 
                         dataGrid.Items.Add(request);
+                        LbxRequestStarted.ItemsSource = listRequestsStarted.ToArray();
+
                     }
                 }
             }
+            elipse.Visibility = Visibility.Hidden;
+        }
+        public async void reloadRequest(RequestSettings request, Ellipse elipse)
+        {
+            this.client = new HttpClient();
+
+            using (client)
+            {
+                using (HttpResponseMessage response = await client.GetAsync($"{requestAPIUrl}/startRequest/{request.id}"))
+                {
+                    using (HttpContent content = response.Content)
+                    {
+
+                        JArray jsonArray = JArray.Parse(await content.ReadAsStringAsync());
+                        JObject responseRequest = JObject.Parse(jsonArray[0].ToString());
+
+
+                        Dictionary<string, string> dictObj = responseRequest.ToObject<Dictionary<string, string>>();
+
+                        List<String> columns = new List<string>();
+
+                        dictObj.Keys.ToList().ForEach(p =>
+                        {
+                            columns.Add(p);
+                        });
+
+                        request.columns = columns.ToArray();
+                        request.row = jsonArray;
+                        var src = DateTime.Now;
+                        request.hourOfStart = DateTime.Now;
+
+                    }
+                }
+            }
+            elipse.Visibility = Visibility.Hidden;
+
         }
 
-        public void showRequest(RequestSettings request, DataGrid dataGrid)
+        public void showRequest(RequestSettings request, DataGrid dataGrid, Ellipse elipse)
         {
             this.clearDataGread(dataGrid);
 
@@ -107,9 +151,36 @@ namespace Front_App_Amundi.Service
                 dataGrid.Items.Add(row);
             }
 
+            elipse.Visibility = Visibility.Hidden;
 
 
         }
+
+        public async Task<string[]> addRequest(RequestSettings request)
+        {
+
+            this.client = new HttpClient();
+            String requestJson = JsonConvert.SerializeObject(request);
+            using (client)
+            {
+                using (HttpResponseMessage response = await client.PostAsJsonAsync($"{requestAPIUrl}/createRequest", requestJson))
+                {
+                    Console.WriteLine("b");
+
+                    using (HttpContent content = response.Content)
+                    {
+                        Console.WriteLine("a");
+                        string[] addErrorMessage = JsonConvert.DeserializeObject<string[]>(await content.ReadAsStringAsync());
+                        Console.WriteLine(addErrorMessage[0]);
+                        return addErrorMessage;
+
+
+                    }
+                }
+            }
+        }
+
+
 
         private void clearDataGread(DataGrid dataGrid)
         {

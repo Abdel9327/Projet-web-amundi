@@ -51,7 +51,6 @@ export class RequestServiceService {
     var column = agGrid.api.getColumnDefs();
     column!.length=0
     var reponseRequest! : String[];
-console.log(request.hourOfStart)
 this.http.get<string[]>(this.requestAPIUrl+'/startRequest/'+request.id).subscribe(data=>{
   reponseRequest=data!
   const keys = Object.keys(reponseRequest[0]);

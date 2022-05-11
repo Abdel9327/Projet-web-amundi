@@ -25,11 +25,14 @@ namespace Front_App_Amundi
         private RequestService _service;
         private RequestSettings[] listRequests;
         private List<RequestSettings> listRequestsStarted;
+        private string[] errorMessageAdd;
 
        public  MainWindow()
         {
 
             InitializeComponent();
+
+            spinnerLoad.Visibility = Visibility.Hidden;
 
             listRequestsStarted = new List<RequestSettings>();
             _service = new RequestService();
@@ -49,21 +52,19 @@ namespace Front_App_Amundi
         private void StartRequest(object sender, MouseButtonEventArgs e)
         {
             RequestSettings request = ((sender as Label).Tag as RequestSettings);
-          
-            _service.StartedRequest(request, dataGrid);
+            spinnerLoad.Visibility = Visibility.Visible;
 
-            listRequestsStarted.Insert(0,request);
-            LbxRequestStarted.ItemsSource = listRequestsStarted.ToArray();
-
-            LbxRequestStarted.Focus();
-            LbxRequestStarted.SelectedIndex = 0;
+            _service.StartedRequest(request, dataGrid, spinnerLoad, listRequestsStarted, LbxRequestStarted);
+        
 
         }
 
         private void showRequest(object sender, MouseButtonEventArgs e)
         {
             RequestSettings request = ((sender as Label).Tag as RequestSettings);
-            _service.showRequest(request, dataGrid);
+            spinnerLoad.Visibility = Visibility.Visible;
+
+           _service.showRequest(request, dataGrid, spinnerLoad);
 
        
         }
@@ -72,9 +73,23 @@ namespace Front_App_Amundi
 
         private void createRequest(object sender, RoutedEventArgs e)
         {
-            //creation de la requete 
+           ;
+
+            _service.addRequest(CreateAddingrequestSettings()).ContinueWith(t => {
+                this.errorMessageAdd = t.Result;
+                this.Dispatcher.Invoke(() =>
+                {
+                    messageErrorAdd.Content = this.errorMessageAdd[0];
+                    LbxRequest.ItemsSource = listRequests;
+                });
+            });
         }
 
+        private RequestSettings CreateAddingrequestSettings()
+        {
+            return new RequestSettings(LbxbDescriptionAdd.Text, LbxbRequeteAdd.Text, LbxbTypeBddAdd.Text, LbxbServeurBddAdd.Text, LbxbCompteAdd.Text, LbxbMdpAdd.Text, LbxbTypeRequeteAdd.Text, LbxbConditionAdd.Text);
+
+        }
         private void closePopUpAdd(object sender, RoutedEventArgs e)
         {
             PopupAdd.IsOpen = false;
@@ -102,12 +117,84 @@ namespace Front_App_Amundi
         {
             ModifPopup.IsOpen = false;
         }
+
+        private void showRequestToModify(object sender, MouseButtonEventArgs e)
+        {
+            RequestSettings request = ((sender as Label).Tag as RequestSettings);
+            setTxtForm(request);
+           
+
+        }
+
+        private void setTxtForm(RequestSettings request)
+        {
+            txtbDesciption.Text = request.description;
+            txtbTypeRequest.Text = request.typeRequete;
+            txtbRequest.Text = request.requete;
+            txtbTypeBdd.Text = request.typeBDD;
+            txtbServeur.Text=request.serveur;
+            txtbCompte.Text = request.compte;
+            txtbMdp.Text = request.password;
+            txtbCondition.Text = request.condition;
+        }
+
+        private void deleteRequestStarted(object sender, RoutedEventArgs e)
+        {
+            RequestSettings request = ((sender as Button).Tag as RequestSettings);
+            listRequestsStarted.Remove(request);
+
+            LbxRequestStarted.ItemsSource = listRequestsStarted.ToArray();
+            //Si il n'y a plus de requete lancé
+            if (this.listRequestsStarted.Count == 0)
+            {
+                this.clearDataGread();
+                return;
+            }
+        }
+
+        private void reloadRequestStarted(object sender, RoutedEventArgs e)
+        {
+            spinnerLoad.Visibility = Visibility.Visible;
+            RequestSettings request = ((sender as Button).Tag as RequestSettings);
+            _service.reloadRequest(request, spinnerLoad);
+            LbxRequestStarted.ItemsSource = listRequestsStarted.ToArray();
+
+        }
+
+        private void clearDataGread()
+        {
+            dataGrid.Items.Clear();
+            dataGrid.Columns.Clear();
+        }
     }
 }
 
 
-//regler affichage modify
 // faire ajout et modification
 // test amundi dont work
-//premiere requetelance beug date
-//message derreur o upas ajout 
+//requete condition
+// si requete ajouter alors vider le cases !!
+
+
+
+// a reparer pour la suppression
+/*
+
+
+            if ( LbxRequestStarted.SelectedIndex != listRequestsStarted.IndexOf(request) || this.listRequestsStarted.Count == 1)
+            {
+                Console.WriteLine(LbxRequestStarted.SelectedIndex + "and " + listRequestsStarted.IndexOf(request));
+                //Changement de la requete afficher  
+                if (this.listRequestsStarted.Count == 1)
+                {
+                    _service.showRequest(this.listRequestsStarted[0], dataGrid, spinnerLoad);
+                    LbxRequestStarted.Focus();
+                    LbxRequestStarted.SelectedIndex =0;
+                }
+                else
+                {
+                    _service.showRequest(this.listRequestsStarted[0], dataGrid, spinnerLoad);
+                    LbxRequestStarted.Focus();
+                    LbxRequestStarted.SelectedIndex = LbxRequestStarted.SelectedIndex + 1;
+*/
+               

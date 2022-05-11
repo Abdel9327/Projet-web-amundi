@@ -36,3 +36,5 @@ C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\
 C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front-App-Amundi.csproj.CopyComplete
 C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front-App-Amundi.exe
 C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\obj\Debug\Front-App-Amundi.pdb
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\chihab\Projets\Projet Web amundi\Front-App-Amundi-wpf\Front-App-Amundi\bin\Debug\System.Net.Http.Formatting.xml
