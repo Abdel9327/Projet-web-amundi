@@ -22,6 +22,7 @@ namespace Front_App_Amundi.Models
             this.condition = condition;
         }
 
+
         public int id { get; set; } 
         public string description { get; set; }
         public string[] columns { get; set; }     

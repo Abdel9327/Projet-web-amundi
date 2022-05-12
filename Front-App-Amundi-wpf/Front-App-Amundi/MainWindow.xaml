@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Front_App_Amundi"
+        xmlns:converter="clr-namespace:Front_App_Amundi.Conditions"
         mc:Ignorable="d"
         Title="Menu "
         Height="850" 
@@ -13,6 +14,12 @@
         FontFamily="Century Gothic"
 
 >
+    <Window.Resources>
+        <converter:ConditionConvert x:Key="conditionConvert"/>
+        <converter:ConditionConvertGreen x:Key="conditionConvertGreen"/>
+        <converter:ConditionConvertRed x:Key="conditionConvertRed"/>
+
+    </Window.Resources>
 
     <Window.Background>
         <ImageBrush ImageSource="Images/wallpaper.jpg" />
@@ -61,9 +68,9 @@
                         </Label>
                         <Button  HorizontalAlignment="Right" Grid.Column="1"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="deleteRequestStarted" Content="X"  FontSize="20" Tag="{Binding}"/>
                         <Button  HorizontalAlignment="Right" Grid.Column="2"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="reloadRequestStarted" Margin="0,0,20,0"  Tag="{Binding}">
-                              <StackPanel>
+                            <StackPanel>
                                 <Image Width="20" Source="Images/reload.png"/>
-                          </StackPanel>
+                            </StackPanel>
                         </Button>
 
                     </Grid>
@@ -73,13 +80,55 @@
         </ListBox>
 
         <ListBox  HorizontalAlignment="Left"
-            x:Name="LbxRequest" Margin="35,141,0,44" Width="421">
+            x:Name="LbxRequest" Margin="27,141,0,124" Width="429">
             <ListBox.ItemTemplate>
 
                 <DataTemplate>
+                    <Grid>
 
-                    <Label  Content="{Binding description}" MouseDoubleClick="StartRequest" Tag="{Binding}"/>
+                        <Label  MouseDoubleClick="StartRequest" Tag="{Binding}" Margin="0,0,0,5">
+                            <Label.Content>
+                                <TextBlock >
+                                    <TextBlock.Text >
+                                        <MultiBinding StringFormat="{}{0}             &#x0a; {1}">
+                                            <Binding Path="description" />
+                                            <Binding Path="condition" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Label.Content>
+                        </Label>
+                        
+                        
+                        <Image  Grid.Column="1"  HorizontalAlignment="Right" Width="20" Source="Images/rondgris.png">
+                            <Image.Visibility>
+                                <MultiBinding Converter="{StaticResource conditionConvert}">
+                                    <Binding Path="condition"/>
+                                    <Binding Path="conditionValider"/>
+                                </MultiBinding>
+                            </Image.Visibility>
+                        </Image>
 
+                        <Image  Grid.Column="1"  HorizontalAlignment="Right" Width="20" Source="Images/rondVert.png">
+                            <Image.Visibility>
+                                <MultiBinding Converter="{StaticResource conditionConvertGreen}">
+                                    <Binding Path="condition"/>
+                                    <Binding Path="conditionValider"/>
+                                </MultiBinding>
+                            </Image.Visibility>
+                        </Image>
+
+                        <Image  Grid.Column="1"  HorizontalAlignment="Right" Width="20" Source="Images/rondRouge.png">
+                            <Image.Visibility>
+                                <MultiBinding Converter="{StaticResource conditionConvertRed}">
+                                    <Binding Path="condition"/>
+                                    <Binding Path="conditionValider"/>
+                                </MultiBinding>
+                            </Image.Visibility>
+                        </Image>
+
+
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
 
@@ -198,7 +247,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <ListBox  HorizontalAlignment="Left"
+                <ListBox HorizontalAlignment="Left"
                  x:Name="LbxRequestModify" Margin="35,141,0,44" Width="421">
                     <ListBox.ItemTemplate>
 
@@ -216,33 +265,33 @@
                 <Label HorizontalContentAlignment="Center" Grid.Column="1" FontSize="30" Margin="0,20,0,25">Modification de requete</Label>
 
                 <Label  Grid.Column="1"  HorizontalContentAlignment="Center" Margin="0,100,40,0" >Description:</Label>
-                <TextBox  x:Name="txtbDesciption" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="100,130,100,550"  AcceptsReturn="True" />
+                <TextBox  x:Name="txtbDesciptionMod" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="100,130,100,550"  AcceptsReturn="True" />
 
                 <Label Grid.Column="1"  HorizontalContentAlignment="Center"  Margin="0,150,40,0" >Type Requete:</Label>
-                <TextBox x:Name="txtbTypeRequest" HorizontalContentAlignment="Center"  Grid.Column="1" Margin="100,180,100,500"  AcceptsReturn="True"/>
+                <TextBox x:Name="txtbTypeRequestMod" HorizontalContentAlignment="Center"  Grid.Column="1" Margin="100,180,100,500"  AcceptsReturn="True"/>
 
                 <Label Grid.Column="1" HorizontalContentAlignment="Center" Margin="0,200,40,0" >Requete:</Label>
-                <TextBox x:Name="txtbRequest" HorizontalContentAlignment="Center"  Grid.Column="1" Margin="100,230,100,450"  AcceptsReturn="True"/>
+                <TextBox x:Name="txtbRequestMod" HorizontalContentAlignment="Center"  Grid.Column="1" Margin="100,230,100,450"  AcceptsReturn="True"/>
 
                 <Label Grid.Column="1" HorizontalContentAlignment="Center" Margin="0,250,40,0" >Type BDD:</Label>
-                <TextBox x:Name="txtbTypeBdd" HorizontalContentAlignment="Center"  Grid.Column="1" Margin="100,280,100,400"  AcceptsReturn="True"/>
+                <TextBox x:Name="txtbTypeBddMod" HorizontalContentAlignment="Center"  Grid.Column="1" Margin="100,280,100,400"  AcceptsReturn="True"/>
 
                 <Label Grid.Column="1" HorizontalContentAlignment="Center" Margin="0,300,40,0" >Serveur:</Label>
-                <TextBox x:Name="txtbServeur" HorizontalContentAlignment="Center" Grid.Column="1"  Margin="100,330,100,350"  AcceptsReturn="True"/>
+                <TextBox x:Name="txtbServeurMod" HorizontalContentAlignment="Center" Grid.Column="1"  Margin="100,330,100,350"  AcceptsReturn="True"/>
 
                 <Label Grid.Column="1" HorizontalContentAlignment="Center"  Margin="0,350,40,0" >Compte:</Label>
-                <TextBox x:Name="txtbCompte" HorizontalContentAlignment="Center"  Grid.Column="1"  Margin="100,380,100,300"  AcceptsReturn="True"/>
+                <TextBox x:Name="txtbCompteMod" HorizontalContentAlignment="Center"  Grid.Column="1"  Margin="100,380,100,300"  AcceptsReturn="True"/>
 
                 <Label Grid.Column="1"  HorizontalContentAlignment="Center" Margin="0,400,40,0">Mot de Passe:</Label>
-                <TextBox x:Name="txtbMdp" HorizontalContentAlignment="Center"  Grid.Column="1" Margin="100,430,100,250"  AcceptsReturn="True"/>
+                <TextBox x:Name="txtbMdpMod" HorizontalContentAlignment="Center"  Grid.Column="1" Margin="100,430,100,250"  AcceptsReturn="True"/>
 
                 <Label Grid.Column="1"  HorizontalContentAlignment="Center"  Margin="0,450,40,0">Condition:</Label>
-                <TextBox x:Name="txtbCondition" HorizontalContentAlignment="Center"  Grid.Column="1"  Margin="100,480,100,200"  AcceptsReturn="True"/>
+                <TextBox x:Name="txtbConditionMod" HorizontalContentAlignment="Center"  Grid.Column="1"  Margin="100,480,100,200"  AcceptsReturn="True"/>
 
                 <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Background="white"    Grid.Column="1" HorizontalContentAlignment="Center" Click="ModifyRequest" Content="Modifier Requete" Margin="0,350,35,0"/>
 
+                <Label x:Name="messageErrorMod" Foreground="red" Margin="0,550,40,0" Grid.Column="1"  HorizontalContentAlignment="Center" />
 
-             
             </Grid>
 
         </Popup>
@@ -260,6 +309,7 @@
                 </EventTrigger>
             </Ellipse.Triggers>
         </Ellipse>
+        <Button Content="Test Requete Condition" HorizontalAlignment="Left" Height="37" Margin="136,735,0,0" VerticalAlignment="Top" Width="178" Click="testRequestCondition" Background="#FFB3C8EE" BorderThickness="0,1,1,1" RenderTransformOrigin="0,0.5"/>
     </Grid>
 </Window>
 

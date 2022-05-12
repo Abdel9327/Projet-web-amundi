@@ -26,8 +26,10 @@ namespace Front_App_Amundi
         private RequestSettings[] listRequests;
         private List<RequestSettings> listRequestsStarted;
         private string[] errorMessageAdd;
-
-       public  MainWindow()
+        private string[] errorMessageMod;
+        private Label labelRequestSelectedToMod;
+        private static bool testConditionEffectue=false;
+        public MainWindow()
         {
 
             InitializeComponent();
@@ -73,8 +75,6 @@ namespace Front_App_Amundi
 
         private void createRequest(object sender, RoutedEventArgs e)
         {
-           ;
-
             _service.addRequest(CreateAddingrequestSettings()).ContinueWith(t => {
                 this.errorMessageAdd = t.Result;
                 this.Dispatcher.Invoke(() =>
@@ -88,7 +88,6 @@ namespace Front_App_Amundi
         private RequestSettings CreateAddingrequestSettings()
         {
             return new RequestSettings(LbxbDescriptionAdd.Text, LbxbRequeteAdd.Text, LbxbTypeBddAdd.Text, LbxbServeurBddAdd.Text, LbxbCompteAdd.Text, LbxbMdpAdd.Text, LbxbTypeRequeteAdd.Text, LbxbConditionAdd.Text);
-
         }
         private void closePopUpAdd(object sender, RoutedEventArgs e)
         {
@@ -108,9 +107,16 @@ namespace Front_App_Amundi
 
         }
 
-        private void ModifyRequest(object sender, RoutedEventArgs e)
+     
+
+        private RequestSettings CreateModifrequestSettings()
         {
-            //modification de la requete
+            
+            RequestSettings requesttoModify = labelRequestSelectedToMod.Tag as RequestSettings ;
+            RequestSettings newRequestWithMod= new RequestSettings(txtbDesciptionMod.Text, txtbRequestMod.Text, txtbTypeBddMod.Text, txtbServeurMod.Text, txtbCompteMod.Text, txtbMdpMod.Text, txtbTypeRequestMod.Text, txtbConditionMod.Text);
+            newRequestWithMod.id = requesttoModify.id;
+            return newRequestWithMod;
+
         }
 
         private void closePopUpModify(object sender, RoutedEventArgs e)
@@ -120,7 +126,8 @@ namespace Front_App_Amundi
 
         private void showRequestToModify(object sender, MouseButtonEventArgs e)
         {
-            RequestSettings request = ((sender as Label).Tag as RequestSettings);
+            this.labelRequestSelectedToMod = sender as Label;
+            RequestSettings request = this.labelRequestSelectedToMod.Tag as RequestSettings;
             setTxtForm(request);
            
 
@@ -128,14 +135,14 @@ namespace Front_App_Amundi
 
         private void setTxtForm(RequestSettings request)
         {
-            txtbDesciption.Text = request.description;
-            txtbTypeRequest.Text = request.typeRequete;
-            txtbRequest.Text = request.requete;
-            txtbTypeBdd.Text = request.typeBDD;
-            txtbServeur.Text=request.serveur;
-            txtbCompte.Text = request.compte;
-            txtbMdp.Text = request.password;
-            txtbCondition.Text = request.condition;
+            txtbDesciptionMod.Text = request.description;
+            txtbTypeRequestMod.Text = request.typeRequete;
+            txtbRequestMod.Text = request.requete;
+            txtbTypeBddMod.Text = request.typeBDD;
+            txtbServeurMod.Text=request.serveur;
+            txtbCompteMod.Text = request.compte;
+            txtbMdpMod.Text = request.password;
+            txtbConditionMod.Text = request.condition;
         }
 
         private void deleteRequestStarted(object sender, RoutedEventArgs e)
@@ -166,35 +173,64 @@ namespace Front_App_Amundi
             dataGrid.Items.Clear();
             dataGrid.Columns.Clear();
         }
+
+        private void ModifyRequest(object sender, RoutedEventArgs e)
+        {
+            _service.modifyRequest(this.CreateModifrequestSettings()).ContinueWith(t => {
+                this.errorMessageMod = t.Result;
+                this.Dispatcher.Invoke(() =>
+                {
+                    messageErrorMod.Content = this.errorMessageMod[0];
+                    LbxRequest.ItemsSource = listRequests;
+                });
+            });
+        }
+
+        private void testRequestCondition(object sender, RoutedEventArgs e)
+        {
+            _service.testRequestCondition().ContinueWith(t => {
+                listRequests = t.Result;
+                this.Dispatcher.Invoke(() =>
+                {
+                    testConditionEffectue = true;
+                    LbxRequest.ItemsSource = listRequests;
+                });
+            });
+        }
+        public static bool GetTestConditionEffectue()
+        {
+            return testConditionEffectue;
+        }
     }
+
+  
 }
 
 
-// faire ajout et modification
 // test amundi dont work
-//requete condition
 // si requete ajouter alors vider le cases !!
-
-
+// reparer le reload
 
 // a reparer pour la suppression
 /*
 
 
-            if ( LbxRequestStarted.SelectedIndex != listRequestsStarted.IndexOf(request) || this.listRequestsStarted.Count == 1)
+        if ( LbxRequestStarted.SelectedIndex != listRequestsStarted.IndexOf(request) || this.listRequestsStarted.Count == 1)
+        {
+            Console.WriteLine(LbxRequestStarted.SelectedIndex + "and " + listRequestsStarted.IndexOf(request));
+            //Changement de la requete afficher  
+            if (this.listRequestsStarted.Count == 1)
             {
-                Console.WriteLine(LbxRequestStarted.SelectedIndex + "and " + listRequestsStarted.IndexOf(request));
-                //Changement de la requete afficher  
-                if (this.listRequestsStarted.Count == 1)
-                {
-                    _service.showRequest(this.listRequestsStarted[0], dataGrid, spinnerLoad);
-                    LbxRequestStarted.Focus();
-                    LbxRequestStarted.SelectedIndex =0;
-                }
-                else
-                {
-                    _service.showRequest(this.listRequestsStarted[0], dataGrid, spinnerLoad);
-                    LbxRequestStarted.Focus();
-                    LbxRequestStarted.SelectedIndex = LbxRequestStarted.SelectedIndex + 1;
+                _service.showRequest(this.listRequestsStarted[0], dataGrid, spinnerLoad);
+                LbxRequestStarted.Focus();
+                LbxRequestStarted.SelectedIndex =0;
+            }
+            else
+            {
+                _service.showRequest(this.listRequestsStarted[0], dataGrid, spinnerLoad);
+                LbxRequestStarted.Focus();
+                LbxRequestStarted.SelectedIndex = LbxRequestStarted.SelectedIndex + 1;
 */
-               
+
+
+//https://3ds.zoom.us/j/83203458068?pwd=VndJZHBjNmhGRHRhWFZQYVdoZXp3dz09

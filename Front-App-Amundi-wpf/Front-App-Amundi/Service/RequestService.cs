@@ -20,8 +20,8 @@ namespace Front_App_Amundi.Service
     public class RequestService
     {
 
-        public readonly string requestAPIUrl= "https://localhost:7185/api/Request";
-        public  HttpClient client;
+        public readonly string requestAPIUrl = "https://localhost:7185/api/Request";
+        public HttpClient client;
 
         public RequestService()
         {
@@ -39,28 +39,28 @@ namespace Front_App_Amundi.Service
                     {
 
                         RequestSettings[] listRequests = JsonConvert.DeserializeObject<RequestSettings[]>(await content.ReadAsStringAsync());
-           
-                        return  listRequests;
+
+                        return listRequests;
                     }
                 }
             }
         }
 
-        public async void StartedRequest(RequestSettings request, DataGrid dataGrid,Ellipse elipse,List<RequestSettings> listRequestsStarted,ListBox LbxRequestStarted)
+        public async void StartedRequest(RequestSettings request, DataGrid dataGrid, Ellipse elipse, List<RequestSettings> listRequestsStarted, ListBox LbxRequestStarted)
         {
             this.client = new HttpClient();
             this.clearDataGread(dataGrid);
 
             using (client)
             {
-                using (HttpResponseMessage response = await client.GetAsync($"{requestAPIUrl}/startRequest/ {request.id}" ))
+                using (HttpResponseMessage response = await client.GetAsync($"{requestAPIUrl}/startRequest/ {request.id}"))
                 {
                     using (HttpContent content = response.Content)
                     {
                         JArray jsonArray = JArray.Parse(await content.ReadAsStringAsync());
                         JObject responseRequest = JObject.Parse(jsonArray[0].ToString());
 
-                       
+
                         Dictionary<string, string> dictObj = responseRequest.ToObject<Dictionary<string, string>>();
 
                         List<String> columns = new List<string>();
@@ -76,7 +76,7 @@ namespace Front_App_Amundi.Service
                             columns.Add(p);
                         });
 
-                       foreach(var row in jsonArray)
+                        foreach (var row in jsonArray)
                         {
                             dataGrid.Items.Add(row);
                         }
@@ -165,11 +165,9 @@ namespace Front_App_Amundi.Service
             {
                 using (HttpResponseMessage response = await client.PostAsJsonAsync($"{requestAPIUrl}/createRequest", requestJson))
                 {
-                    Console.WriteLine("b");
 
                     using (HttpContent content = response.Content)
                     {
-                        Console.WriteLine("a");
                         string[] addErrorMessage = JsonConvert.DeserializeObject<string[]>(await content.ReadAsStringAsync());
                         Console.WriteLine(addErrorMessage[0]);
                         return addErrorMessage;
@@ -180,7 +178,48 @@ namespace Front_App_Amundi.Service
             }
         }
 
+        public async Task<string[]> modifyRequest(RequestSettings request)
+        {
 
+            this.client = new HttpClient();
+            String requestJson = JsonConvert.SerializeObject(request);
+            using (client)
+            {
+
+                using (HttpResponseMessage response = await client.PostAsJsonAsync($"{requestAPIUrl}/modifyRequest/{request.id}", requestJson))
+                {
+
+                    using (HttpContent content = response.Content)
+                    {
+                        string[] modErrorMessage = JsonConvert.DeserializeObject<string[]>(await content.ReadAsStringAsync());
+                        Console.WriteLine(modErrorMessage[0]);
+
+                        return modErrorMessage;
+
+
+                    }
+                }
+            }
+        }
+
+        public async Task<RequestSettings[]> testRequestCondition()
+        {
+            this.client = new HttpClient();
+
+            using (client)
+            {
+                using (HttpResponseMessage response = await client.GetAsync($"{requestAPIUrl}/testConditions/ADMIN"))
+                {
+                    using (HttpContent content = response.Content)
+                    {
+
+                        RequestSettings[] listRequests = JsonConvert.DeserializeObject<RequestSettings[]>(await content.ReadAsStringAsync());
+
+                        return listRequests;
+                    }
+                }
+            }
+        }
 
         private void clearDataGread(DataGrid dataGrid)
         {

@@ -61,6 +61,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Conditions\ConditionConvert.cs" />
+    <Compile Include="Conditions\ConditionConvertGreen.cs" />
+    <Compile Include="Conditions\ConditionConvertRed.cs" />
     <Compile Include="Service\RequestService.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -117,6 +120,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rondgris.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rondVert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rondRouge.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
