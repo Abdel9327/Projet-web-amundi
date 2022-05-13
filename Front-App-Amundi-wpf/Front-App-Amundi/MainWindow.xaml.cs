@@ -67,11 +67,11 @@ namespace Front_App_Amundi
             spinnerLoad.Visibility = Visibility.Visible;
 
            _service.showRequest(request, dataGrid, spinnerLoad);
+        
 
-       
         }
 
-     
+
 
         private void createRequest(object sender, RoutedEventArgs e)
         {
@@ -92,6 +92,14 @@ namespace Front_App_Amundi
         private void closePopUpAdd(object sender, RoutedEventArgs e)
         {
             PopupAdd.IsOpen = false;
+            LbxbDescriptionAdd.Text = ""; 
+            LbxbRequeteAdd.Text = ""; 
+            LbxbTypeBddAdd.Text = ""; 
+            LbxbServeurBddAdd.Text = "";
+            LbxbCompteAdd.Text = ""; 
+            LbxbMdpAdd.Text = "";
+            LbxbTypeRequeteAdd.Text = "";
+            LbxbConditionAdd.Text = "";
 
         }
 
@@ -122,6 +130,14 @@ namespace Front_App_Amundi
         private void closePopUpModify(object sender, RoutedEventArgs e)
         {
             ModifPopup.IsOpen = false;
+            txtbDesciptionMod.Text = "";
+            txtbRequestMod.Text = "";
+            txtbTypeBddMod.Text = "";
+            txtbServeurMod.Text = "";
+            txtbCompteMod.Text = "";
+            txtbMdpMod.Text = "";
+            txtbTypeRequestMod.Text = "";
+            txtbConditionMod.Text = "";
         }
 
         private void showRequestToModify(object sender, MouseButtonEventArgs e)
@@ -129,6 +145,7 @@ namespace Front_App_Amundi
             this.labelRequestSelectedToMod = sender as Label;
             RequestSettings request = this.labelRequestSelectedToMod.Tag as RequestSettings;
             setTxtForm(request);
+
            
 
         }
@@ -206,6 +223,25 @@ namespace Front_App_Amundi
   
 }
 
+
+
+
+//1 ---------------------------------------------------------------------------
+//regler les prblm de tous les focus !!!!!!!!!!
+//si on clique sur la liste en haut  sa selectionne dans la liste a gauche
+// liste a gauche avoir un bouton pour savoir qui est lancé dans la liste du haut  (meme id)
+//barre de recherche 
+//le click marche que sur le label !!! le faire fonctionner sur tout la ligne  !!!!!!!!!!
+//modifier scroll bar
+// croi de X de modification de requete le mettre en mieux !!
+
+
+
+
+//2 ---------------------------------------------------------------------------
+
+//regler probleme suppression
+//regler probleme relaod
 
 // test amundi dont work
 // si requete ajouter alors vider le cases !!

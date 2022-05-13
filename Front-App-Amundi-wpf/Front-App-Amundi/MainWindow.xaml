@@ -19,6 +19,10 @@
         <converter:ConditionConvertGreen x:Key="conditionConvertGreen"/>
         <converter:ConditionConvertRed x:Key="conditionConvertRed"/>
 
+        <Style TargetType="ScrollBar">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+
     </Window.Resources>
 
     <Window.Background>
@@ -40,7 +44,10 @@
 
 
         <DataGrid  x:Name="dataGrid" d:ItemsSource="{Binding}" Margin="477,141,48,44" RenderTransformOrigin="0.5,0.5"/>
-        <ListBox   x:Name="LbxRequestStarted" Margin="477,59,48,704">
+        <ListBox   x:Name="LbxRequestStarted" Margin="477,59,48,704" >
+            
+           
+            
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation='Horizontal'/>
@@ -81,6 +88,8 @@
 
         <ListBox  HorizontalAlignment="Left"
             x:Name="LbxRequest" Margin="27,141,0,124" Width="429">
+
+     
             <ListBox.ItemTemplate>
 
                 <DataTemplate>
@@ -146,8 +155,12 @@
 
         <Popup x:Name="PopupAdd" Width="500" Height="700"    PlacementTarget="{Binding ElementName=MainPanel}"
     Placement="Center">
+          
 
-            <Grid Margin="10" Background="#00B6ED">
+            <Grid Margin="3">
+                <Grid.Background>
+                    <ImageBrush ImageSource="Images/wallpaper.jpg" />
+                </Grid.Background>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -218,7 +231,10 @@
         <Popup x:Name="ModifPopup" Width="1500" Height="700"    PlacementTarget="{Binding ElementName=MainPanel}"
     Placement="Center">
 
-            <Grid Margin="10" Background="#00B6ED">
+            <Grid Margin="3" >
+                <Grid.Background>
+                    <ImageBrush ImageSource="Images/wallpaper.jpg" />
+                </Grid.Background>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -248,7 +264,7 @@
                 </Grid.RowDefinitions>
 
                 <ListBox HorizontalAlignment="Left"
-                 x:Name="LbxRequestModify" Margin="35,141,0,44" Width="421">
+                 x:Name="LbxRequestModify" Margin="50,81,0,44" Width="421">
                     <ListBox.ItemTemplate>
 
                         <DataTemplate>
@@ -309,7 +325,7 @@
                 </EventTrigger>
             </Ellipse.Triggers>
         </Ellipse>
-        <Button Content="Test Requete Condition" HorizontalAlignment="Left" Height="37" Margin="136,735,0,0" VerticalAlignment="Top" Width="178" Click="testRequestCondition" Background="#FFB3C8EE" BorderThickness="0,1,1,1" RenderTransformOrigin="0,0.5"/>
+        <Button Content="Test Requete Condition" HorizontalAlignment="Left" Height="37" Margin="136,735,0,0" VerticalAlignment="Top" Width="178" Click="testRequestCondition" Background="#FFFCFDFD" BorderThickness="0,1,1,1" RenderTransformOrigin="0,0.5"/>
     </Grid>
 </Window>
 
