@@ -18,10 +18,7 @@
         <converter:ConditionConvert x:Key="conditionConvert"/>
         <converter:ConditionConvertGreen x:Key="conditionConvertGreen"/>
         <converter:ConditionConvertRed x:Key="conditionConvertRed"/>
-
-        <Style TargetType="ScrollBar">
-            <Setter Property="Background" Value="White"/>
-        </Style>
+        <converter:ConditionConvertHistorisation x:Key="conditionConvertHistorisation"/>
 
     </Window.Resources>
 
@@ -45,9 +42,9 @@
 
         <DataGrid  x:Name="dataGrid" d:ItemsSource="{Binding}" Margin="477,141,48,44" RenderTransformOrigin="0.5,0.5"/>
         <ListBox   x:Name="LbxRequestStarted" Margin="477,59,48,704" >
-            
-           
-            
+
+
+
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation='Horizontal'/>
@@ -87,28 +84,15 @@
         </ListBox>
 
         <ListBox  HorizontalAlignment="Left"
-            x:Name="LbxRequest" Margin="27,141,0,124" Width="429">
+            x:Name="LbxRequest" Margin="27,210,0,96" Width="429">
 
-     
+
             <ListBox.ItemTemplate>
 
                 <DataTemplate>
                     <Grid>
 
-                        <Label  MouseDoubleClick="StartRequest" Tag="{Binding}" Margin="0,0,0,5">
-                            <Label.Content>
-                                <TextBlock >
-                                    <TextBlock.Text >
-                                        <MultiBinding StringFormat="{}{0}             &#x0a; {1}">
-                                            <Binding Path="description" />
-                                            <Binding Path="condition" />
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                            </Label.Content>
-                        </Label>
-                        
-                        
+
                         <Image  Grid.Column="1"  HorizontalAlignment="Right" Width="20" Source="Images/rondgris.png">
                             <Image.Visibility>
                                 <MultiBinding Converter="{StaticResource conditionConvert}">
@@ -135,6 +119,27 @@
                                 </MultiBinding>
                             </Image.Visibility>
                         </Image>
+                        <Label  VerticalAlignment="Center" MouseDoubleClick="StartRequest" Tag="{Binding}" Margin="0,0,0,5">
+                            <Label.Content>
+                                <TextBlock >
+                                    <TextBlock.Text >
+                                        <MultiBinding StringFormat="{}{0}        &#x0a;   {1}">
+                                            <Binding Path="description" />
+                                            <Binding Path="condition" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Label.Content>
+                        </Label>
+
+                        <Button Visibility="{Binding requestStarted , Converter={StaticResource conditionConvertHistorisation}}" CommandParameter="{Binding}"  HorizontalAlignment="Right" Grid.Column="1"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Tag="{Binding}" Click="ShowPopUpHistorique" Margin="0,0,0,10">
+                            <StackPanel>
+                                <Image  Width="20" Source="Images/historiqueLogo.png"/>
+                            </StackPanel>
+                   
+                        </Button>
+
+                    
 
 
                     </Grid>
@@ -155,7 +160,7 @@
 
         <Popup x:Name="PopupAdd" Width="500" Height="700"    PlacementTarget="{Binding ElementName=MainPanel}"
     Placement="Center">
-          
+
 
             <Grid Margin="3">
                 <Grid.Background>
@@ -311,6 +316,51 @@
             </Grid>
 
         </Popup>
+
+
+
+        <Popup x:Name="HistoriquePopup" Width="300" Height="400"    PlacementTarget="{Binding ElementName=MainPanel}"
+    Placement="Center">
+
+            <Grid Margin="3" >
+                <Grid.Background>
+                    <ImageBrush ImageSource="Images/wallpaper.jpg" />
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+
+                </Grid.RowDefinitions>
+                
+            <Button    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Grid.Column="0" HorizontalContentAlignment="Left" Click="closePopHistorique" Content="X" FontSize="20" Height="50"/>
+
+                <Label HorizontalContentAlignment="Center" Grid.Column="1" FontSize="30" Margin="0,10,0,0">Historisation</Label>
+
+
+                <ListBox HorizontalAlignment="Center"
+                 x:Name="LbxRequestHistorique" Margin="0,51,0,0" Width="150" Grid.Row="1" Grid.Column="1" >
+                    <ListBox.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <Label  Content="{Binding hourOfStart}" Tag="{Binding}" MouseDoubleClick="historiqueToShowRequest"/>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+            </Grid>
+
+        </Popup>
+        
+        
+        
+        
         <Ellipse x:Name="spinnerLoad" Stroke="#00B6ED" Margin="967,335,538,238" StrokeDashArray="235 78" RenderTransformOrigin="0.5 0.5" >
             <Ellipse.RenderTransform>
                 <RotateTransform x:Name="Rotation" Angle="0"/>
@@ -325,7 +375,9 @@
                 </EventTrigger>
             </Ellipse.Triggers>
         </Ellipse>
-        <Button Content="Test Requete Condition" HorizontalAlignment="Left" Height="37" Margin="136,735,0,0" VerticalAlignment="Top" Width="178" Click="testRequestCondition" Background="#FFFCFDFD" BorderThickness="0,1,1,1" RenderTransformOrigin="0,0.5"/>
+        <Button Content="Test Requete Condition" HorizontalAlignment="Left" Height="37" Margin="136,757,0,0" VerticalAlignment="Top" Width="178" Click="testRequestCondition" Background="#FFFCFDFD" BorderThickness="0,1,1,1" RenderTransformOrigin="0,0.5"/>
+
+        <TextBox HorizontalAlignment="Left" Height="26" Margin="27,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429" TextChanged="textChangedRequest"/>
     </Grid>
 </Window>
 

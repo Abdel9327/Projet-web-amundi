@@ -9,9 +9,7 @@ namespace Front_App_Amundi.Conditions
     {
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
-            Console.WriteLine(parameter);
-            Console.WriteLine(value[0]);
-            Console.WriteLine(value[1]);
+         
 
 
             if (value[0] != null) return Visibility.Visible;

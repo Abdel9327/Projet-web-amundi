@@ -10,6 +10,7 @@ namespace Front_App_Amundi.Models
     public class RequestSettings
     {
 
+    
         public RequestSettings(string description,string requete,string typeBDD,string serveur,string compte,string mdp,string typeRequete,string condition)
         {
             this.description = description;
@@ -20,6 +21,7 @@ namespace Front_App_Amundi.Models
             this.password = mdp;
             this.typeRequete = typeRequete;
             this.condition = condition;
+
         }
 
 
@@ -36,6 +38,35 @@ namespace Front_App_Amundi.Models
         public string typeRequete { get; set; }
         public string condition { get; set; }
         public bool conditionValider { get; set; }
+        public List<RequestSettings> requestStarted { get; set; }
 
+
+
+        public void initRequestStarted()
+        {
+            if (requestStarted == null)
+            {
+                requestStarted = new List<RequestSettings>();
+            
+            }
+        }
+
+        public void addRequestStarted(RequestSettings request)
+        {
+      
+            requestStarted.Add(request);
+        }
+
+
+        public void deleteRequestStarted(RequestSettings request)
+        {
+            requestStarted.Remove(request);
+
+
+        }
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

@@ -24,6 +24,8 @@ namespace Front_App_Amundi
     {
         private RequestService _service;
         private RequestSettings[] listRequests;
+        private List<RequestSettings> listRequestsShow;
+
         private List<RequestSettings> listRequestsStarted;
         private string[] errorMessageAdd;
         private string[] errorMessageMod;
@@ -43,6 +45,7 @@ namespace Front_App_Amundi
                 this.Dispatcher.Invoke(() =>
                 {
                     LbxRequest.ItemsSource = listRequests;
+                    listRequestsShow = new List<RequestSettings>(listRequests);
                 });
             });
 
@@ -56,8 +59,7 @@ namespace Front_App_Amundi
             RequestSettings request = ((sender as Label).Tag as RequestSettings);
             spinnerLoad.Visibility = Visibility.Visible;
 
-            _service.StartedRequest(request, dataGrid, spinnerLoad, listRequestsStarted, LbxRequestStarted);
-        
+            _service.StartedRequest(request, dataGrid, spinnerLoad, listRequestsStarted, LbxRequestStarted, LbxRequest, listRequestsShow) ;
 
         }
 
@@ -67,7 +69,23 @@ namespace Front_App_Amundi
             spinnerLoad.Visibility = Visibility.Visible;
 
            _service.showRequest(request, dataGrid, spinnerLoad);
-        
+
+            for(int i = 0;i< listRequests.Length; i++)
+            {
+                if(listRequests[i].id == request.id)
+                {
+                    LbxRequest.Focus();
+                    LbxRequest.SelectedIndex = i;
+                    var listBoxItem =
+                  (ListBoxItem)LbxRequest
+                    .ItemContainerGenerator
+                      .ContainerFromItem(LbxRequestStarted.SelectedItem);
+
+                    LbxRequest.Focus();
+                    break;
+                }
+            }
+          
 
         }
 
@@ -168,12 +186,17 @@ namespace Front_App_Amundi
             listRequestsStarted.Remove(request);
 
             LbxRequestStarted.ItemsSource = listRequestsStarted.ToArray();
+
             //Si il n'y a plus de requete lancé
             if (this.listRequestsStarted.Count == 0)
             {
                 this.clearDataGread();
-                return;
             }
+
+            request.deleteRequestStarted(request);
+            LbxRequest.ItemsSource = null;
+            LbxRequest.ItemsSource = listRequestsShow;
+
         }
 
         private void reloadRequestStarted(object sender, RoutedEventArgs e)
@@ -206,17 +229,92 @@ namespace Front_App_Amundi
         private void testRequestCondition(object sender, RoutedEventArgs e)
         {
             _service.testRequestCondition().ContinueWith(t => {
+                for(int i = 0; i<t.Result.Length;i++)
+                {
+                    t.Result[i].requestStarted = listRequests[i].requestStarted;
+                }
                 listRequests = t.Result;
                 this.Dispatcher.Invoke(() =>
                 {
+                    listRequestsShow = new List<RequestSettings>(listRequests);
                     testConditionEffectue = true;
-                    LbxRequest.ItemsSource = listRequests;
+                    LbxRequest.ItemsSource = listRequestsShow;
                 });
             });
         }
         public static bool GetTestConditionEffectue()
         {
             return testConditionEffectue;
+        }
+
+        private void textChangedRequest(object sender, TextChangedEventArgs e)
+        {
+            String txtRecherche = (sender as TextBox).Text;
+            Console.WriteLine((sender as TextBox).Text);
+
+            listRequestsShow.Clear();
+
+            foreach(RequestSettings request in listRequests)
+            {
+
+                if (request.description.ToUpper().Contains(txtRecherche.ToUpper()))
+                {
+                    Console.WriteLine(request.description);
+
+                    listRequestsShow.Add(request);
+                }
+            }
+            LbxRequest.ItemsSource = null;
+            LbxRequest.ItemsSource = listRequestsShow;
+        }
+
+        private void ShowPopUpHistorique(object sender, RoutedEventArgs e)
+        {
+            RequestSettings request = ((sender as Button).CommandParameter as RequestSettings);
+
+            HistoriquePopup.IsOpen = true;
+            LbxRequestHistorique.ItemsSource = request.requestStarted;
+        }
+
+        private void closePopHistorique(object sender, RoutedEventArgs e)
+        {
+            HistoriquePopup.IsOpen = false;
+            LbxRequestHistorique.ItemsSource = "";
+        }
+
+        private void historiqueToShowRequest(object sender, MouseButtonEventArgs e)
+        {
+            RequestSettings request = ((sender as Label).Tag as RequestSettings);
+            _service.showRequest(request, dataGrid, spinnerLoad);
+
+            LbxRequestStarted.Focus();
+            LbxRequestStarted.SelectedIndex = listRequestsStarted.IndexOf(request);
+            var listBoxItem =
+             (ListBoxItem)LbxRequestStarted
+               .ItemContainerGenerator
+                 .ContainerFromItem(LbxRequestStarted.SelectedItem);
+
+            listBoxItem.Focus();
+
+            HistoriquePopup.IsOpen = false;
+            LbxRequestHistorique.ItemsSource = "";
+
+
+            for (int i = 0; i < listRequests.Length; i++)
+            {
+                if (listRequests[i].id == request.id)
+                {
+                    LbxRequest.Focus();
+                    LbxRequest.SelectedIndex = i;
+                    var listBoxItem2 =
+                  (ListBoxItem)LbxRequest
+                    .ItemContainerGenerator
+                      .ContainerFromItem(LbxRequestStarted.SelectedItem);
+
+                    LbxRequest.Focus();
+                    break;
+                }
+            }
         }
     }
 
@@ -227,14 +325,9 @@ namespace Front_App_Amundi
 
 
 //1 ---------------------------------------------------------------------------
-//regler les prblm de tous les focus !!!!!!!!!!
-//si on clique sur la liste en haut  sa selectionne dans la liste a gauche
-// liste a gauche avoir un bouton pour savoir qui est lancé dans la liste du haut  (meme id)
-//barre de recherche 
 //le click marche que sur le label !!! le faire fonctionner sur tout la ligne  !!!!!!!!!!
 //modifier scroll bar
-// croi de X de modification de requete le mettre en mieux !!
-
+//afficher les secondes !!!!!!!
 
 
 
@@ -242,10 +335,8 @@ namespace Front_App_Amundi
 
 //regler probleme suppression
 //regler probleme relaod
-
 // test amundi dont work
 // si requete ajouter alors vider le cases !!
-// reparer le reload
 
 // a reparer pour la suppression
 /*

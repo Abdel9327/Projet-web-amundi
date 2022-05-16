@@ -63,6 +63,7 @@
     </ApplicationDefinition>
     <Compile Include="Conditions\ConditionConvert.cs" />
     <Compile Include="Conditions\ConditionConvertGreen.cs" />
+    <Compile Include="Conditions\ConditionConvertHistorisation.cs" />
     <Compile Include="Conditions\ConditionConvertRed.cs" />
     <Compile Include="Service\RequestService.cs" />
     <Page Include="MainWindow.xaml">
@@ -129,6 +130,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\rondRouge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\historiqueLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

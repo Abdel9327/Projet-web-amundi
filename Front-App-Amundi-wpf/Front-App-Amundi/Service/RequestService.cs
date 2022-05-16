@@ -40,16 +40,22 @@ namespace Front_App_Amundi.Service
 
                         RequestSettings[] listRequests = JsonConvert.DeserializeObject<RequestSettings[]>(await content.ReadAsStringAsync());
 
+                        foreach (RequestSettings request in listRequests)
+                        {
+                            request.initRequestStarted();
+                        }
+
                         return listRequests;
                     }
                 }
             }
         }
-
-        public async void StartedRequest(RequestSettings request, DataGrid dataGrid, Ellipse elipse, List<RequestSettings> listRequestsStarted, ListBox LbxRequestStarted)
+    
+        public async void StartedRequest(RequestSettings request, DataGrid dataGrid, Ellipse elipse, List<RequestSettings> listRequestsStarted, ListBox LbxRequestStarted, ListBox LbxRequest,List<RequestSettings> listRequestsShow)
         {
             this.client = new HttpClient();
             this.clearDataGread(dataGrid);
+            request = (RequestSettings)request.Clone();
 
             using (client)
             {
@@ -90,6 +96,23 @@ namespace Front_App_Amundi.Service
 
                         dataGrid.Items.Add(request);
                         LbxRequestStarted.ItemsSource = listRequestsStarted.ToArray();
+
+                        LbxRequestStarted.Focus();
+                        LbxRequestStarted.SelectedIndex = 0;
+
+
+                        var listBoxItem =
+               (ListBoxItem)LbxRequestStarted
+                 .ItemContainerGenerator
+                   .ContainerFromItem(LbxRequestStarted.SelectedItem);
+
+                        listBoxItem.Focus();
+
+
+                        LbxRequest.ItemsSource = null;
+                        LbxRequest.ItemsSource = listRequestsShow;
+                        request.addRequestStarted(request);
+
 
                     }
                 }
@@ -152,6 +175,8 @@ namespace Front_App_Amundi.Service
             }
 
             elipse.Visibility = Visibility.Hidden;
+
+
 
 
         }
