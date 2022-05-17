@@ -85,7 +85,8 @@ namespace Front_App_Amundi
                     break;
                 }
             }
-          
+
+            Console.WriteLine(LbxRequestStarted.SelectedIndex as dynamic);
 
         }
 
@@ -99,9 +100,26 @@ namespace Front_App_Amundi
                 {
                     messageErrorAdd.Content = this.errorMessageAdd[0];
                     LbxRequest.ItemsSource = listRequests;
+
+
+                    if (this.errorMessageAdd[0] == "Requete ajouté")
+                        this.clearFormPopUpAdd();
                 });
             });
         }
+
+        private void clearFormPopUpAdd()
+        {
+            LbxbDescriptionAdd.Text = "";
+            LbxbRequeteAdd.Text = "";
+            LbxbTypeBddAdd.Text = "";
+            LbxbServeurBddAdd.Text = "";
+            LbxbCompteAdd.Text = "";
+            LbxbMdpAdd.Text = "";
+            LbxbTypeRequeteAdd.Text = "";
+            LbxbConditionAdd.Text = "";
+        }
+
 
         private RequestSettings CreateAddingrequestSettings()
         {
@@ -110,14 +128,7 @@ namespace Front_App_Amundi
         private void closePopUpAdd(object sender, RoutedEventArgs e)
         {
             PopupAdd.IsOpen = false;
-            LbxbDescriptionAdd.Text = ""; 
-            LbxbRequeteAdd.Text = ""; 
-            LbxbTypeBddAdd.Text = ""; 
-            LbxbServeurBddAdd.Text = "";
-            LbxbCompteAdd.Text = ""; 
-            LbxbMdpAdd.Text = "";
-            LbxbTypeRequeteAdd.Text = "";
-            LbxbConditionAdd.Text = "";
+            this.clearFormPopUpAdd();
 
         }
 
@@ -192,10 +203,14 @@ namespace Front_App_Amundi
             {
                 this.clearDataGread();
             }
+          
 
             request.deleteRequestStarted(request);
             LbxRequest.ItemsSource = null;
             LbxRequest.ItemsSource = listRequestsShow;
+
+
+          
 
         }
 
@@ -205,6 +220,7 @@ namespace Front_App_Amundi
             RequestSettings request = ((sender as Button).Tag as RequestSettings);
             _service.reloadRequest(request, spinnerLoad);
             LbxRequestStarted.ItemsSource = listRequestsStarted.ToArray();
+
 
         }
 
@@ -325,18 +341,13 @@ namespace Front_App_Amundi
 
 
 //1 ---------------------------------------------------------------------------
-//le click marche que sur le label !!! le faire fonctionner sur tout la ligne  !!!!!!!!!!
-//modifier scroll bar
 //afficher les secondes !!!!!!!
 
 
 
 //2 ---------------------------------------------------------------------------
 
-//regler probleme suppression
 //regler probleme relaod
-// test amundi dont work
-// si requete ajouter alors vider le cases !!
 
 // a reparer pour la suppression
 /*
