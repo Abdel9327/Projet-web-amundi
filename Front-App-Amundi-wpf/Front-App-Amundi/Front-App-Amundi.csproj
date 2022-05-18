@@ -65,6 +65,7 @@
     <Compile Include="Conditions\ConditionConvertGreen.cs" />
     <Compile Include="Conditions\ConditionConvertHistorisation.cs" />
     <Compile Include="Conditions\ConditionConvertRed.cs" />
+    <Compile Include="Models\Column.cs" />
     <Compile Include="Service\RequestService.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -133,6 +134,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\historiqueLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\wallpaperBlack.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\parameter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

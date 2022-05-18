@@ -86,7 +86,6 @@ namespace Front_App_Amundi
                 }
             }
 
-            Console.WriteLine(LbxRequestStarted.SelectedIndex as dynamic);
 
         }
 
@@ -218,9 +217,42 @@ namespace Front_App_Amundi
         {
             spinnerLoad.Visibility = Visibility.Visible;
             RequestSettings request = ((sender as Button).Tag as RequestSettings);
+
+            LbxRequestStarted.Focus();
+            LbxRequestStarted.SelectedIndex = listRequestsStarted.IndexOf(request);
+
+
+            var listBoxItem =
+   (ListBoxItem)LbxRequestStarted
+     .ItemContainerGenerator
+       .ContainerFromItem(LbxRequestStarted.SelectedItem);
+
+            listBoxItem.Focus();
+
+
+           
+
             _service.reloadRequest(request, spinnerLoad);
             LbxRequestStarted.ItemsSource = listRequestsStarted.ToArray();
 
+
+            _service.showRequest(request, dataGrid, spinnerLoad);
+
+            for (int i = 0; i < listRequests.Length; i++)
+            {
+                if (listRequests[i].id == request.id)
+                {
+                    LbxRequest.Focus();
+                    LbxRequest.SelectedIndex = i;
+                    var listBoxItem2 =
+                  (ListBoxItem)LbxRequest
+                    .ItemContainerGenerator
+                      .ContainerFromItem(LbxRequestStarted.SelectedItem);
+
+                    LbxRequest.Focus();
+                    break;
+                }
+            }
 
         }
 
@@ -332,6 +364,30 @@ namespace Front_App_Amundi
                 }
             }
         }
+
+        private void openPopUpModifyColulmn(object sender, RoutedEventArgs e)
+        {
+            RequestSettings request = ((sender as Button).CommandParameter as RequestSettings);
+            _service.setColumnRequest(request, LbxColumnsRequest);
+            btnexitModifyColumn.CommandParameter = request;
+            ModifyColumnPopup.IsOpen = true;
+        }
+
+        private void closePopUpModifyColumn(object sender, RoutedEventArgs e)
+        {
+            RequestSettings request = ((sender as Button).CommandParameter as RequestSettings);
+           for(int i = 0; i < listRequestsStarted.Count; i++)
+            {
+                if(listRequestsStarted[i].id == request.id)
+                {
+                    listRequestsStarted[i].columns = request.columns;
+                    _service.reloadDataGrid(dataGrid, listRequestsStarted[i]);
+                }
+            }
+
+            LbxColumnsRequest.ItemsSource = null;
+            ModifyColumnPopup.IsOpen = false;
+        }
     }
 
   
@@ -341,13 +397,10 @@ namespace Front_App_Amundi
 
 
 //1 ---------------------------------------------------------------------------
-//afficher les secondes !!!!!!!
-
-
+// reload => mettre vraiment a jour les lignes !!!!!
+//pk la premiere ligne se nomme task a chaque fois ?
 
 //2 ---------------------------------------------------------------------------
-
-//regler probleme relaod
 
 // a reparer pour la suppression
 /*
@@ -369,5 +422,19 @@ namespace Front_App_Amundi
                 LbxRequestStarted.Focus();
                 LbxRequestStarted.SelectedIndex = LbxRequestStarted.SelectedIndex + 1;
 */
+
+//2 ---------------------------------------------------------------------------
+// un truc de notification lorsquon ouvre ou ferme une requete?
+
+
+
+// ==> Ajout de la barre de recherche dinamique !
+// ==> Modification des scrollBar 
+// ==> Ajout des historisations
+// ==> Modification des colomns possibles ( modification dinamiques)
+// ==> Tou ets lié, ( tous les focus sont parametré) 
+
+
+
 
 

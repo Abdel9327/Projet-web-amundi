@@ -76,16 +76,12 @@
                             <Trigger SourceName="Thumb"
                                     Property="IsMouseOver"
                                     Value="true">
-                                <Setter Value="{DynamicResource ButtonSelectBrush}"
-                                    TargetName="Thumb"
-                                    Property="Background" />
+
                             </Trigger>
                             <Trigger SourceName="Thumb"
                                     Property="IsDragging"
                                     Value="true">
-                                <Setter Value="{DynamicResource DarkBrush}"
-                                    TargetName="Thumb"
-                                    Property="Background" />
+
                             </Trigger>
 
                             <Trigger Property="IsEnabled"
@@ -163,17 +159,17 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
     </Window.Resources>
 
     <Window.Background>
         <ImageBrush ImageSource="Images/wallpaper.jpg" />
     </Window.Background>
 
-   
+
 
     <Grid>
-      
+
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -185,8 +181,8 @@
 
 
 
-        <DataGrid  x:Name="dataGrid" d:ItemsSource="{Binding}" Margin="477,141,48,44" RenderTransformOrigin="0.5,0.5"/>
-        <ListBox   x:Name="LbxRequestStarted" Height="70" Margin="477,39,48,684" >
+        <DataGrid  x:Name="dataGrid" d:ItemsSource="{Binding}" Margin="533,141,48,44" RenderTransformOrigin="0.5,0.5"/>
+        <ListBox   x:Name="LbxRequestStarted" Margin="533,51,48,698" >
 
 
 
@@ -215,7 +211,7 @@
                             </Label.Content>
 
                         </Label>
-                        <Button  HorizontalAlignment="Right" Grid.Column="1"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="deleteRequestStarted" Content="X"  FontSize="20" Tag="{Binding}"/>
+                        <Button  HorizontalAlignment="Right" Grid.Column="1"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="deleteRequestStarted" Content="X"  FontSize="20" Tag="{Binding}" />
                         <Button  HorizontalAlignment="Right" Grid.Column="2"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="reloadRequestStarted" Margin="0,0,20,0"  Tag="{Binding}">
                             <StackPanel>
                                 <Image Width="20" Source="Images/reload.png"/>
@@ -229,7 +225,7 @@
         </ListBox>
 
         <ListBox  HorizontalAlignment="Left"
-            x:Name="LbxRequest" Margin="27,210,0,96" Width="429">
+            x:Name="LbxRequest" Margin="27,210,0,103" Width="481">
 
 
             <ListBox.ItemTemplate>
@@ -238,7 +234,7 @@
                     <Grid>
 
 
-                        <Image  Grid.Column="1"  HorizontalAlignment="Right" Width="20" Source="Images/rondgris.png">
+                        <Image  Grid.Column="1"  HorizontalAlignment="Right" Width="20" Source="Images/rondgris.png" Margin="0,4,0,0">
                             <Image.Visibility>
                                 <MultiBinding Converter="{StaticResource conditionConvert}">
                                     <Binding Path="condition"/>
@@ -247,7 +243,7 @@
                             </Image.Visibility>
                         </Image>
 
-                        <Image  Grid.Column="1"  HorizontalAlignment="Right" Width="20" Source="Images/rondVert.png">
+                        <Image  Grid.Column="1"  HorizontalAlignment="Right" Width="20" Source="Images/rondVert.png" Margin="0,4,0,0">
                             <Image.Visibility>
                                 <MultiBinding Converter="{StaticResource conditionConvertGreen}">
                                     <Binding Path="condition"/>
@@ -256,7 +252,7 @@
                             </Image.Visibility>
                         </Image>
 
-                        <Image  Grid.Column="1"  HorizontalAlignment="Right" Width="20" Source="Images/rondRouge.png">
+                        <Image  Grid.Column="1"  HorizontalAlignment="Right" Width="20" Source="Images/rondRouge.png" Margin="0,4,0,0">
                             <Image.Visibility>
                                 <MultiBinding Converter="{StaticResource conditionConvertRed}">
                                     <Binding Path="condition"/>
@@ -281,10 +277,15 @@
                             <StackPanel>
                                 <Image  Width="20" Source="Images/historiqueLogo.png"/>
                             </StackPanel>
-                   
+
                         </Button>
 
-                    
+                        <Button  CommandParameter="{Binding}"  HorizontalAlignment="Right" Grid.Column="1"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Tag="{Binding}" Click="openPopUpModifyColulmn" Margin="0,4,24,0">
+                            <StackPanel>
+                                <Image  Width="20" Source="Images/parameter.png"/>
+                            </StackPanel>
+
+                        </Button>
 
 
                     </Grid>
@@ -297,8 +298,8 @@
                 <BitmapImage  UriSource="Images/amundi.png" />
             </Image.Source>
         </Image>
-        <Button  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="addRequestPopUp" Content="Ajouter Requete" Margin="533,0,0,0" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Height="46" Width="188"/>
-        <Button  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="modifyRequestPopUp" Content="Modifier Requete" Margin="765,0,0,0" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Height="46" Width="188"/>
+        <Button  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="addRequestPopUp" Content="Ajouter Requete" Margin="573,0,0,0" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Height="46" Width="188"/>
+        <Button  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="modifyRequestPopUp" Content="Modifier Requete" FontSize="20" VerticalAlignment="Top" Height="46" Width="188"/>
 
 
 
@@ -481,19 +482,29 @@
                     <RowDefinition Height="Auto" />
 
                 </Grid.RowDefinitions>
-                
-            <Button    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Grid.Column="0" HorizontalContentAlignment="Left" Click="closePopHistorique" Content="X" FontSize="20" Height="50"/>
+
+                <Button    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Grid.Column="0" HorizontalContentAlignment="Left" Click="closePopHistorique" Content="X" FontSize="20" Height="50" />
 
                 <Label HorizontalContentAlignment="Center" Grid.Column="1" FontSize="30" Margin="0,10,0,0">Historisation</Label>
 
 
                 <ListBox HorizontalAlignment="Center"
-                 x:Name="LbxRequestHistorique" Margin="0,51,0,0" Width="150" Height="200" Grid.Row="1" Grid.Column="1" >
+                 x:Name="LbxRequestHistorique" Margin="0,51,0,0"  Width="170" Height="200" Grid.Row="1" Grid.Column="1" >
                     <ListBox.ItemTemplate>
 
                         <DataTemplate>
 
-                            <Label  Content="{Binding hourOfStart}" Tag="{Binding}" MouseDoubleClick="historiqueToShowRequest"/>
+                            <Label Tag="{Binding}" MouseDoubleClick="historiqueToShowRequest">
+                                <Label.Content>
+                                    <TextBlock >
+                                        <TextBlock.Text >
+                                            <MultiBinding StringFormat="{}{0}">
+                                                <Binding Path=" hourOfStart" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Label.Content>
+                            </Label>
 
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -502,10 +513,56 @@
             </Grid>
 
         </Popup>
-        
-        
-        
-        
+
+
+
+        <Popup x:Name="ModifyColumnPopup" Width="650" Height="400"    PlacementTarget="{Binding ElementName=MainPanel}"
+    Placement="Center">
+
+            <Grid Margin="3" >
+                <Grid.Background>
+                    <ImageBrush ImageSource="Images/wallpaper.jpg" />
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label HorizontalContentAlignment="Center" Grid.Column="1" FontSize="30" Margin="0,10,0,0">Modification des colonnes</Label>
+
+                <Button    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Grid.Column="0" HorizontalContentAlignment="Center" Click="closePopUpModifyColumn" Content="X" FontSize="20" Height="30" Margin="5,0,0,54" CommandParameter="{Binding}" x:Name="btnexitModifyColumn"/>
+                <ListBox HorizontalAlignment="Center"
+                 x:Name="LbxColumnsRequest" Margin="0,10,0,0" Width="580" Height="250" Grid.Row="1" Grid.Column="1" >
+                    <ListBox.ItemTemplate>
+
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label  Content="{Binding initialColumn}"  Grid.Column="0" Margin="0,0,0,10" Width="250"/>
+                                <Label Content="AS" Grid.Column="1" Width="130"/>
+                                <TextBox Name="TextBoxList" Text="{Binding  modifyColumn,UpdateSourceTrigger=PropertyChanged}"  Grid.Column="2"  Height="20" Width="150" Margin="0,0,0,6"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+              
+
+            </Grid>
+
+        </Popup>
+
         <Ellipse x:Name="spinnerLoad" Stroke="#00B6ED" Margin="967,335,538,238" StrokeDashArray="235 78" RenderTransformOrigin="0.5 0.5" >
             <Ellipse.RenderTransform>
                 <RotateTransform x:Name="Rotation" Angle="0"/>
@@ -520,9 +577,9 @@
                 </EventTrigger>
             </Ellipse.Triggers>
         </Ellipse>
-        <Button Content="Test Requete Condition" HorizontalAlignment="Left" Height="37" Margin="136,757,0,0" VerticalAlignment="Top" Width="178" Click="testRequestCondition" Background="#FFFCFDFD" BorderThickness="0,1,1,1" RenderTransformOrigin="0,0.5"/>
+        <Button Content="Test Requete Condition" HorizontalAlignment="Left" Height="37" Margin="178,753,0,0" VerticalAlignment="Top" Width="178" Click="testRequestCondition" Background="#FFFCFDFD" BorderThickness="0,1,1,1" RenderTransformOrigin="0,0.5"/>
 
-        <TextBox HorizontalAlignment="Left" Height="26" Margin="27,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429" TextChanged="textChangedRequest"/>
+        <TextBox HorizontalAlignment="Left" Height="26" Margin="27,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" TextChanged="textChangedRequest"/>
     </Grid>
 </Window>
 

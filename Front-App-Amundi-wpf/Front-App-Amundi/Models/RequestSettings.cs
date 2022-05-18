@@ -27,7 +27,7 @@ namespace Front_App_Amundi.Models
 
         public int id { get; set; } 
         public string description { get; set; }
-        public string[] columns { get; set; }     
+        public List<Column> columns { get; set; }     
         public JArray row { get; set; }      
         public DateTime hourOfStart { get; set; }
         public string requete { get; set; }
@@ -39,6 +39,7 @@ namespace Front_App_Amundi.Models
         public string condition { get; set; }
         public bool conditionValider { get; set; }
         public List<RequestSettings> requestStarted { get; set; }
+
 
 
 

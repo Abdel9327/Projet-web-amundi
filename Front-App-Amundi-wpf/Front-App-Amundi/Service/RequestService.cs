@@ -3,12 +3,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -69,18 +65,33 @@ namespace Front_App_Amundi.Service
 
                         Dictionary<string, string> dictObj = responseRequest.ToObject<Dictionary<string, string>>();
 
-                        List<String> columns = new List<string>();
+                        if (request.columns == null) {
+                            request.columns = new List<Column>();
+                            dictObj.Keys.ToList().ForEach(p =>
+                            {
 
-                        dictObj.Keys.ToList().ForEach(p =>
+                                var newColumn = new DataGridTextColumn();
+                                newColumn.Header = p;
+                                newColumn.Binding = new Binding(p);
+                                dataGrid.Columns.Add(newColumn);
+
+                                request.columns.Add(new Column(p, p));
+                            });
+
+                        }else
                         {
+                            int i = 0;
+                            dictObj.Keys.ToList().ForEach(p =>
+                            {
 
-                            var newColumn = new DataGridTextColumn();
-                            newColumn.Header = p;
-                            newColumn.Binding = new Binding(p);
-                            dataGrid.Columns.Add(newColumn);
+                                var newColumn = new DataGridTextColumn();
+                                newColumn.Binding = new Binding(p);
+                                newColumn.Header = request.columns[i].modifyColumn; i++;
+                                dataGrid.Columns.Add(newColumn);
 
-                            columns.Add(p);
-                        });
+                            });
+                            }
+
 
                         foreach (var row in jsonArray)
                         {
@@ -88,7 +99,8 @@ namespace Front_App_Amundi.Service
                         }
 
 
-                        request.columns = columns.ToArray();
+
+
                         request.row = jsonArray;
                         var src = DateTime.Now;
                         request.hourOfStart = new DateTime(src.Year, src.Month, src.Day, src.Hour, src.Minute, src.Second);
@@ -118,7 +130,75 @@ namespace Front_App_Amundi.Service
                 }
             }
             elipse.Visibility = Visibility.Hidden;
+
+
+            dataGrid.Columns[0].Header = "Task";
         }
+
+
+        public async void setColumnRequest(RequestSettings request, ListBox LbxColumnsRequest)
+        {
+            this.client = new HttpClient();
+
+            if (request.columns == null) {
+                request.columns = new List<Column>();
+
+                request = (RequestSettings)request.Clone();
+
+                using (client)
+                {
+                    using (HttpResponseMessage response = await client.GetAsync($"{requestAPIUrl}/startRequest/ {request.id}"))
+                    {
+                        using (HttpContent content = response.Content)
+                        {
+                            JArray jsonArray = JArray.Parse(await content.ReadAsStringAsync());
+                            JObject responseRequest = JObject.Parse(jsonArray[0].ToString());
+
+
+                            Dictionary<string, string> dictObj = responseRequest.ToObject<Dictionary<string, string>>();
+
+                            List<String> columns = new List<string>();
+
+                            dictObj.Keys.ToList().ForEach(p =>
+                            {
+                                columns.Add(p);
+                            });
+
+
+                            for (int i = 0; i < columns.Count; i++)
+                            {
+                                request.columns.Add(new Column(columns[i], columns[i]));
+                            }
+                        
+                    
+
+
+                        }
+                    }
+                } 
+            }
+
+            LbxColumnsRequest.ItemsSource = request.columns;
+        }
+
+        public void reloadDataGrid(DataGrid dataGrid, RequestSettings requete)
+        {
+            this.clearDataGread(dataGrid);
+            for (int i = 0; i < requete.columns.Count; i++)
+            {
+                var newColumn = new DataGridTextColumn();
+                newColumn.Binding = new Binding(requete.columns[i].initialColumn);
+                newColumn.Header = requete.columns[i].modifyColumn; 
+                dataGrid.Columns.Add(newColumn);
+            }
+
+    
+                        foreach (var row in requete.row)
+                        {
+                            dataGrid.Items.Add(row);
+                        }
+}
+
         public async void reloadRequest(RequestSettings request, Ellipse elipse)
         {
             this.client = new HttpClient();
@@ -136,14 +216,7 @@ namespace Front_App_Amundi.Service
 
                         Dictionary<string, string> dictObj = responseRequest.ToObject<Dictionary<string, string>>();
 
-                        List<String> columns = new List<string>();
 
-                        dictObj.Keys.ToList().ForEach(p =>
-                        {
-                            columns.Add(p);
-                        });
-
-                        request.columns = columns.ToArray();
                         request.row = jsonArray;
                         var src = DateTime.Now;
                         request.hourOfStart = DateTime.Now;
@@ -163,8 +236,8 @@ namespace Front_App_Amundi.Service
             {
 
                 var newColumn = new DataGridTextColumn();
-                newColumn.Header = p;
-                newColumn.Binding = new Binding(p);
+                newColumn.Header = p.modifyColumn;
+                newColumn.Binding = new Binding(p.initialColumn);
                 dataGrid.Columns.Add(newColumn);
 
             });
