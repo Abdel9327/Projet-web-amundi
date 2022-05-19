@@ -199,7 +199,7 @@ namespace Front_App_Amundi.Service
                         }
 }
 
-        public async void reloadRequest(RequestSettings request, Ellipse elipse)
+        public async void reloadRequest(RequestSettings request, Ellipse elipse, DataGrid dataGrid)
         {
             this.client = new HttpClient();
 
@@ -226,6 +226,7 @@ namespace Front_App_Amundi.Service
             }
             elipse.Visibility = Visibility.Hidden;
 
+            this.reloadDataGrid(dataGrid, request);
         }
 
         public void showRequest(RequestSettings request, DataGrid dataGrid, Ellipse elipse)

@@ -202,16 +202,30 @@ namespace Front_App_Amundi
             {
                 this.clearDataGread();
             }
-          
 
             request.deleteRequestStarted(request);
             LbxRequest.ItemsSource = null;
             LbxRequest.ItemsSource = listRequestsShow;
 
 
-          
+            if (this.listRequestsStarted.IndexOf(request) != this.listRequestsStarted.Count - 1)
+            {
+                LbxRequestStarted.Focus();
+                LbxRequestStarted.SelectedIndex = LbxRequestStarted.SelectedIndex + 1;
 
-        }
+
+                var listBoxItem =
+                (ListBoxItem)LbxRequestStarted
+                 .ItemContainerGenerator
+                .ContainerFromItem(LbxRequestStarted.SelectedItem);
+
+                listBoxItem.Focus();
+                _service.showRequest(listRequestsStarted[listRequestsStarted.IndexOf(request) + 1], dataGrid, spinnerLoad);
+            }
+
+
+
+                }
 
         private void reloadRequestStarted(object sender, RoutedEventArgs e)
         {
@@ -232,7 +246,7 @@ namespace Front_App_Amundi
 
            
 
-            _service.reloadRequest(request, spinnerLoad);
+            _service.reloadRequest(request, spinnerLoad, dataGrid);
             LbxRequestStarted.ItemsSource = listRequestsStarted.ToArray();
 
 
@@ -396,9 +410,6 @@ namespace Front_App_Amundi
 
 
 
-//1 ---------------------------------------------------------------------------
-// reload => mettre vraiment a jour les lignes !!!!!
-//pk la premiere ligne se nomme task a chaque fois ?
 
 //2 ---------------------------------------------------------------------------
 
@@ -423,15 +434,13 @@ namespace Front_App_Amundi
                 LbxRequestStarted.SelectedIndex = LbxRequestStarted.SelectedIndex + 1;
 */
 
-//2 ---------------------------------------------------------------------------
-// un truc de notification lorsquon ouvre ou ferme une requete?
 
 
 
 // ==> Ajout de la barre de recherche dinamique !
 // ==> Modification des scrollBar 
 // ==> Ajout des historisations
-// ==> Modification des colomns possibles ( modification dinamiques)
+// ==> Modification des colomns possibles ( modification dinamiques !! => modification se fait tout seul pas besoin dactualiser)
 // ==> Tou ets lié, ( tous les focus sont parametré) 
 
 
